@@ -1,7 +1,9 @@
 ---
 title: My Fisrt Blog
 date: 2018-04-12 12:06:16
-tags:
+tags: 
+	- front-end
+	- 前端
 ---
 This is my first blog using Hexo + GithubPage + Travis CI. Followed are my notes of this process.
 
