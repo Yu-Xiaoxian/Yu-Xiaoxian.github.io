@@ -1,1 +1,44 @@
 # Yu Xiaoxian's Blog
+
+[于小咸的日志](blog.yu-xiaoxian.me)
+
+---
+
+使用Hexo生成静态页面，由Travis CI部署在Github Page上，并配置了自定义域名blog.yu-xiaoxiain.me。
+
+1. [Hexo](#Hexo)
+2. [Travis_CI](#Travis_CI)
+3. [Github_Page](#Github_Page)
+4. [域名解析](#域名解析)
+5. [双线路解析](#双线路解析)
+6. [参考链接](#参考链接)
+
+## 1. Hexo
+
+Hexo 是一个静态网页生成和部署的框架，可以简单理解为md文件到html的转换器。
+
+## 2. Travis_CI
+
+Travis CI 是集成在Github上的一款在线解析工具。
+
+## 3. Github_Page
+
+Github Page 是Github提供的静态网页部署平台，分为“个人/组织页面”和“项目页面”。
+
+## 4. 域名解析
+
+域名解析分为两步，第一步是域名解析，第二步是301事件。
+
+### 4.1 域名解析
+
+域名解析是从个人域名<user-domain>到Github Page的解析，使得访问<user-domain>的时候，能够正确解析到Github Page，这需要在域名服务商和DNS服务商处设置。
+
+### 4.2 301事件
+
+这一步是为了保证浏览器在访问Github Page<<user.name>.github.io>时，域名能够正确切换到个人域名<user-domain>
+
+## 5. 双线路解析
+
+## 6. 参考链接
+
+1. [hexo博客搭建时遇到的一些问题](https://segmentfault.com/a/1190000003710962?_ea=336354#articleHeader3)
