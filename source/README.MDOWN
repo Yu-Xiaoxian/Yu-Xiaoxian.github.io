@@ -1,17 +1,17 @@
 # Yu Xiaoxian's Blog
 
-[于小咸的日志](blog.yu-xiaoxian.me)
+[于小咸的日志](http://blog.yu-xiaoxian.me)
 
 ---
 
 使用Hexo生成静态页面，由Travis CI部署在Github Page上，并配置了自定义域名blog.yu-xiaoxiain.me。
 
-1. [Hexo](#Hexo)
-2. [Travis_CI](#Travis_CI)
-3. [Github_Page](#Github_Page)
-4. [域名解析](#域名解析)
-5. [双线路解析](#双线路解析)
-6. [参考链接](#参考链接)
+1. Hexo
+2. Travis_CI
+3. Github_Page
+4. 域名解析
+5. 双线路解析
+6. 参考链接
 
 ## 1. Hexo
 
