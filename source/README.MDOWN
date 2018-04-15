@@ -1,5 +1,7 @@
 # Yu Xiaoxian's Blog
 
+[![Build Status](https://travis-ci.org/Yu-Xiaoxian/Yu-Xiaoxian.github.io.svg?branch=blog-source)](https://travis-ci.org/Yu-Xiaoxian/Yu-Xiaoxian.github.io)
+
 [于小咸的日志](http://blog.yu-xiaoxian.me)
 
 ---
