@@ -9,12 +9,12 @@
 
 使用Hexo生成静态页面，由Travis CI部署在Github Page上，并配置了自定义域名blog.yu-xiaoxiain.me。
 
-1. Hexo
-2. Travis_CI
-3. Github_Page
-4. 域名解析
-5. 双线路解析
-6. 参考链接
+1. [Hexo](1-Hexo)
+2. [Travis_CI](2-Travis_CI)
+3. [Github_Page](3-Github_Page)
+4. [域名解析](4-域名解析)
+5. [双线路解析](5-双线路解析)
+6. [参考链接](6-参考链接)
 
 ## 1. Hexo
 
