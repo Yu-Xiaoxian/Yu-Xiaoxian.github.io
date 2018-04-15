@@ -1,6 +1,7 @@
 # Yu Xiaoxian's Blog
 
 [![Build Status](https://travis-ci.org/Yu-Xiaoxian/Yu-Xiaoxian.github.io.svg?branch=blog-source)](https://travis-ci.org/Yu-Xiaoxian/Yu-Xiaoxian.github.io)
+[![hexo](https://img.shields.io/badge/hexo-%3E%3D%203.3.5-blue.svg)](https://hexo.io)
 
 [于小咸的日志](http://blog.yu-xiaoxian.me)
 
