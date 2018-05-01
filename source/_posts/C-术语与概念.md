@@ -610,5 +610,117 @@ class C: virtual public B{}
 
 构造函数：最远派生类（建立对象时使用的类）给虚基类传递函数。
 
+# 多态性 Polymorphism
+
+- 编译多态性：重载运算符, 重载函数
+
+- 运行多态性：虚函数
+
+## 运算符重载
+
+### 重载规则
+
+运算符的重载不改变运算符的优先级，并且只能重载C++中已经包含的运算符
+
+不能够重载的运算符： ".", ".*", "::", "?:"
+
+### 双目运算符重载为成员函数
+
+语法定义：函数类型 operator 运算符（形参）
+
+参数个数 = 原操作数 - 1
+
+代码实例
+
+```cpp
+class Complex{
+public:
+	Complex operator+(const Complex &c2)const {
+		return Complex(real+c2.real, img+c2.img);
+	}
+}
+```
+
+### 单目运算符重载为成员函数
+
+语法定义：
+
+- 前置：函数类型 &operator 运算符()
+
+- 后置：函数类型 operator 运算符(int)
+
+代码实例
+
+```cpp
+Clock& operator ++ ();	//前置运算符
+Clock operator ++ (0);	//后置运算符
+```
+
+### 重载操作符为非成员函数
+
+语法定义：需要列出所有的操作数，前置、后置单目运算符需要添加一个int
+
+代码实例
+
+```cpp
+Complex operator+(const Complex &c1, const Complex &c2){
+    return Complex(c1.real+c2.real, c1.imag+c2.imag); 
+}
+Complex operator-(const Complex &c1, const Complex &c2){
+    return Complex(c1.real-c2.real, c1.imag-c2.imag); 
+}
+
+ostream & operator<<(ostream &out, const Complex &c){
+    out << "(" << c.real << ", " << c.imag << ")";
+    return out;
+}
+```
+
+## 虚函数
+
+### 虚函数
+
+语法定义：virtual 函数类型 函数名(形参表)
+
+虚函数不可以是静态，构造函数不可以是虚函数
+
+代码实例
+
+```cpp
+vitual void display() const;
+```
+
+### 虚析构函数
+
+语法定义：与虚函数的定义一样
+
+使用虚析构函数，可以保证动态申请的内存空间能够被释放。否则，基类指针指向的派生类对象消亡时，只会调用基类的析构函数。
+
+### 虚表与动态绑定
+
+每个多态类有一个虚表，虚表中有当前各个虚函数的入口地址
+
+每个对象有一个指向当前虚表的指针
+
+## 抽象类
+
+纯虚函数: virtual 函数类型 函数名(参数表) = 0
+
+包含纯虚函数的类为抽象类，不能够构造对象
+
+## 显示函数覆盖 overriide
+
+## 不允许被继承 final
+
+语法定义： class 对象名 final;
+
+代码实例
+
+```cpp
+clase Base1 final {}
+```
+ 
+
+
 
 
