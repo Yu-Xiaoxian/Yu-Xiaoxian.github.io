@@ -20,15 +20,12 @@ C++ 是在C语言基础上开发的，面向对象编程的语言。与C相比�
 ## 计算机语言的分类
 
 - 汇编语言
-
 - 高级语言
-
 - 脚本语言
 
 ## 分类
 
 - 关键字
-
 - 标识符
 
 # 基本数据类型与运算
@@ -36,7 +33,6 @@ C++ 是在C语言基础上开发的，面向对象编程的语言。与C相比�
 ## 数据类型
 
 - 基本数据类型：整型int，浮点型float，双精度浮点double，字符char，布尔bool
-
 - 自定义数据类型：枚举类型，结构体类型，联合体类型，类类型
 
 ## 流程控制
@@ -126,7 +122,6 @@ int main(){
 寄存器中通常会保存两个指针，分别指向栈顶和函数调用发生的位置，来进行函数的调用和返回。
 
 - **栈顶指针**：指向栈顶的地址
-
 - **帧指针**：指向函数调用时的地址
 
 ## 函数的声明与安全性
@@ -240,17 +235,13 @@ public:
 ## UML
 
 - 事物：
-
 - 关系：依赖，重数，聚集（组合），泛化
-
 - 图：
 
 ## 特殊类
 
 - 结构体：在C++中是特殊的类，成员默认是public
-
 - 联合体：成员共用存储空间，只有一个成员有效，可以使用无名的联合体。
-
 - 枚举类：类型控制更严格，无法比较不同类的枚举类型；作用域限制在类中，可以使用同样的名字。
 
 
@@ -262,13 +253,9 @@ public:
 作用域由小到大可以分为以下几种：
 
 - 函数原型作用域：只在形参表中存在
-
 - 局部作用域：又称为块作用域，变量定义所在的最小的一对大括号内
-
 - 类作用域：
-
 - 文件作用域：又称为静态作用域
-
 - 命名空间作用域：
 
 ## 可见性
@@ -278,15 +265,12 @@ public:
 ## 生存期
 
 - 静态生存期：文件作用域中定义的变量，或用static声明的变量，初始化只进行一次
-
 - 动态生存期：与作用域一致，同时消亡
 
 ## 类的静态对象
 
 - 为所有类共有
-
 - 声明在类体重，初始化和定义在类体之外
-
 - 静态函数：无法确定调用对象，不可直接访问对象的非静态变量
 
 ## 友元: freind
@@ -314,23 +298,16 @@ public:
 C++工程结构：声明文件、定义文件、使用文件
 
 - 外部变量：文件作用域中定义的变量，默认都是外部变量。使用时需要用extern关键字声明之后，才可以使用
-
 - 外部函数：
-
 - 编译预处理：#include, #define, #if #endif #else #elif, #ifdef
 
 ## 标准C++库
 
 - 输入输出类iostream：
-
 - 容器类与抽象数据类型stl：
-
 - 存储管理类
-
 - 算法algorithms：
-
 - 错误处理
-
 - 运行环境支持
 
 
@@ -341,19 +318,14 @@ C++工程结构：声明文件、定义文件、使用文件
 ## 指针的应用场景
 
 - 动态内存分配，返回值只能是指针
-
 - 深拷贝：自定义构造函数，为类内的指针属性申请内存空间。
 
 ## 指针 Pointers
 
 - 定义：用于存放地址类型的变量
-
 - 初始化：指针变量的赋值必须是合法获得的地址,不可用非静态变量去初始化静态指针，空指针：nullptr
-
 - 指向常量的指针，指针类型的常量
-
 - 指针的算术运算：+n指向第n个数据的起始位置
-
 - 指针的关系运算：指向相同类型的指针可以进行关系运算，也可以跟0进行关系运算
 
 ## 数组 Array
@@ -465,9 +437,7 @@ delete ptr;
 ## 智能指针
 
 - unique_ptr ：不允许多个指针共享资源，可以用标准库中的move函数转移指针
-
 - shared_ptr ：多个指针共享资源
-
 - weak_ptr ：可复制shared_ptr，但其构造或者释放对资源不产生影响
 
 ## 对象的复制与移动
@@ -475,7 +445,6 @@ delete ptr;
 ### 复制
 
 - 浅层复制：数据成员的一一对应
-
 - 深层复制：在复制对象数据成员的基础上，复制指针指向的动态内存空间
 
 ### 移动构造
@@ -495,7 +464,6 @@ public:
 ## 字符串
 
 - C风格字符串：字符串数组，最后一位用"\0"结尾
-
 - C++风格：string 类
 
 # 继承 Inherit
@@ -613,7 +581,6 @@ class C: virtual public B{}
 # 多态性 Polymorphism
 
 - 编译多态性：重载运算符, 重载函数
-
 - 运行多态性：虚函数
 
 ## 运算符重载
@@ -720,6 +687,265 @@ vitual void display() const;
 clase Base1 final {}
 ```
  
+# 模板 Template
+
+## 模板
+
+### 函数模板
+
+语法定义：template<模板参数表> 函数定义
+模板参数表：typename 或者 class
+
+代码实例
+
+```cpp
+template<typename T>
+T abs(T x){
+	return x < 0? -x:x;
+}
+```
+
+### 类模板
+
+语法定义：template<模板参数表> 类定义
+
+代码实例
+
+```cpp
+
+```
+
+## 线性群体
+
+### 直接访问
+
+#### 数组
+
+**数组类模板特点**：
+
+- 存储空间在内存上连续，可以直接访问数组成员，访问开销为O(1)
+
+**数组基本功能**：
+
+- 构造函数：构造函数、复制构造函数、析构函数
+- 重载操作符：[], *, =
+- 数组操作：修改数组大小、取数组大小
+
+**代码实例**
+
+```cpp
+template <class T>  //数组类模板定义
+class Array {
+private:
+	T * list;        //用于存放动态分配的数组内存首地址
+	int size;       //数组大小（元素个数）
+public:
+	Array(int sz = 50);     //构造函数
+	Array(const Array<T> &a);   //复制构造函数
+	~Array();           //析构函数
+	Array<T> & operator = (const Array<T> &rhs);    //重载"="，赋值运算符的返回值为数组的引用
+	T & operator [] (int i); //重载"[]"
+	const T & operator [] (int i) const;     //重载"[]"常函数
+	operator T * ();        //重载到T*类型的转换，指针函数不要求声明返回值类型
+	operator const T * () const;
+	int getSize() const;        //取数组的大小
+	void resize(int sz);        //修改数组的大小
+}
+```
+
+### 顺序访问
+
+#### 节点 Node
+
+节点是顺序访问的基本元素
+
+**节点特点**：
+
+**节点基本功能**：
+
+**代码实例**
+
+```cpp
+template <class T>
+class Node {
+private:
+	Node<T> *next;  //指向后继结点的指针
+public:
+	T data; //数据域
+	Node(const T &data, Node<T> *next = 0);    //构造函数
+	void insertAfter(Node<T> *p);   //在本结点之后插入一个同类结点p 
+	Node<T> *deleteAfter(); //删除本结点的后继结点，并返回其地址
+	Node<T> *nextNode();            //获取后继结点的地址
+	const Node<T> *nextNode() const;     //获取后继结点的地址
+};
+
+```
+
+#### 链表 List
+
+**链表特点**：
+
+- 访问必须从第一个对象开始
+
+**链表基本功能**：
+
+- 构造函数：构造函数、复制构造函数、析构函数
+- 操作符重载：
+
+**代码实例**
+
+```cpp
+template <class T>
+class LinkedList {
+private:
+	//数据成员：
+	Node<T> *front, *rear;  //表头和表尾指针
+	Node<T> *prevPtr, *currPtr;   //记录表当前遍历位置的指针，由插入和删除操作更新
+	int size;   //表中的元素个数
+	int position;   //当前元素在表中的位置序号。由函数reset使用
+
+					//函数成员：
+					//生成新结点，数据域为item，指针域为ptrNext
+	Node<T> *newNode(const T &item, Node<T> *ptrNext = NULL);
+
+	//释放结点
+	void freeNode(Node<T> *p);
+
+	//将链表L 拷贝到当前表（假设当前表为空）。
+	//被拷贝构造函数、operator = 调用
+	void copy(const LinkedList<T>& L);
+
+public:
+	LinkedList();   //构造函数
+	LinkedList(const LinkedList<T> &L);  //拷贝构造函数
+	~LinkedList();  //析构函数
+	LinkedList<T> & operator = (const LinkedList<T> &L); //重载赋值运算符
+
+	int getSize() const;    //返回链表中元素个数
+	bool isEmpty() const;   //链表是否为空
+
+	void reset(int pos = 0);//初始化游标的位置
+	void next();    //使游标移动到下一个结点
+	bool endOfList() const; //游标是否到了链尾
+	int currentPosition() const;    //返回游标当前的位置
+
+	void insertFront(const T &item);    //在表头插入结点
+	void insertRear(const T &item);     //在表尾添加结点
+	void insertAt(const T &item);       //在当前结点之前插入结点
+	void insertAfter(const T &item);    //在当前结点之后插入结点
+
+	T deleteFront();    //删除头结点
+	void deleteCurrent();   //删除当前结点
+
+	T& data();              //返回对当前结点成员数据的引用
+	const T& data() const;   //返回对当前结点成员数据的常引用
+
+							 //清空链表：释放所有结点的内存空间。被析构函数、operator= 调用
+	void clear();
+}
+```
+
+### 栈 Stack
+
+**栈特点**：
+
+- 只能从一端存储和读取数据
+
+**栈基本功能**：
+
+- 构造函数：
+- 栈操作函数
+
+**代码实例**
+
+```cpp
+template <class T, int SIZE = 50>
+class Stack {
+private:
+	T list[SIZE];
+	int top;
+public:
+	Stack();
+	void push(const T &item);
+	T pop();
+	void clear();
+	const T &peek() const;
+	bool isEmpty() const;
+	bool isFull() const;
+}
+```
+
+### 队列 Quene
+
+队列特点：
+
+- 只能从有一段存储数据，从另一端删除数据
+
+队列基本功能：
+
+- 构造函数：
+- 队列操作（有修改的）：入队、出队、清空
+- 队列操作（无修改的）：访问队首元素、求队列长度、判断队列是否为空、判断队列是否满
+
+代码实例
+
+```cpp
+template <class T, int SIZE = 50>
+class Queue {
+private:
+	int front, rear, count; //队头指针、队尾指针、元素个数
+	T list[SIZE];   //队列元素数组
+public:
+	Queue();          //构造函数，初始化队头指针、队尾指针、元素个数
+	void insert(const T &item); //新元素入队
+	T remove(); //元素出队
+	void clear();   //清空队列
+	const T &getFront() const;  //访问队首元素
+								//测试队列状态
+	int getLength() const;//求队列长度
+	bool isEmpty() const;//判断队列空否
+	bool isFull() const;//判断队列满否
+}
+```
+
+### 索引访问
+
+## 排序
+
+排序分为内排序、外排序。内循环全部在内存中进行循环，外排序需要分批次从硬盘中读取数据。
+
+### 插入排序
+
+每次将待排序元素与已排序数组进行比较，并插入到合适位置上去。
+
+### 选择排序
+
+在未排序队列中选择最小的数据，放在未排序队列的末尾
+
+### 交换排序
+
+相邻元素两两比较，如果不合适，则进行交换
+
+### 堆排序
+
+什么是堆排序？
+
+## 查找
+
+### 顺序查找
+
+将整个数组遍历一遍
+
+### 二分查找
+
+折半查找
+
+# 泛型程序设计与STL标准模板库
+
+## 
+
+
+
 
 
 
