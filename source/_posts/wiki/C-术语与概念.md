@@ -1004,7 +1004,25 @@ ostream_iterator<double>(cout,"\t")
 
 # 异常处理
 
+使用独立异常处理模块的原因：1.使得程序整体逻辑连贯；2.小的功能模块没有权限处理错误；
 
+## 异常处理语法
+```cpp
+throw: 抛出异常
+try: 所有可能抛出异常的语句，在try块中运行，一旦抛出异常，就中断运行
+catch: 捕获异常
+```
+**注**：可在函数声明同时，声明异常类型，方便处理
+```cpp
+void fun() throw(A,B,C,D);
+```
+异常处理机制会自动析构try块中构造的对象
 
-
-
+## 标准异常类
+```cpp
+exception
+	|-logic_error: 可以在程序中被预先检测出的异常
+		|-invalid_argument:
+		|-domain_error:
+	|-runtime_error: 难以被预先检测出的异常
+```
