@@ -992,19 +992,19 @@ ostream_iterator<double>(cout,"\t")
 根据组织方式，可分为：顺序容器、关联容器
 根据访问方式，可分为：可逆容器（又可衍生出随机访问容器的概念）、不可逆容器
 
-通用功能：
+通用接口：
 - 默认构造函数
 - 关系运算符
 - begin(),end()
 - clear()
-- empty
+- empty()
 - size()
 - swap()
 
 #### 顺序容器
 举例：向量，双端队列，列表，单向链表，数组
 
-通用功能：
+通用接口：
 - asign()
 - insert()
 - resize()
@@ -1025,7 +1025,52 @@ ostream_iterator<double>(cout,"\t")
 - 对内部数组的封装
 
 #### 关联容器
-举例：
+特点：每个容器都有key，可根据key进行高效查找
+分类：
+- 按照键对应的元素多少，可分为单重关联容器和多重关联容器
+- 按照类型参数的多少，可分为简单关联容器和二元关联容器
+举例：set,multiset,map,multimap
+通用接口：
+- insert()
+- erase()
+- find()
+- lower_bound(),upper_bound(),equal_range()
+- count()
+
+集合(set):
+- key即是元素本身
+
+映射(map):
+- 元素是由键和附加数据组成的二元组pair<type,type>
+- 可以使用下标运算
+
+```cpp
+#include <iostream>
+#include <map>
+#include <cctype>
+using namespace std;
+int main() {
+    map<char, int> s;   //用来存储字母出现次数的映射
+    char c;     //存储输入字符
+    do {
+      cin >> c; //输入下一个字符
+      if (isalpha(c)){ //判断是否是字母
+          c = tolower(c); //将字母转换为小写
+          s[c]++;      //将该字母的出现频率加1
+      }
+    } while (c != '.'); //碰到“.”则结束输入
+    //输出每个字母出现次数
+    for (map<char, int>::iterator iter = s.begin(); iter != s.end(); ++iter)
+        cout << iter->first << " " << iter->second << "  ";
+    cout << endl;
+    return 0;
+}
+```
+多重集合(multiset):
+- 允许有重复元素
+
+多重映射(multimap):
+- 一个键有多个附加数据
 
 ### 函数对象
 
