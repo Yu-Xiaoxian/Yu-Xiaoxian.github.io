@@ -14,7 +14,7 @@
 3. [Github_Page](https://github.com/Yu-Xiaoxian/Yu-Xiaoxian.github.io#3-github_page)
 4. [域名解析](https://github.com/Yu-Xiaoxian/Yu-Xiaoxian.github.io#4-域名解析)
 5. [双线路解析](https://github.com/Yu-Xiaoxian/Yu-Xiaoxian.github.io#5-双线路解析)
-6. [](https://github.com/Yu-Xiaoxian/Yu-Xiaoxian.github.io#6-添加徽章)
+6. [添加徽章](https://github.com/Yu-Xiaoxian/Yu-Xiaoxian.github.io#6-添加徽章)
 7. [参考链接](https://github.com/Yu-Xiaoxian/Yu-Xiaoxian.github.io#7-参考链接)
 
 ## 1. Hexo
