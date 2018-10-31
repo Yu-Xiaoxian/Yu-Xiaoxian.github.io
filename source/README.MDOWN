@@ -23,7 +23,7 @@ Hexo 是一个静态网页生成和部署的框架，可以简单理解为md文�
 
 ## 2. Travis_CI
 
-Travis 是一款自动部署工具，而 Travis CI 是集成在Github上的在线解析工具。在项目分支的根目录下添加.travis.yml，文件中说明了该项目部署的具体步骤。
+Travis 是一款自动部署工具，而 Travis CI 是集成在Github上的在线解析工具。在项目分支的根目录下添加名为".travis.yml"的文件，该文件中包含了该项目部署的具体命令。
 
 ## 3. Github_Page
 
