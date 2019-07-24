@@ -5,6 +5,8 @@ node_js: stable
 install:
   - npm install
   - npm install hexo-filter-mermaid-diagrams
+  - npm uninstall hexo-renderer-marked
+  - npm install hexo-renderer-kramed
 
 
 #before_script:
