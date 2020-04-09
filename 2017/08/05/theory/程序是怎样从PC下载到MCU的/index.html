@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.1.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-yu.ico?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-yu.ico?v=6.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.1.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="引言单片机程序一般用C编写，从程序编写到程序运行，要通过两个步骤：编译和烧写。编译是将C编写的单片机程序，编译成单片机可以识别的二进制代码。烧写是把编译好的二进制文件，通过烧录程序或者硬件，存储到单片机的ROM内存中。通常这两步都有专业软件来完成，对开发者是不可见的。但为了更加高效地开发单片机程序，我们有必要深入地了解编译和烧写过程。 C程序的编译开发单片机一定会接触Keil C51，它是一款强大">
+<meta name="keywords" content="单片机,嵌入式系统">
+<meta property="og:type" content="article">
+<meta property="og:title" content="程序是怎样从PC下载到MCU的">
+<meta property="og:url" content="http://yoursite.com/2017/08/05/theory/程序是怎样从PC下载到MCU的/index.html">
+<meta property="og:site_name" content="于小咸的日志">
+<meta property="og:description" content="引言单片机程序一般用C编写，从程序编写到程序运行，要通过两个步骤：编译和烧写。编译是将C编写的单片机程序，编译成单片机可以识别的二进制代码。烧写是把编译好的二进制文件，通过烧录程序或者硬件，存储到单片机的ROM内存中。通常这两步都有专业软件来完成，对开发者是不可见的。但为了更加高效地开发单片机程序，我们有必要深入地了解编译和烧写过程。 C程序的编译开发单片机一定会接触Keil C51，它是一款强大">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-04-09T04:34:56.628Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="程序是怎样从PC下载到MCU的">
+<meta name="twitter:description" content="引言单片机程序一般用C编写，从程序编写到程序运行，要通过两个步骤：编译和烧写。编译是将C编写的单片机程序，编译成单片机可以识别的二进制代码。烧写是把编译好的二进制文件，通过烧录程序或者硬件，存储到单片机的ROM内存中。通常这两步都有专业软件来完成，对开发者是不可见的。但为了更加高效地开发单片机程序，我们有必要深入地了解编译和烧写过程。 C程序的编译开发单片机一定会接触Keil C51，它是一款强大">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/05/theory/程序是怎样从PC下载到MCU的/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>程序是怎样从PC下载到MCU的 | 于小咸的日志</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">于小咸的日志</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+          
+  
+  <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+</li>
+
+      
+        
+        
+          
+  
+  <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+</li>
+
+      
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/05/theory/程序是怎样从PC下载到MCU的/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yu Xiaoxian">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于小咸的日志">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">程序是怎样从PC下载到MCU的
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+                
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-05T14:43:16+00:00">2017-08-05</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>单片机程序一般用C编写，从程序编写到程序运行，要通过两个步骤：编译和烧写。编译是将C编写的单片机程序，编译成单片机可以识别的二进制代码。烧写是把编译好的二进制文件，通过烧录程序或者硬件，存储到单片机的ROM内存中。通常这两步都有专业软件来完成，对开发者是不可见的。但为了更加高效地开发单片机程序，我们有必要深入地了解编译和烧写过程。</p>
+<h2 id="C程序的编译"><a href="#C程序的编译" class="headerlink" title="C程序的编译"></a>C程序的编译</h2><p>开发单片机一定会接触Keil C51，它是一款强大的51单片机集成开发环境(IDE)。51单片机虽然支持同一套指令集，但是由于各公司生产的单片机在内存、架构上都有区别，因此不能共用一套代码。而Keil C51集成了多种单片机的型号，可以针对不同的单片机编译对应的二进制文件。</p>
+<h2 id="二进制文件的烧写"><a href="#二进制文件的烧写" class="headerlink" title="二进制文件的烧写"></a>二进制文件的烧写</h2><p>编译后的二进制文件，并不能直接写到单片机的ROM中，还需要通过串口进行传输，一般有以下几种方法：</p>
+<ol>
+<li><p>把单片机当做一个ROM芯片，早期的单片机都是如此。将单片机放在通用编程上编程时，就像给28C256这样的ROM中写程序的过程一样。只是不同的单片机使用的端口，编程用的时序不一样。</p>
+</li>
+<li><p>像AT89S52或AVR单片机一样，在单片机上有SPI接口，这时用专用的下载线将程序烧写到单片机中。这时不同的是，单片机的CPU除了执行单片机本身的指令之外，还能执行对ROM进行操作的特殊指令，如ROM擦除、烧写和校验指令。在编程ROM时，下载线先通过传输这些指令给CPU执行(擦除ROM、读入数据、烧写ROM、和校验ROM)，这样完成对单片机的ROM的烧写。此外，现在普遍使用的JTAG仿真器也是这样，单片机的CPU能执行JTAG的特殊指令，完成对ROM的烧写操作。</p>
+</li>
+<li><p>引导程序，即单片机中已经存在了一个烧写程序。启动单片机时首先运行这程序，程序判断端口状态，如果符合“要烧写ROM”的状态存在，就从某个端口(串口、SPI等等)读取数据，然后写入到单片机的ROM中。如果没有“要烧写ROM”的状态，就转到用户的程序开始执行。像AVR单片机的bootloader方式、STC的串口下载方式，还有其他单片机的串口编程等等都是这样。</p>
+</li>
+</ol>
+<h3 id="STC单片机的烧写流程"><a href="#STC单片机的烧写流程" class="headerlink" title="STC单片机的烧写流程"></a>STC单片机的烧写流程</h3><p>其中“检测P3.0有没有合法下载命令流”，指的是为ISP_TRIG寄存器赋值的命令。当为ISP_TRIG赋0x46H和0xB9H时，ISP读写功能被触发，可以对程序寄存器进行进一步的读写，从而控制FLASH的读写。具体的实现方案可以参考Github上的<a href="https://github.com/laborer/stcflash" target="_blank" rel="noopener">stcflash</a>项目。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/单片机/" rel="tag"># 单片机</a>
+          
+            <a href="/tags/嵌入式系统/" rel="tag"># 嵌入式系统</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/15/wiki/C-术语与概念/" rel="prev" title="C++ 术语与概念">
+                C++ 术语与概念 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Yu Xiaoxian</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">分类</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C程序的编译"><span class="nav-number">2.</span> <span class="nav-text">C程序的编译</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二进制文件的烧写"><span class="nav-number">3.</span> <span class="nav-text">二进制文件的烧写</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#STC单片机的烧写流程"><span class="nav-number">3.1.</span> <span class="nav-text">STC单片机的烧写流程</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yu Xiaoxian</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.1.0</div>
+
+
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.1.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
