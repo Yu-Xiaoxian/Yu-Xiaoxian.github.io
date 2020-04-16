@@ -27,7 +27,7 @@ After=network.target
 
 [Service]
 Type=simple
-EnviromentFile=/path/to/enviroment/file
+EnvironmentFile=/path/to/enviroment/file
 ExecStart=/usr/bin/gost -L "http2://${USER}:${PASS}@${DOMAIN}:${PORT}?cert=${CERT}&key=${KEY}&probe_resist=code:404"
 Restart=on-failure
 RestartSec=42s
@@ -49,9 +49,41 @@ systemctl start gost
 
 ## 进一步改进
 
-研究怎样自动更新gost到最新版本
+首先安装Json解析器 jq
+```shell
+sudo apt-get install jq -y
+```
+然后使用以下脚本自动检测gost更新，下载最新release的gost，使用该脚本前，
+```shell
+#!/bin/bash
+cd $(dirname $0)
+platform='linux-amd64'
+current_version=$(cat current_version)
+latest_version=`curl -s https://api.github.com/repos/ginuerzh/gost/releases/latest | jq -r ".name"`
+name=`curl -s https://api.github.com/repos/ginuerzh/gost/releases/latest | jq -r ".assets[] | select(.name | test(\"${platform}\")) | .name"`
+url=`curl -s https://api.github.com/repos/ginuerzh/gost/releases/latest | jq -r ".assets[] | select(.name | test(\"${platform}\")) | .browser_download_url"`
+echo $url
+echo $platform
+echo $latest_version
+echo $current_version
+echo $name
+if [ ! -d ${HOME}/Downloads" ]; then
+  mkdir ~/Downloads
+fi
+if [ "$current_version" != "$latest_version" ]; then
+  wget $url -O ~/Downloads/$name
+  gunzip -fk ~/Downloads/$name
+  cp ~/Downloads/${name%.*} /usr/local/bin/gost
+  echo $latest_version > current_version
+fi
+```
+然后使用`crontab -e`，在其中写入，就可以定期执行gost啦
+```shell
+0 4 * * * sh <path-to-shell>
+```
 
 # 参考链接
 
 1. [阮一峰：Systemd 入门教程：实战篇](http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-part-two.html)
 2. [阮一峰：Systemd 入门教程：命令篇](http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html)
+3. [HOW TO DOWNLOAD THE LATEST RELEASE FROM GITHUB](https://starkandwayne.com/blog/how-to-download-the-latest-release-from-github/)
