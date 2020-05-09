@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.1.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-yu.ico?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-yu.ico?v=6.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.1.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="C&#x2F;C++ 是一门底层、细粒度、功能强大、学习曲线陡峭的语言，虽然在Python等新语言的冲击下略显龙钟老态，但随着AIoT设备的兴起，以及C++社区不断推出新的版本，这门语言又重新焕发了生机。 本文把C++学习划分为入门、进阶、深入三个阶段，每步提供相应的学习方法和资源，并归纳了每部分需要掌握的知识点供大家复习自检，希望能够帮助大家更好地掌握这门语言。也欢迎大家告诉我更好的学习资源，本文会不断更">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++学习路线：快速入门到进阶">
+<meta property="og:url" content="http://yoursite.com/2020/05/09/wiki/C-%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF%EF%BC%9A%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E5%88%B0%E8%BF%9B%E9%98%B6/index.html">
+<meta property="og:site_name" content="于小咸的日志">
+<meta property="og:description" content="C&#x2F;C++ 是一门底层、细粒度、功能强大、学习曲线陡峭的语言，虽然在Python等新语言的冲击下略显龙钟老态，但随着AIoT设备的兴起，以及C++社区不断推出新的版本，这门语言又重新焕发了生机。 本文把C++学习划分为入门、进阶、深入三个阶段，每步提供相应的学习方法和资源，并归纳了每部分需要掌握的知识点供大家复习自检，希望能够帮助大家更好地掌握这门语言。也欢迎大家告诉我更好的学习资源，本文会不断更">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-05-09T15:36:09.000Z">
+<meta property="article:modified_time" content="2020-05-09T07:44:38.945Z">
+<meta property="article:author" content="Yu Xiaoxian">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="Programming Language">
+<meta property="article:tag" content="Learning Curve">
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/05/09/wiki/C-学习路线：快速入门到进阶/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>C++学习路线：快速入门到进阶 | 于小咸的日志</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">于小咸的日志</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+          
+  
+  <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+</li>
+
+      
+        
+        
+          
+  
+  <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+</li>
+
+      
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/09/wiki/C-%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF%EF%BC%9A%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E5%88%B0%E8%BF%9B%E9%98%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yu Xiaoxian">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于小咸的日志">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">C++学习路线：快速入门到进阶
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+                
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-09T15:36:09+00:00">2020-05-09</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>C/C++ 是一门底层、细粒度、功能强大、学习曲线陡峭的语言，虽然在Python等新语言的冲击下略显龙钟老态，但随着AIoT设备的兴起，以及C++社区不断推出新的版本，这门语言又重新焕发了生机。</p>
+<p>本文把C++学习划分为入门、进阶、深入三个阶段，每步提供相应的学习方法和资源，并归纳了每部分需要掌握的知识点供大家复习自检，希望能够帮助大家更好地掌握这门语言。也欢迎大家告诉我更好的学习资源，本文会不断更新来帮助更多的人。</p>
+<hr>
+<h1 id="入门（塑料→青铜→白银）"><a href="#入门（塑料→青铜→白银）" class="headerlink" title="入门（塑料→青铜→白银）"></a>入门（塑料→青铜→白银）</h1><p>学习新知识有两个关键：快速上手、完整的知识体系，两者缺一不可：上手慢就会打击初学者的积极性，产生劝退效应；而没有完整的知识体系，初学者就是盲人摸象，想要进阶深入就变得困难重重，只会长期停留在入门阶段。我在对比多种学习方法后，认为网课是能够兼容这两点的好方法，所以这部分主要推荐网课，通过高频且较简单的练习巩固知识，符合人的认知曲线，提高学习效率。</p>
+<h2 id="1-语言本身（入门）"><a href="#1-语言本身（入门）" class="headerlink" title="1. 语言本身（入门）"></a>1. 语言本身（入门）</h2><p>C++ 和 C 是不同的语言，但两者通常放在一起学习，C++完全兼容C的特性，并在C基础上加入了面向对象的特性，可以视为 C 语言的升级版，C能做到的事情 C++ 一样可以做到，C 做不到的事情 C++ 也可做到。</p>
+<p>初学C++我推荐<a href="https://www.xuetangx.com/" target="_blank" rel="noopener">学堂在线</a>上清华大学郑莉老师的课程：<em>C++语言程序设计基础</em>，<em>C++语言程序设计进阶</em>。在讲课过程中会有弹出的选择、填空题来巩固知识点，每一章结束一般会有三道编程题来进行练习。通过高频且难度不大的练习，将陡峭的学习曲线拉平，进度页面可以看到学习完成的进度，带给大家成就感。我把自己学这门课时的课后习题放在Github上<a href="https://github.com/Yu-Xiaoxian/c-plus-assignment" target="_blank" rel="noopener">C++语言程序设计课后习题</a>，供大家参考。学完这门课程就会对C++的特性有了整体的了解，并且能够上手编写一些简单的程序，这时候可以去<a href="https://leetcode.com/" target="_blank" rel="noopener">LeetCode</a> 上刷一些 Easy 题目找找存在感了。</p>
+<p>这部分主要掌握的知识点是：</p>
+<ul>
+<li>基础语法：变量、条件、循环、字符串、数组、函数</li>
+<li>指针操作、内存管理：这两项是C/C++的灵魂，是这门语言经久不衰的关键，但这也是一把双刃剑，用的好可以极大提高程序运行的速率，用不好会导致内存泄漏甚至程序崩溃</li>
+<li>面向对象编程：类的定义与使用，继承与派生，这项特性保证了代码良好的复用和封装，是大型项目开发的必备因素</li>
+</ul>
+<p>掌握编程语言后，就要跟操作系统打交道了。</p>
+<h2 id="2-应用实践（入门）"><a href="#2-应用实践（入门）" class="headerlink" title="2. 应用实践（入门）"></a>2. 应用实践（入门）</h2><p>Windows 和 Ubuntu 是操作系统的两大阵营，大家可以根据自己的需求进行选择。在Windows下编程的同学可以跳过这个部分，因为Visual Studio (Community社区版) 功能已经足够强大，不需要进行任何配置上手即用，关键还是免费的！这里说一声微软牛[哔——]。</p>
+<p>如果需要在Linux 下编程的同学，我推荐<a href="https://www.xuetangx.com/" target="_blank" rel="noopener">学堂在线</a>上清华大学乔林老师的课程：基于Linux的C++。学过郑莉老师的C++，乔林老师的这门课程就没有必要全部看下来了，因为前11讲内容都是在重复C++的语言特性，大家只要关注12讲的内容：Linux系统编程基础，系统性的了解 Linux 下编程的特点。后面三章感兴趣的话也可看一看：13.进程编程，14.线程编程，15.网络编程，但不学也不会有什么问题。</p>
+<p>这门课程的用户体验没有郑莉老师的课程那么友好，不过用来系统性掌握Linux系统下的编程操作已经足够了。乔林老师讲解并不详细，但胜在体系完整，能够用很短的篇幅帮初学者建立对 Linux 系统完整的认知，这是我推荐这门课程的原因。因为讲解不够详细，遇到不懂问题再配合搜索引擎进行学习吧。</p>
+<p>这部分主要掌握的知识点是：</p>
+<ul>
+<li>操作系统下软件的编译与执行：编译器、makefile</li>
+<li>常用的系统调用：system, getenv</li>
+</ul>
+<h2 id="3-软件设计（入门）"><a href="#3-软件设计（入门）" class="headerlink" title="3. 软件设计（入门）"></a>3. 软件设计（入门）</h2><p>算法与数据结构、计算机网络、操作系统，是计算机考研必备的三门课程，也是整个计算机的基石。修炼好这三部分知识的程序员就像掌握了深厚的内功，无论是学习其他语言还是进行架构设计，都会更加得心应手，事半功倍。</p>
+<h3 id="3-1-算法与数据结构"><a href="#3-1-算法与数据结构" class="headerlink" title="3.1 算法与数据结构"></a>3.1 算法与数据结构</h3><p>入门阶段不需要花费大量的精力对多种多样的算法和数据结构进行详尽的了解，但是需要掌握进本的算法分析手段，以及算法研究需要解决的问题。这里推荐<a href="https://www.xuetangx.com/" target="_blank" rel="noopener">学堂在线</a>上清华大学邓俊辉老师的课程：数据结构(上)，只需要学习第一章绪论部分就可以。后续的章节可以在深入阶段再进行深挖。</p>
+<p>需要掌握的知识点：</p>
+<ul>
+<li>使用大O记号对算法的复杂度进行分析。<h3 id="3-2-计算机网络"><a href="#3-2-计算机网络" class="headerlink" title="3.2 计算机网络"></a>3.2 计算机网络</h3>对于入门而言，这部分内容完全可以略过。只要实践中不涉及网络编程，就可以暂时不做了解。如果需要了解的话，首先应该掌握TCP/IP的五层网络结构，当遇到网络问题时，能够快速定位是哪一层出了问题，然后快速排查。</li>
+</ul>
+<p>知识要点：</p>
+<ul>
+<li>TCP/IP五层网络结构</li>
+<li>常用传输层协议：TCP UDP</li>
+<li>常用应用层协议：HTTP</li>
+</ul>
+<h3 id="3-3-操作系统"><a href="#3-3-操作系统" class="headerlink" title="3.3 操作系统"></a>3.3 操作系统</h3><p>这里并不需要对操作系统有多么深入的了解，只需要对计算机的硬件结构有初步的认识，了解程序从编译到执行的具体过程，了解堆栈的概念以及函数调用等流程。这部分内容不需要专门学习，我建议在学习C++语言的过程中，参考教材《C++程序设计》（Y.Daniel Liang），这本书中对操作系统有简单的介绍，可以在学习过程中加以了解。刚开始没看懂也没有关系，等语言学一段时间再回来看，相信会有更深的理解。</p>
+<p>知识要点：</p>
+<ul>
+<li>计算机体系结构：CPU，内存，硬盘，I/O设备</li>
+<li>内存堆栈与函数调用的关系</li>
+<li>程序编译的流程：编辑→编译→链接→执行</li>
+</ul>
+<h1 id="进阶（黄金→钻石）"><a href="#进阶（黄金→钻石）" class="headerlink" title="进阶（黄金→钻石）"></a>进阶（黄金→钻石）</h1><p>入门的要求是了解C++这门语言的语法，能够编写一些简单的程序，进阶就要求掌握一定的工程能力，有能力管理一些大型项目。可能有读者就会有疑问，这篇文章不是讲C++学习么，为什么要掌握工程能力？这是由于C++（包括绝大多数编程语言）是为大型项目服务的，许多C++的编程习惯在语法上没有任何问题，但对大型项目很不友好。C++进阶本质上还是要提升自身的编程能力，在C++语言学习的过程中，穿插了解一些大型项目的经验，对编程能力会有很好的提升。</p>
+<p>除工程能力外，C++进阶还需要了解这门语言会有哪些坑，并学会怎样避开他们。C++是一门功能强大的语言，它无比强大的能力也会带来许多问题，比如内存泄漏，这些问题一旦出现很难排查，所以需要掌握一定的经验，从程序设计开始就规避这些可能的问题。</p>
+<h2 id="1-语言本身（进阶）"><a href="#1-语言本身（进阶）" class="headerlink" title="1. 语言本身（进阶）"></a>1. 语言本身（进阶）</h2><p>说起C++语言的进阶，大家第一时间想到的应该就是《C++ Primer》了，但我个人并不推荐，因为这本书实在是太厚了，可以当工具书但千万不要拿来当课本。因为这样的大部头想要读完都已经不容易了，更何况自己读完也没有办法掌握其中所有的知识点，还需要不断回炉重造。这里推荐一个系列 Scott Mayer 的《Effective C++》 《More Effective C++》 《Effective STL》，这也是《剑指Offer》的作者推荐的书，不少C++面试题目都会考察到其中的知识点。作者Scott Mayer整理了C++编程中需要注意的一些要点，每个部分对初学者来说都可能是深坑。这系列书的特点就是读起来比较轻松，条目之间都比较独立，可以随便选一条从自己感兴趣的开始，而不用像那些大部头一样慢慢地啃。每了解一个知识点都能让你对C++的理解更深一层，这里有我在读这本书过程中记录的笔记：<a href="https://blog.csdn.net/yu_xiaoxian_2018/article/details/105326205" target="_blank" rel="noopener">Effective C++ 索引</a>，大家可以通过这个链接快速索引，选择自己感兴趣的条目深入了解。</p>
+<p>当然如果要事无巨细地学习C++的所有语法规则，还是要去读《C++ Primer》，不过请事先留好充足的时间，以及反复回炉的心理准备。<a href="https://zhuanlan.zhihu.com/p/45024301" target="_blank" rel="noopener">如何阅读《C++Primer》那么厚的书</a></p>
+<p>怎样检查自己是否掌握C++的高级用法呢？这里建议找一本书的目录，比如<a href="https://blog.csdn.net/yu_xiaoxian_2018/article/details/105326205" target="_blank" rel="noopener">Effective C++ 索引</a>，按照目录一条一条去看，能否通过标题想起对应的要点，如果完全理解并且没有任何疑惑，那恭喜你，已经神功初成啦。</p>
+<h2 id="2-应用实践（进阶）"><a href="#2-应用实践（进阶）" class="headerlink" title="2. 应用实践（进阶）"></a>2. 应用实践（进阶）</h2><p>应用实践主要关注两个方面：程序编译和程序开发。</p>
+<h3 id="2-1-程序编译"><a href="#2-1-程序编译" class="headerlink" title="2.1 程序编译"></a>2.1 程序编译</h3><p>程序编译需要掌握编译工具，如make、CMake、ninja、Bazel，make命令比较底层，大部分C++项目使用CMake和ninja，也有Google系的项目采用Bazel进行管理。这部分内容暂时没有找到很好的学习资源，建议结合官方文档使用搜索引擎进行学习掌握。</p>
+<p>除了编译工具本身以外，还要掌握怎样在项目中使用第三方库。例如makefile中需要徒手链接库文件，CMakeLists中使用FIND_PACKAGE()命令。毕竟善用第三方库，不反复造轮子，才能提高效率。</p>
+<p>这部分内容也没必要掌握得多么精通，只要给出CMakeLists.txt能够看懂，会使用第三方库，能够照猫画虎给自己的工程写出编译文件就可以了。</p>
+<h3 id="2-2-程序开发"><a href="#2-2-程序开发" class="headerlink" title="2.2 程序开发"></a>2.2 程序开发</h3><p>程序开发就主要根据工作的不同进行专项学习了，这里也不做过多展开，主要介绍几个常用的领域：</p>
+<ul>
+<li>图形界面：目前使用最广的C++图形界面框架应该是Qt，提供跨平台的支持，对跨平台开发比较友好</li>
+<li>游戏开发：这里游戏开发单指使用物理引擎进行的开发，如Unity3D</li>
+<li>后端开发：包括Web后端和游戏后端，需要与数据库以及前端交互，需要掌握的技能有网络编程（socket通信，epoll异步通信，asio异步通信库），以及数据库编程（MySQL C++ connector）</li>
+<li>嵌入式开发：嵌入式开发又是一个大的话题了，开发逻辑与Linux操作系统有很大的不同，就不做过多展开，目前比较常用的有开源嵌入式操作系统RTOS，以及自动驾驶领域使用较多的实时操作系统QNX</li>
+</ul>
+<p><strong>注！</strong>：游戏开发和后端开发并不是笔者的领域，认识可能比较片面，欢迎大家补充。</p>
+<h2 id="3-程序设计（进阶）"><a href="#3-程序设计（进阶）" class="headerlink" title="3. 程序设计（进阶）"></a>3. 程序设计（进阶）</h2><h3 id="3-1-数据结构与算法"><a href="#3-1-数据结构与算法" class="headerlink" title="3.1 数据结构与算法"></a>3.1 数据结构与算法</h3><p>不知道大家是否还记得之前推荐的《C++数据结构与算法》（学堂在线），入门阶段我们只了解了复杂度计算的方法，那么进阶就需要把这部分内容啃下来了。邓俊辉老师的课提供大量动画进行讲解，还有大量的练习，还有在线OJ系统，可以快速巩固知识，掌握常用的数据结构和算法知识。</p>
+<p>学完这部分内容后，大家应该掌握以下知识点：</p>
+<ul>
+<li>常用数据结构：链表、图、二叉树、红黑树、散列表等</li>
+<li>常用数据结构的遍历方法以及复杂度：深度优先遍历（O(nlog(n)），宽度优先遍历，等等</li>
+<li>常用算法及其复杂度：排序（冒泡，归并，堆排序等），字符串匹配（KMP，BM等），最短路径（Dijkstra），等</li>
+</ul>
+<h3 id="3-2-计算机操作系统"><a href="#3-2-计算机操作系统" class="headerlink" title="3.2 计算机操作系统"></a>3.2 计算机操作系统</h3><p>操作系统进阶就需要了解怎样能更高效地进行计算了，这是发挥C++优势的法宝。要想完全掌握，就一定需要把《深入理解计算机系统》这本书读完。这里给一个链接帮大家啃这本书 <a href="https://www.cs.cmu.edu/~213/schedule.html" target="_blank" rel="noopener">CMU：CSAPP</a>，其中有7个动手实验，能够帮大家很好地掌握操作系统的一些知识。</p>
+<ul>
+<li>Data Lab：bit 运算与float的相关操作</li>
+<li>Bomb Lab：阅读汇编破解密码</li>
+<li>Attack Lab：Buffer Overflow 攻击</li>
+<li>Cache Lab：实现一个cache simulator已经一个cache efficient的矩阵转置。</li>
+<li>Shell Lab：用多进程实现一个简单的linux shell。主要是熟悉进程控制与同步。</li>
+<li>Malloc Lab：自己写一个C语言的malloc函数。</li>
+<li>Proxy Lab：写一个支持HTML的多线程Server。熟悉Unix网络编程与多线程的控制与同步。</li>
+</ul>
+<p>这里推荐Cache Lab和Shell Lab，可以对计算机缓存效率和进程线程调度有直观的认知，方便深入了解C++优化方法。</p>
+<p>要点：</p>
+<ul>
+<li>程序的存储结构是怎样的？</li>
+<li>怎样设计能够提高CPU缓存的利用率？</li>
+<li>怎样对齐内存更加紧凑？</li>
+</ul>
+<h3 id="3-3-计算机网络"><a href="#3-3-计算机网络" class="headerlink" title="3.3 计算机网络"></a>3.3 计算机网络</h3><p>计算机网络没必要深入了解过多，完成<a href="https://www.cs.cmu.edu/~213/schedule.html" target="_blank" rel="noopener">CMU</a>的Proxy Lab基本就够了。因为目前网络通信协议基本成熟，已经有大量成熟稳定的网络库存在，因此我们不需要投入大量精力在协议实现上，而是需要理解协议为什么要这样设计。比如TCP的连接的三次握手和四次挥手，是面试中的经典题目，虽然在实际开发中从来不会用，但可以用来考察面试者的基本功。相比底层的TCP、UDP协议，HTTP/HTTPS协议以及最近流行的RPC，在应用中会经常遇到，大家可以了解一下这些协议的应用方法和特点。</p>
+<p>但如果是运维、IT、架构师之类的岗位，仅仅满足于协议的使用是远远不够的，还需要更深入的了解DNS，防火墙等等协议，这里就不做展开了。</p>
+<p>要点：</p>
+<ul>
+<li>TCP和UDP的区别</li>
+<li>TCP连接的三次握手和四次挥手</li>
+<li>HTTP和HTTPS的特点</li>
+</ul>
+<h3 id="3-4-设计模式与编程风格"><a href="#3-4-设计模式与编程风格" class="headerlink" title="3.4 设计模式与编程风格"></a>3.4 设计模式与编程风格</h3><p>设计模式没有很好的中文版书籍，大家常提的《大话设计模式》和《设计模式之禅》我并不推荐，这两本书本意是想要通俗地解释设计模式，但只是蜻蜓点水地总结了一下《Design Pattern》这本神作，如果想要深入理解设计模式，还是需要啃《Design Pattern》。这里我推荐一本书《C++编程风格》，这本书分了六个问题，分别从最直接的代码开始，一步一步优化代码，优化过程中解释了为什么要这样做的原因。这本书结合《Design Pattern》中的六大原则，可以帮助我们形成良好的设计思维，当有了设计思维再去理解设计模式会简单很多。</p>
+<p>掌握要点：程序设计六大原则</p>
+<ul>
+<li>单一职责原则</li>
+<li>里氏代换原则</li>
+<li>依赖倒置原则</li>
+<li>接口隔离原则</li>
+<li>迪米特法则</li>
+<li>开闭原则</li>
+</ul>
+<h1 id="展望"><a href="#展望" class="headerlink" title="展望"></a>展望</h1><p>目前文章只完成了入门和进阶的学习路线，深入的学习路线会在整理后更新出来。然而在完成进阶部分的时候，笔者就感觉到自己视野有限，较难从更深更广的维度来指出一条学习路线，也希望大家能够多提供一些自己的学习资源和建议，能够使这个学习路线更加丰满。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag"># C++</a>
+          
+            <a href="/tags/Programming-Language/" rel="tag"># Programming Language</a>
+          
+            <a href="/tags/Learning-Curve/" rel="tag"># Learning Curve</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/22/Mannual/install-gost-as-system-service/" rel="next" title="配置gost开机自启">
+                <i class="fa fa-chevron-left"></i> 配置gost开机自启
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Yu Xiaoxian</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/%20%7C%7C%20archive">
+                
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">分类</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#入门（塑料→青铜→白银）"><span class="nav-number">1.</span> <span class="nav-text">入门（塑料→青铜→白银）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-语言本身（入门）"><span class="nav-number">1.1.</span> <span class="nav-text">1. 语言本身（入门）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-应用实践（入门）"><span class="nav-number">1.2.</span> <span class="nav-text">2. 应用实践（入门）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-软件设计（入门）"><span class="nav-number">1.3.</span> <span class="nav-text">3. 软件设计（入门）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-算法与数据结构"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1 算法与数据结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-计算机网络"><span class="nav-number">1.3.2.</span> <span class="nav-text">3.2 计算机网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-操作系统"><span class="nav-number">1.3.3.</span> <span class="nav-text">3.3 操作系统</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#进阶（黄金→钻石）"><span class="nav-number">2.</span> <span class="nav-text">进阶（黄金→钻石）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-语言本身（进阶）"><span class="nav-number">2.1.</span> <span class="nav-text">1. 语言本身（进阶）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-应用实践（进阶）"><span class="nav-number">2.2.</span> <span class="nav-text">2. 应用实践（进阶）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-程序编译"><span class="nav-number">2.2.1.</span> <span class="nav-text">2.1 程序编译</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-程序开发"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.2 程序开发</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-程序设计（进阶）"><span class="nav-number">2.3.</span> <span class="nav-text">3. 程序设计（进阶）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-数据结构与算法"><span class="nav-number">2.3.1.</span> <span class="nav-text">3.1 数据结构与算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-计算机操作系统"><span class="nav-number">2.3.2.</span> <span class="nav-text">3.2 计算机操作系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-计算机网络"><span class="nav-number">2.3.3.</span> <span class="nav-text">3.3 计算机网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-设计模式与编程风格"><span class="nav-number">2.3.4.</span> <span class="nav-text">3.4 设计模式与编程风格</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#展望"><span class="nav-number">3.</span> <span class="nav-text">展望</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yu Xiaoxian</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 驱动 v4.2.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.1.0</div>
+
+
+
+
+
+  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.1.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
