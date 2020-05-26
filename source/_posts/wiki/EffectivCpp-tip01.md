@@ -1,5 +1,5 @@
 ---
-title: Effective C++ 目录
+title: C++是一个语言联邦
 tags:
   - C++
 categories:
