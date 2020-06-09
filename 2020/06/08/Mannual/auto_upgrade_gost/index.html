@@ -102,12 +102,20 @@
 
 
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="于小咸的日志">
-<meta property="og:url" content="https://blog.yu-xiaoxian.me/tags/systemd/index.html">
+  <meta name="description" content="进一步改进首先安装Json解析器 jq12sudo apt-get updatesudo apt-get install jq -y然后使用以下脚本自动检测gost更新，下载最新release的gost12345678910111213141516171819202122232425#!&#x2F;bin&#x2F;bashcd $(dirname $0)if [ ! -f current_version ]  to">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自动安装">
+<meta property="og:url" content="https://blog.yu-xiaoxian.me/2020/06/08/Mannual/auto_upgrade_gost/index.html">
 <meta property="og:site_name" content="于小咸的日志">
+<meta property="og:description" content="进一步改进首先安装Json解析器 jq12sudo apt-get updatesudo apt-get install jq -y然后使用以下脚本自动检测gost更新，下载最新release的gost12345678910111213141516171819202122232425#!&#x2F;bin&#x2F;bashcd $(dirname $0)if [ ! -f current_version ]  to">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-06-08T13:03:46.000Z">
+<meta property="article:modified_time" content="2020-06-09T02:42:53.655Z">
 <meta property="article:author" content="Yu Xiaoxian">
+<meta property="article:tag" content="gost">
+<meta property="article:tag" content="ubuntu">
+<meta property="article:tag" content="systemd">
+<meta property="article:tag" content="proxy">
 <meta name="twitter:card" content="summary">
 
 
@@ -115,7 +123,7 @@
 
 
 
-  <link rel="canonical" href="https://blog.yu-xiaoxian.me/tags/systemd/"/>
+  <link rel="canonical" href="https://blog.yu-xiaoxian.me/2020/06/08/Mannual/auto_upgrade_gost/"/>
 
 
 
@@ -125,7 +133,7 @@
   };
 </script>
 
-  <title>标签: systemd | 于小咸的日志</title>
+  <title>自动安装 | 于小咸的日志</title>
   
 
 
@@ -172,7 +180,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -237,19 +245,6 @@
   
     
 
-    
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
   
 
   
@@ -274,86 +269,175 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>systemd<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
+
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.yu-xiaoxian.me/2020/06/08/Mannual/auto_upgrade_gost/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yu Xiaoxian">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于小咸的日志">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2020/06/08/Mannual/auto_upgrade_gost/" itemprop="url">
-              
-                <span itemprop="name">自动安装</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">自动安装
+              
+            
+          </h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-06-08T13:03:46+00:00"
-              content="2020-06-08" >
-          06-08
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+                
+            
 
-    </header>
-  </article>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-08T13:03:46+00:00">2020-06-08</time>
+            
 
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
+      
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/11/22/Mannual/install-gost-as-system-service/" itemprop="url">
-              
-                <span itemprop="name">配置gost开机自启</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-11-22T13:03:46+00:00"
-              content="2019-11-22" >
-          11-22
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
+        <h2 id="进一步改进"><a href="#进一步改进" class="headerlink" title="进一步改进"></a>进一步改进</h2><p>首先安装Json解析器 jq<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install jq -y</span><br></pre></td></tr></table></figure><br>然后使用以下脚本自动检测gost更新，下载最新release的gost<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">cd $(dirname $0)</span><br><span class="line">if [ ! -f current_version ]</span><br><span class="line">  touch current_version</span><br><span class="line">fi</span><br><span class="line">url="https://api.github.com/repos/ginuerzh/gost/releases/latest"</span><br><span class="line">platform='linux-amd64'</span><br><span class="line">current_version=$(cat current_version)</span><br><span class="line">latest_version=`curl -s $url | jq -r ".name"`</span><br><span class="line">name=`curl -s $url | jq -r ".assets[] | select(.name | test(\"$&#123;platform&#125;\")) | .name"`</span><br><span class="line">download_url=`curl -s $url | jq -r ".assets[] | select(.name | test(\"$&#123;platform&#125;\")) | .browser_download_url"`</span><br><span class="line">echo $download_url</span><br><span class="line">echo $platform</span><br><span class="line">echo $latest_version</span><br><span class="line">echo $current_version</span><br><span class="line">echo $name</span><br><span class="line">if [ ! -d $&#123;HOME&#125;/Downloads" ]; then</span><br><span class="line">  mkdir ~/Downloads</span><br><span class="line">fi</span><br><span class="line">if [ "$current_version" != "$latest_version" ]; then</span><br><span class="line">  wget $download_url -O ~/Downloads/$name</span><br><span class="line">  gunzip -fk ~/Downloads/$name</span><br><span class="line">  cp ~/Downloads/$&#123;name%.*&#125; /usr/local/bin/gost</span><br><span class="line">  echo $latest_version &gt; current_version</span><br><span class="line">fi</span><br></pre></td></tr></table></figure><br>然后使用<code>crontab -e</code>，在其中写入，就可以定期执行gost啦<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 4 * * * sh &lt;path-to-shell&gt;</span><br></pre></td></tr></table></figure></p>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ol>
+<li><a href="https://starkandwayne.com/blog/how-to-download-the-latest-release-from-github/" target="_blank" rel="noopener">HOW TO DOWNLOAD THE LATEST RELEASE FROM GITHUB</a></li>
+</ol>
 
       
     </div>
 
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/gost/" rel="tag"># gost</a>
+          
+            <a href="/tags/ubuntu/" rel="tag"># ubuntu</a>
+          
+            <a href="/tags/systemd/" rel="tag"># systemd</a>
+          
+            <a href="/tags/proxy/" rel="tag"># proxy</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/05/26/wiki/EffectivCpp-tip01/" rel="next" title="C++是一个语言联邦">
+                <i class="fa fa-chevron-left"></i> C++是一个语言联邦
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -374,8 +458,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -482,6 +575,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#进一步改进"><span class="nav-number">1.</span> <span class="nav-text">进一步改进</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number"></span> <span class="nav-text">参考链接</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -618,6 +727,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.1.0"></script>
+
+
 
   
 
