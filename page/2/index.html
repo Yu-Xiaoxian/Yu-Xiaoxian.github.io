@@ -104,7 +104,7 @@
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="于小咸的日志">
-<meta property="og:url" content="https://blog.yu-xiaoxian.me/archives/2018/04/index.html">
+<meta property="og:url" content="https://blog.yu-xiaoxian.me/page/2/index.html">
 <meta property="og:site_name" content="于小咸的日志">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="Yu Xiaoxian">
@@ -115,7 +115,7 @@
 
 
 
-  <link rel="canonical" href="https://blog.yu-xiaoxian.me/archives/2018/04/"/>
+  <link rel="canonical" href="https://blog.yu-xiaoxian.me/page/2/"/>
 
 
 
@@ -125,7 +125,7 @@
   };
 </script>
 
-  <title>归档 | 于小咸的日志</title>
+  <title>于小咸的日志</title>
   
 
 
@@ -172,7 +172,8 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left 
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -222,7 +223,7 @@
         
           
   
-  <li class="menu-item menu-item-archives menu-item-active">
+  <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
 </li>
@@ -236,19 +237,6 @@
 
   
     
-
-    
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
 
   
 
@@ -273,113 +261,154 @@
           
           <div id="content" class="content">
             
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
 
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.yu-xiaoxian.me/2017/08/05/theory/%E7%A8%8B%E5%BA%8F%E6%98%AF%E6%80%8E%E6%A0%B7%E4%BB%8EPC%E4%B8%8B%E8%BD%BD%E5%88%B0MCU%E7%9A%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yu Xiaoxian">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于小咸的日志">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/05/theory/%E7%A8%8B%E5%BA%8F%E6%98%AF%E6%80%8E%E6%A0%B7%E4%BB%8EPC%E4%B8%8B%E8%BD%BD%E5%88%B0MCU%E7%9A%84/" itemprop="url">
+                  程序是怎样从PC下载到MCU的
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+                
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-05T14:43:16+00:00">2017-08-05</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-      <span class="archive-page-counter">
-        
-        
+      
+
+      
         
           
-        
-        嗯..! 目前共计 11 篇日志。 继续努力。
-      </span>
-      
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
+          引言单片机程序一般用C编写，从程序编写到程序运行，要通过两个步骤：编译和烧写。编译是将C编写的单片机程序，编译成单片机可以识别的二进制代码。烧写是把编译好的二进制文件，通过烧录程序或者硬件，存储到单片机的ROM内存中。通常这两步都有专业软件来完成，对开发者是不可见的。但为了更加高效地开发单片机程序，我们有必要深入地了解编译和烧写过程。
+C程序的编译开发单片机一定会接触Keil C51，它是一款强大的51单片机集成开发环境(IDE)。51单片机虽然支持同一套指令集，但是由于各公司生产的单片机在内存、架构上都有区别，因此不能共用一套代码。而Keil C51集成了多种单片机的型号，可以针对不同的单片
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/08/05/theory/%E7%A8%8B%E5%BA%8F%E6%98%AF%E6%80%8E%E6%A0%B7%E4%BB%8EPC%E4%B8%8B%E8%BD%BD%E5%88%B0MCU%E7%9A%84/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
           </div>
+          <!--/noindex-->
         
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/04/16/SelfDriving/%E7%82%B9%E4%BA%91%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95/" itemprop="url">
-              
-                <span itemprop="name">点云匹配算法</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-16T19:20:16+00:00"
-              content="2018-04-16" >
-          04-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/04/15/wiki/C-%E6%9C%AF%E8%AF%AD%E4%B8%8E%E6%A6%82%E5%BF%B5/" itemprop="url">
-              
-                <span itemprop="name">C++ 术语与概念</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-15T14:43:16+00:00"
-              content="2018-04-15" >
-          04-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
   </div>
   
   
   
+  </article>
+
+
+    
+  </section>
 
   
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot; aria-label&#x3D;&quot;上一页&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
 
 
 
@@ -700,6 +729,10 @@
   
 
   
+  
+    
+      
+    
   
 
   
