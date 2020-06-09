@@ -1,6 +1,6 @@
 ---
-title: 配置gost开机自启
-date: 2019-11-22 13:03:46
+title: 自动安装
+date: 2020-06-08 13:03:46
 tags: 
 	- gost
 	- ubuntu
@@ -15,7 +15,7 @@ tags:
 sudo apt-get update
 sudo apt-get install jq -y
 ```
-然后使用以下脚本自动检测gost更新，下载最新release的gost，使用该脚本前，
+然后使用以下脚本自动检测gost更新，下载最新release的gost
 ```shell
 #!/bin/bash
 cd $(dirname $0)
