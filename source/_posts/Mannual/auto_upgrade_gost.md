@@ -1,5 +1,5 @@
 ---
-title: 自动安装
+title: gost 自动更新
 date: 2020-06-08 13:03:46
 tags: 
 	- gost
@@ -8,7 +8,9 @@ tags:
 	- proxy
 ---
 
-## 进一步改进
+# gost 自动更新
+
+在上一篇文章中，我们介绍了怎样实现gost的自动启动：[配置gost开机自启](https://blog.yu-xiaoxian.me/2019/11/22/Mannual/install-gost-as-system-service/)。但是 gost 无法通过`apt-get upgrade`自动更新，因此我开发一个脚本实现 gost 自动更新，保持安装的是最新的gost，从而避免版本老旧引起的安全问题。
 
 首先安装Json解析器 jq
 ```shell
@@ -45,7 +47,9 @@ fi
 ```
 然后使用`crontab -e`，在其中写入，就可以定期执行gost啦
 ```shell
-0 4 * * * sh <path-to-shell>
+0 4 * * * service gost stop
+1 4 * * * sh <path-to-shell>
+2 4 * * * service gost start
 ```
 
 # 参考链接
