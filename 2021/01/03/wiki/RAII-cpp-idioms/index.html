@@ -96,26 +96,33 @@
 <script data-ad-client="ca-pub-7836889092025277" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
 </script>
 
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-167960531-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-167960531-1');
+</script>
+
 
   
 
 
 
 
-  <meta name="description" content="进一步改进首先安装Json解析器 jq12sudo apt-get updatesudo apt-get install jq -y然后使用以下脚本自动检测gost更新，下载最新release的gost，使用该脚本前，12345678910111213141516171819202122232425#!&#x2F;bin&#x2F;bashcd $(dirname $0)if [ ! -f current_versi">
+  <meta name="description" content="点击链接查看更多C++ 技巧 ：Effective C++RAII(Resource Aquisition Is Initialization，翻译过来就是“资源获取即初始化”)，是C++之父 Bjarne Stroustrup 提出的一种编程用例，也是目前最好的资源管理方案。为什么说是最好，我们需要先了解一下传统的资源管理有哪些？ 传统的资源管理主要有两种：  以C&#x2F;C++为首的 malloc&#x2F;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="配置gost开机自启">
-<meta property="og:url" content="https://blog.yu-xiaoxian.me/2019/11/22/Mannual/auto_upgrade_gost/index.html">
+<meta property="og:title" content="RAII 目前最好的资源管理策略">
+<meta property="og:url" content="https://blog.yu-xiaoxian.me/2021/01/03/wiki/RAII-cpp-idioms/index.html">
 <meta property="og:site_name" content="于小咸的日志">
-<meta property="og:description" content="进一步改进首先安装Json解析器 jq12sudo apt-get updatesudo apt-get install jq -y然后使用以下脚本自动检测gost更新，下载最新release的gost，使用该脚本前，12345678910111213141516171819202122232425#!&#x2F;bin&#x2F;bashcd $(dirname $0)if [ ! -f current_versi">
+<meta property="og:description" content="点击链接查看更多C++ 技巧 ：Effective C++RAII(Resource Aquisition Is Initialization，翻译过来就是“资源获取即初始化”)，是C++之父 Bjarne Stroustrup 提出的一种编程用例，也是目前最好的资源管理方案。为什么说是最好，我们需要先了解一下传统的资源管理有哪些？ 传统的资源管理主要有两种：  以C&#x2F;C++为首的 malloc&#x2F;">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2019-11-22T13:03:46.000Z">
-<meta property="article:modified_time" content="2020-06-09T02:41:47.443Z">
+<meta property="article:published_time" content="2021-01-03T21:43:16.000Z">
+<meta property="article:modified_time" content="2021-01-04T03:47:23.840Z">
 <meta property="article:author" content="Yu Xiaoxian">
-<meta property="article:tag" content="gost">
-<meta property="article:tag" content="ubuntu">
-<meta property="article:tag" content="systemd">
-<meta property="article:tag" content="proxy">
+<meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
 
 
@@ -123,7 +130,7 @@
 
 
 
-  <link rel="canonical" href="https://blog.yu-xiaoxian.me/2019/11/22/Mannual/auto_upgrade_gost/"/>
+  <link rel="canonical" href="https://blog.yu-xiaoxian.me/2021/01/03/wiki/RAII-cpp-idioms/"/>
 
 
 
@@ -133,7 +140,7 @@
   };
 </script>
 
-  <title>配置gost开机自启 | 于小咸的日志</title>
+  <title>RAII 目前最好的资源管理策略 | 于小咸的日志</title>
   
 
 
@@ -171,7 +178,7 @@
   </style>
 </noscript>
 
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 4.2.1"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
@@ -285,7 +292,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.yu-xiaoxian.me/2019/11/22/Mannual/auto_upgrade_gost/">
+    <link itemprop="mainEntityOfPage" href="https://blog.yu-xiaoxian.me/2021/01/03/wiki/RAII-cpp-idioms/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yu Xiaoxian">
@@ -302,7 +309,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">配置gost开机自启
+          <h1 class="post-title" itemprop="name headline">RAII 目前最好的资源管理策略
               
             
           </h1>
@@ -321,7 +328,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-22T13:03:46+00:00">2019-11-22</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-03T21:43:16+00:00">2021-01-03</time>
             
 
             
@@ -330,6 +337,24 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Wiki/" itemprop="url" rel="index"><span itemprop="name">Wiki</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -358,10 +383,24 @@
       
 
       
-        <h2 id="进一步改进"><a href="#进一步改进" class="headerlink" title="进一步改进"></a>进一步改进</h2><p>首先安装Json解析器 jq<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install jq -y</span><br></pre></td></tr></table></figure><br>然后使用以下脚本自动检测gost更新，下载最新release的gost，使用该脚本前，<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line">cd $(dirname $0)</span><br><span class="line">if [ ! -f current_version ]</span><br><span class="line">  touch current_version</span><br><span class="line">fi</span><br><span class="line">url="https://api.github.com/repos/ginuerzh/gost/releases/latest"</span><br><span class="line">platform='linux-amd64'</span><br><span class="line">current_version=$(cat current_version)</span><br><span class="line">latest_version=`curl -s $url | jq -r ".name"`</span><br><span class="line">name=`curl -s $url | jq -r ".assets[] | select(.name | test(\"$&#123;platform&#125;\")) | .name"`</span><br><span class="line">download_url=`curl -s $url | jq -r ".assets[] | select(.name | test(\"$&#123;platform&#125;\")) | .browser_download_url"`</span><br><span class="line">echo $download_url</span><br><span class="line">echo $platform</span><br><span class="line">echo $latest_version</span><br><span class="line">echo $current_version</span><br><span class="line">echo $name</span><br><span class="line">if [ ! -d $&#123;HOME&#125;/Downloads" ]; then</span><br><span class="line">  mkdir ~/Downloads</span><br><span class="line">fi</span><br><span class="line">if [ "$current_version" != "$latest_version" ]; then</span><br><span class="line">  wget $download_url -O ~/Downloads/$name</span><br><span class="line">  gunzip -fk ~/Downloads/$name</span><br><span class="line">  cp ~/Downloads/$&#123;name%.*&#125; /usr/local/bin/gost</span><br><span class="line">  echo $latest_version &gt; current_version</span><br><span class="line">fi</span><br></pre></td></tr></table></figure><br>然后使用<code>crontab -e</code>，在其中写入，就可以定期执行gost啦<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 4 * * * sh &lt;path-to-shell&gt;</span><br></pre></td></tr></table></figure></p>
-<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ol>
-<li><a href="https://starkandwayne.com/blog/how-to-download-the-latest-release-from-github/" target="_blank" rel="noopener">HOW TO DOWNLOAD THE LATEST RELEASE FROM GITHUB</a></li>
-</ol>
+        <h2 id="点击链接查看更多C-技巧-：Effective-C"><a href="#点击链接查看更多C-技巧-：Effective-C" class="headerlink" title="点击链接查看更多C++ 技巧 ：Effective C++"></a>点击链接查看更多C++ 技巧 ：<a href="https://blog.yu-xiaoxian.me/2019/05/03/wiki/EffectivCpp/">Effective C++</a></h2><p>RAII(Resource Aquisition Is Initialization，翻译过来就是“资源获取即初始化”)，是C++之父 Bjarne Stroustrup 提出的一种编程用例，也是目前最好的资源管理方案。为什么说是最好，我们需要先了解一下传统的资源管理有哪些？</p>
+<p>传统的资源管理主要有两种：</p>
+<ul>
+<li>以C/C++为首的 malloc/new 方法，由程序员手动管理资源，资源保存在堆上</li>
+<li>以Java为首的垃圾回收机制（Garbage Collection），由运行环境和管理资源，资源保存在栈上</li>
+</ul>
+<p>那么这两种方案各有什么优劣呢？</p>
+<ul>
+<li>C/C++ 的方法，程序员可以精确控制资源获取和释放的时机，充分利用系统的性能。风险就是资源获取与释放必须成对出现，如果忘记释放会占用系统资源，而过早释放有可能导致内存泄漏</li>
+<li>Java 的方法将程序员从繁琐的资源管理中释放出来，但也导致程序员无法准确判断资源获取和释放的时机，有可能导致资源的浪费。</li>
+</ul>
+<p>这里有一种方式，可以在保证资源控制精度的同时，避免大量的繁琐操作，那就是RAII(Resource Aquisition Is Initialization)，他巧妙利用了C++作用域的特性和类的析构函数，将资源的申请和释放交给编译器去完成，从而将程序员从繁琐的资源管理中释放出来。下面就来详细介绍RAII是怎样实现的。</p>
+<p>请看下面一段代码，申请一段内存，在使用完成后将其释放，这里需要我们来手动管理资源<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> * arr = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">100</span>];</span><br><span class="line"><span class="comment">// do something</span></span><br><span class="line"><span class="keyword">delete</span>[] arr;</span><br></pre></td></tr></table></figure></p>
+<p>如果将资源的申请和释放分别放在类的构造和析构函数中，我们可以达到同样的目的<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Arr</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Arr(<span class="keyword">int</span> size) &#123; ptr_ = <span class="keyword">new</span> <span class="keyword">int</span>[size]; &#125;</span><br><span class="line">	~Arr() &#123; <span class="keyword">if</span>(ptr_ != <span class="literal">nullptr</span>; ) <span class="keyword">delete</span>[] ptr_; &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">int</span> *ptr_ = <span class="literal">nullptr</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">	<span class="function">Arr <span class="title">arr</span><span class="params">(<span class="number">100</span>)</span></span>;</span><br><span class="line">	<span class="comment">// do somethin</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// When leaving the zoen, the array will be released automatically</span></span><br></pre></td></tr></table></figure></p>
+<p>我们实例化了arr，根据 C++ 语言的特性，当 arr 离开 {} 所限制的作用域后，析构函数 Arr::~Arr() 会被自动调用，从而释放申请的内存。</p>
+<p>这样的设计就省去了自动管理资源的麻烦，这里只是举了一个简单的例子，在更复杂的工程中，使用RAII的方式，帮我们节省的精力是十分巨大的。比如 C++11 中智能指针 shared_ptr 和 unique_ptr，就是 RAII 的经典应用，大家感兴趣的话可以点击链接进行了解<a href="https://blog.csdn.net/flowing_wind/article/details/81301001" target="_blank" rel="noopener">智能指针</a>。</p>
+<hr>
+<p>点击链接查看更多C++ 技巧 ：<a href="https://blog.yu-xiaoxian.me/2019/05/03/wiki/EffectivCpp/">Effective C++</a></p>
 
       
     </div>
@@ -382,13 +421,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/gost/" rel="tag"># gost</a>
-          
-            <a href="/tags/ubuntu/" rel="tag"># ubuntu</a>
-          
-            <a href="/tags/systemd/" rel="tag"># systemd</a>
-          
-            <a href="/tags/proxy/" rel="tag"># proxy</a>
+            <a href="/tags/C/" rel="tag"># C++</a>
           
         </div>
       
@@ -401,8 +434,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/11/22/Mannual/install-gost-as-system-service/" rel="next" title="配置gost开机自启">
-                <i class="fa fa-chevron-left"></i> 配置gost开机自启
+              <a href="/2020/07/28/wiki/cpp-tips-const-constexpr/" rel="next" title="C++小技巧：const 和 constexpr">
+                <i class="fa fa-chevron-left"></i> C++小技巧：const 和 constexpr
               </a>
             
           </div>
@@ -410,10 +443,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/05/09/wiki/C-%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF%EF%BC%9A%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E5%88%B0%E8%BF%9B%E9%98%B6/" rel="prev" title="C++学习路线：快速入门到进阶">
-                C++学习路线：快速入门到进阶 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -487,7 +516,7 @@
                 
                   <a href="/archives/%20%7C%7C%20archive">
                 
-                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -589,7 +618,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#进一步改进"><span class="nav-number">1.</span> <span class="nav-text">进一步改进</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number"></span> <span class="nav-text">参考链接</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#点击链接查看更多C-技巧-：Effective-C"><span class="nav-number">1.</span> <span class="nav-text">点击链接查看更多C++ 技巧 ：Effective C++</span></a></li></ol></div>
             
 
           </div>
@@ -609,7 +638,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
@@ -623,7 +652,7 @@
 
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 驱动 v4.2.0</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 驱动 v4.2.1</div>
 
 
 
