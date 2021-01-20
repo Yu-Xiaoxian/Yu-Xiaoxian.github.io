@@ -288,6 +288,324 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.yu-xiaoxian.me/2021/01/19/wiki/Donnot-call-deconstructor-explicitly/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yu Xiaoxian">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于小咸的日志">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/01/19/wiki/Donnot-call-deconstructor-explicitly/" itemprop="url">
+                  RAII 目前最好的资源管理策略
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+                
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-19T21:43:16+00:00">2021-01-19</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Wiki/" itemprop="url" rel="index"><span itemprop="name">Wiki</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          点击链接查看更多C++ 技巧 ：Effective C++今天遇到一个bug，记录一下，简而言之就是：绝对不要显式调用局部变量的析构函数。为什么呢，下面详细介绍一下
+首先来看下面一段代码，可以不看结果，先想一下输出结果是什么？123456789101112131415161718192021#include &lt;stdio.h&gt;class Mocker&#123;public:  Mocker(const int size):size_(size)&#123;    printf("Construct Mocker\n");  &#125;  ~Mocker()&#123;    p
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/01/19/wiki/Donnot-call-deconstructor-explicitly/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.yu-xiaoxian.me/2021/01/15/wiki/RAII-cpp-idioms-part-II/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yu Xiaoxian">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于小咸的日志">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/01/15/wiki/RAII-cpp-idioms-part-II/" itemprop="url">
+                  RAII 目前最好的资源管理策略
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+                
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-15T21:43:16+00:00">2021-01-15</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Wiki/" itemprop="url" rel="index"><span itemprop="name">Wiki</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          点击链接查看更多C++ 技巧 ：Effective C++上篇文章介绍了 RAII，这篇文章介绍下RAII的常见应用：智能指针和范围锁(Scoped Lock)，这两者都利用了RAII的思想来管理资源，将程序员从繁琐又容易出错的资源管理中释放出来，大大降低了程序出错的概率。
+本文以 C++11 为例对这两者的应用进行简单介绍，同理其它扩展库 Boost 和 Abseil-Cpp 的用法也类似。
+智能指针智能指针主要来管理动态申请的指针，传统的内存管理需要开发者手动申请和释放内存，而智能指针采用了 RAII 的思想，开发者只需要申请内存而不用操心何时释放，因为在该指针离开作用域的时候自动释放。
+
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/01/15/wiki/RAII-cpp-idioms-part-II/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://blog.yu-xiaoxian.me/2021/01/03/wiki/RAII-cpp-idioms/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1463,331 +1781,6 @@ C++中的输入输出流为std::cin和std::cout，与之对应的C中的输入�
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.yu-xiaoxian.me/2019/05/03/Mannual/MermaidDiagram/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Yu Xiaoxian">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于小咸的日志">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/03/Mannual/MermaidDiagram/" itemprop="url">
-                  配置 Hexo 支持 Mermaid（流程图、甘特图）
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-                
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-03T23:43:16+00:00">2019-05-03</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Mannual/" itemprop="url" rel="index"><span itemprop="name">Mannual</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          Mermaid 示例Merimaid 是一个简单的流程图生成工具，它语法简单，内嵌于markdown编辑器 Typora 中，下面是Mermaid 绘图的几个示例：流程图、甘特图和序列图。 
-流程图graph LR;
-A[Talker] --Hello World!--> B[Listener]
-
-甘特图gantt
-dateFormat  YYYY-MM-DD
-title Test GANTT diagram
-
-section A section
-Completed work  :done,    des1, 2014-01-06,2014-01-08
-Active work     :act
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/05/03/Mannual/MermaidDiagram/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.yu-xiaoxian.me/2019/05/03/wiki/EffectivCpp/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Yu Xiaoxian">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于小咸的日志">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/03/wiki/EffectivCpp/" itemprop="url">
-                  Effective C++ 目录
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-                
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-03T21:43:16+00:00">2019-05-03</time>
-            
-
-            
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Wiki/" itemprop="url" rel="index"><span itemprop="name">Wiki</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          Effective C++ 目录《Effective C++》 由Scott Meyers 编写，是从初级C++程序员向高级进阶的桥梁，特别适合C++的初学者，或者准备面试的程序员，这本书中讲的全部是资深程序员的经验和技巧，对C++的工程应用有着很大的帮助。读了这本书，你将会理解工程源码中一些奇怪的处理。费时一个多月读完了这本书，下面是汇总的目录。
-注：其中第25条讲了模板和派生类中对函数名的遮掩，第35条提到了Strategy模式，第45条讲了成员函数模板的注意事项，第49条讲了new_handler的使用技巧，这几条涉及概念比较多，需要仔细梳理。搞明白以后对C++的使用会有更加深刻地认识。
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/05/03/wiki/EffectivCpp/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1835,7 +1828,7 @@ Active work     :act
                 
                   <a href="/archives/%20%7C%7C%20archive">
                 
-                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-count">15</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2131,11 +2124,11 @@ Active work     :act
       
     
       
+    
+      
+    
+      
         
-      
-    
-      
-    
       
     
   
