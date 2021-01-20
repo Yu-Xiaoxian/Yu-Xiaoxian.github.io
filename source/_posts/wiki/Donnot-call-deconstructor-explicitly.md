@@ -1,5 +1,5 @@
 ---
-title: RAII 目前最好的资源管理策略
+title: C++小技巧：绝对不要显式调用局部变量的析构函数
 tags:
   - C++
 categories:

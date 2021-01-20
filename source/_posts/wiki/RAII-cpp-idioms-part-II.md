@@ -1,5 +1,5 @@
 ---
-title: RAII 目前最好的资源管理策略
+title: C++小技巧：RAII 的应用-智能指针和范围锁
 tags:
   - C++
 categories:
