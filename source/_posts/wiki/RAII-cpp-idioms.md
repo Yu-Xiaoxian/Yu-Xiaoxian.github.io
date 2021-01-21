@@ -54,6 +54,9 @@ private:
 
 这样的设计就省去了自动管理资源的麻烦，这里只是举了一个简单的例子，在更复杂的工程中，使用RAII的方式，帮我们节省的精力是十分巨大的。比如 C++11 中智能指针 shared_ptr 和 unique_ptr，就是 RAII 的经典应用，大家感兴趣的话可以点击链接进行了解[智能指针](https://blog.csdn.net/flowing_wind/article/details/81301001)。
 
+大家可以关注我的公众号「于振洋」，学习更多C++技巧
+![公众号二维码](https://img-blog.csdnimg.cn/20200722012125256.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l1X3hpYW94aWFuXzIwMTg=,size_16,color_FFFFFF,t_70#pic_center)
+
 ----
 
 点击链接查看更多C++ 技巧 ：[Effective C++](https://blog.yu-xiaoxian.me/2019/05/03/wiki/EffectivCpp/)

@@ -54,6 +54,9 @@ std::mutex mtx;
 ```
 构造 locker 时会将mtx上锁，当 locker 离开作用域后，编译器会自动释放该mutex，为了保证可以及时释放该互斥量，可以像上面代码一样，拿花括号将需要获得锁的代码段包起来。
 
+大家可以关注我的公众号「于振洋」，学习更多C++技巧
+![公众号二维码](https://img-blog.csdnimg.cn/20200722012125256.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l1X3hpYW94aWFuXzIwMTg=,size_16,color_FFFFFF,t_70#pic_center)
+
 ----
 
 点击链接查看更多C++ 技巧 ：[Effective C++](https://blog.yu-xiaoxian.me/2019/05/03/wiki/EffectivCpp/)
