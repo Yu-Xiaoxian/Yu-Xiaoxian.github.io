@@ -119,11 +119,13 @@
 <meta property="og:site_name" content="于小咸的日志">
 <meta property="og:description" content="点击链接查看更多C++ 技巧 ：Effective C++上篇文章介绍了 RAII，这篇文章介绍下RAII的常见应用：智能指针和范围锁(Scoped Lock)，这两者都利用了RAII的思想来管理资源，将程序员从繁琐又容易出错的资源管理中释放出来，大大降低了程序出错的概率。 本文以 C++11 为例对这两者的应用进行简单介绍，同理其它扩展库 Boost 和 Abseil-Cpp 的用法也类似。 智">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200722012125256.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l1X3hpYW94aWFuXzIwMTg=,size_16,color_FFFFFF,t_70#pic_center">
 <meta property="article:published_time" content="2021-01-15T21:43:16.000Z">
-<meta property="article:modified_time" content="2021-01-20T13:10:59.122Z">
+<meta property="article:modified_time" content="2021-01-21T01:39:02.626Z">
 <meta property="article:author" content="Yu Xiaoxian">
 <meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200722012125256.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l1X3hpYW94aWFuXzIwMTg=,size_16,color_FFFFFF,t_70#pic_center">
 
 
 
@@ -390,6 +392,7 @@
 <h2 id="范围锁"><a href="#范围锁" class="headerlink" title="范围锁"></a>范围锁</h2><p>范围锁是用来管理互斥量的，传统方法需要手动上锁和解锁互斥量，范围锁采用 RAII 的思想，在需要上锁时获得锁，离开作用域后就会自动释放该互斥量。</p>
 <p>直接操作互斥量<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::mutex mtx;</span><br><span class="line">mtx.lock();</span><br><span class="line"><span class="comment">// do something</span></span><br><span class="line">mtx.unlock();</span><br></pre></td></tr></table></figure></p>
 <p>使用范围锁<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::mutex mtx;</span><br><span class="line">&#123;</span><br><span class="line">	<span class="function"><span class="built_in">std</span>::lock_guard&lt;<span class="built_in">std</span>::mutex&gt; <span class="title">locker</span><span class="params">(mtx)</span></span>;</span><br><span class="line">	<span class="comment">// do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>构造 locker 时会将mtx上锁，当 locker 离开作用域后，编译器会自动释放该mutex，为了保证可以及时释放该互斥量，可以像上面代码一样，拿花括号将需要获得锁的代码段包起来。</p>
+<p>大家可以关注我的公众号「于振洋」，学习更多C++技巧<br><img src="https://img-blog.csdnimg.cn/20200722012125256.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l1X3hpYW94aWFuXzIwMTg=,size_16,color_FFFFFF,t_70#pic_center" alt="公众号二维码"></p>
 <hr>
 <p>点击链接查看更多C++ 技巧 ：<a href="https://blog.yu-xiaoxian.me/2019/05/03/wiki/EffectivCpp/">Effective C++</a></p>
 

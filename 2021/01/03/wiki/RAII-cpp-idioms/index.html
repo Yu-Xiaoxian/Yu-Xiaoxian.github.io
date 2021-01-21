@@ -119,11 +119,13 @@
 <meta property="og:site_name" content="于小咸的日志">
 <meta property="og:description" content="点击链接查看更多C++ 技巧 ：Effective C++RAII(Resource Aquisition Is Initialization，翻译过来就是“资源获取即初始化”)，是C++之父 Bjarne Stroustrup 提出的一种编程用例，也是目前最好的资源管理方案。为什么说是最好，我们需要先了解一下传统的资源管理有哪些？ 传统的资源管理主要有两种：  以C&#x2F;C++为首的 malloc&#x2F;">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200722012125256.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l1X3hpYW94aWFuXzIwMTg=,size_16,color_FFFFFF,t_70#pic_center">
 <meta property="article:published_time" content="2021-01-03T21:43:16.000Z">
-<meta property="article:modified_time" content="2021-01-20T13:10:59.122Z">
+<meta property="article:modified_time" content="2021-01-21T01:39:02.626Z">
 <meta property="article:author" content="Yu Xiaoxian">
 <meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200722012125256.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l1X3hpYW94aWFuXzIwMTg=,size_16,color_FFFFFF,t_70#pic_center">
 
 
 
@@ -399,6 +401,7 @@
 <p>如果将资源的申请和释放分别放在类的构造和析构函数中，我们可以达到同样的目的<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Arr</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Arr(<span class="keyword">int</span> size) &#123; ptr_ = <span class="keyword">new</span> <span class="keyword">int</span>[size]; &#125;</span><br><span class="line">	~Arr() &#123; <span class="keyword">if</span>(ptr_ != <span class="literal">nullptr</span>; ) <span class="keyword">delete</span>[] ptr_; &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="keyword">int</span> *ptr_ = <span class="literal">nullptr</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">	<span class="function">Arr <span class="title">arr</span><span class="params">(<span class="number">100</span>)</span></span>;</span><br><span class="line">	<span class="comment">// do somethin</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// When leaving the zoen, the array will be released automatically</span></span><br></pre></td></tr></table></figure></p>
 <p>我们实例化了arr，根据 C++ 语言的特性，当 arr 离开 {} 所限制的作用域后，析构函数 Arr::~Arr() 会被自动调用，从而释放申请的内存。</p>
 <p>这样的设计就省去了自动管理资源的麻烦，这里只是举了一个简单的例子，在更复杂的工程中，使用RAII的方式，帮我们节省的精力是十分巨大的。比如 C++11 中智能指针 shared_ptr 和 unique_ptr，就是 RAII 的经典应用，大家感兴趣的话可以点击链接进行了解<a href="https://blog.csdn.net/flowing_wind/article/details/81301001" target="_blank" rel="noopener">智能指针</a>。</p>
+<p>大家可以关注我的公众号「于振洋」，学习更多C++技巧<br><img src="https://img-blog.csdnimg.cn/20200722012125256.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l1X3hpYW94aWFuXzIwMTg=,size_16,color_FFFFFF,t_70#pic_center" alt="公众号二维码"></p>
 <hr>
 <p>点击链接查看更多C++ 技巧 ：<a href="https://blog.yu-xiaoxian.me/2019/05/03/wiki/EffectivCpp/">Effective C++</a></p>
 
