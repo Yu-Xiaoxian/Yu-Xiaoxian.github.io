@@ -1,11 +1,9 @@
 ---
-title: what_is_traits_in_cpp
+title: C++ 的 tratis 技术是什么？
 date: 2021-09-26 21:29:47
 tags:
   - cpp
 ---
-
-# C++ 的 tratis 技术是什么？
 
 C++ 的 traits 技术，是一种约定俗称的技术方案，用来为同一类数据（包括自定义数据类型和内置数据类型）提供统一的类型名（traits），这样可以统一的操作函数，例如 advance(), swap(), encode()/decode() 等。
 
