@@ -144,6 +144,9 @@
   gtag('config', 'UA-167960531-1');
 </script>
 
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7836889092025277"
+     crossorigin="anonymous"></script>
+
 {% if theme.custom_file_path.head %}
   {% set custom_head = '../../../../../' + theme.custom_file_path.head %}
 {% else %}
