@@ -115,14 +115,14 @@
 
 
 
-  <meta name="description" content="今天在LeetCode刷题，看到高手的答案中有下面这行代码，了解了一下这些代码的含义，发现了提高C++读写速度的方法。 1234static auto speedup &#x3D; []()&amp;#123;    ios::sync_with_stdio(false);    cin.tie(nullptr);    return nullptr;&amp;#125;(); C++中的输入输出流为std::cin和s">
+  <meta name="description" content="编译器不按套路出牌，该怎么办？const 成员函数深度剖析一、const 成员函数首先来复习一下 const 成员函数，我们自己实现一个字符串 MyStr，内部使用 char* 指针保存原始数据，使用 get_length() 函数获取数组的长度，由于 get 函数不会修改成员变量，可以使用 const 关键字修饰 get_length() 函数，编译期就会帮我们检查是否修改了成员变量，如果有修改">
 <meta property="og:type" content="article">
-<meta property="og:title" content="加速C++的读写">
-<meta property="og:url" content="https://blog.yu-xiaoxian.me/2019/08/15/speedup-cpp-iostream/index.html">
+<meta property="og:title" content="C++ const 详解">
+<meta property="og:url" content="https://blog.yu-xiaoxian.me/2022/07/02/wiki/EffectivCpp-tip03/index.html">
 <meta property="og:site_name" content="于小咸的日志">
-<meta property="og:description" content="今天在LeetCode刷题，看到高手的答案中有下面这行代码，了解了一下这些代码的含义，发现了提高C++读写速度的方法。 1234static auto speedup &#x3D; []()&amp;#123;    ios::sync_with_stdio(false);    cin.tie(nullptr);    return nullptr;&amp;#125;(); C++中的输入输出流为std::cin和s">
+<meta property="og:description" content="编译器不按套路出牌，该怎么办？const 成员函数深度剖析一、const 成员函数首先来复习一下 const 成员函数，我们自己实现一个字符串 MyStr，内部使用 char* 指针保存原始数据，使用 get_length() 函数获取数组的长度，由于 get 函数不会修改成员变量，可以使用 const 关键字修饰 get_length() 函数，编译期就会帮我们检查是否修改了成员变量，如果有修改">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2019-08-15T16:35:36.000Z">
+<meta property="article:published_time" content="2022-07-02T21:29:47.000Z">
 <meta property="article:modified_time" content="2022-07-03T13:15:43.215Z">
 <meta property="article:author" content="Yu Xiaoxian">
 <meta property="article:tag" content="cpp">
@@ -133,7 +133,7 @@
 
 
 
-  <link rel="canonical" href="https://blog.yu-xiaoxian.me/2019/08/15/speedup-cpp-iostream/"/>
+  <link rel="canonical" href="https://blog.yu-xiaoxian.me/2022/07/02/wiki/EffectivCpp-tip03/"/>
 
 
 
@@ -143,7 +143,7 @@
   };
 </script>
 
-  <title>加速C++的读写 | 于小咸的日志</title>
+  <title>C++ const 详解 | 于小咸的日志</title>
   
 
 
@@ -295,7 +295,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.yu-xiaoxian.me/2019/08/15/speedup-cpp-iostream/">
+    <link itemprop="mainEntityOfPage" href="https://blog.yu-xiaoxian.me/2022/07/02/wiki/EffectivCpp-tip03/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yu Xiaoxian">
@@ -312,7 +312,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">加速C++的读写
+          <h1 class="post-title" itemprop="name headline">C++ const 详解
               
             
           </h1>
@@ -331,7 +331,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-15T16:35:36+00:00">2019-08-15</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-07-02T21:29:47+00:00">2022-07-02</time>
             
 
             
@@ -340,6 +340,24 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Wiki/" itemprop="url" rel="index"><span itemprop="name">Wiki</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -368,14 +386,16 @@
       
 
       
-        <hr>
-<p>今天在<a href="www.leetcode.com">LeetCode</a>刷题，看到高手的答案中有下面这行代码，了解了一下这些代码的含义，发现了提高C++读写速度的方法。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">auto</span> speedup = []()&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">cin</span>.tie(<span class="literal">nullptr</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nullptr</span>;&#125;();</span><br></pre></td></tr></table></figure>
-<p>C++中的输入输出流为std::cin和std::cout，与之对应的C中的输入输出分别为scanf()和printf()。不少人有误解说C++的输入输出比C的慢，然而这时错误的认知，玄机就体现在以上代码中。C++为兼容C，并保证输入输出的线程安全，将C++的输入输出流与C的绑定在了一起，也就是说C++并不维护缓存区，而是将保存在C的缓存区中，这样每次IO都会调用一次flush()，因此导致开销较大。</p>
-<p>而cin.tie()默认将输入绑定到cout，这样每一行输入都能够被打印出来。而将cin绑定到空指针，能够进一步提高输入的速度。</p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
-<li><a href="https://en.cppreference.com/w/cpp/io/ios_base/sync_with_stdio" target="_blank" rel="noopener">cpp-reference: sync_with_stdio</a></li>
-<li><a href="https://blog.csdn.net/jrrrj/article/details/81319369" target="_blank" rel="noopener">cin.tie与sync_with_stdio加速时输入输出</a></li>
+        <h1 id="编译器不按套路出牌，该怎么办？const-成员函数深度剖析"><a href="#编译器不按套路出牌，该怎么办？const-成员函数深度剖析" class="headerlink" title="编译器不按套路出牌，该怎么办？const 成员函数深度剖析"></a>编译器不按套路出牌，该怎么办？const 成员函数深度剖析</h1><h3 id="一、const-成员函数"><a href="#一、const-成员函数" class="headerlink" title="一、const 成员函数"></a>一、const 成员函数</h3><p>首先来复习一下 const 成员函数，我们自己实现一个字符串 MyStr，内部使用 char* 指针保存原始数据，使用 get_length() 函数获取数组的长度，由于 get 函数不会修改成员变量，可以使用 const 关键字修饰 get_length() 函数，编译期就会帮我们检查是否修改了成员变量，如果有修改，就会在编译期报错，这样就可以保护成员变量不被修改。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class MyStr &#123;</span><br><span class="line">public:</span><br><span class="line">  MyStr() &#123;...&#125;</span><br><span class="line">  ~MyStr() &#123;...&#125;</span><br><span class="line">  size_t get_length() const &#123;</span><br><span class="line">    &#x2F;&#x2F; _length &#x3D; 1;  编译出错</span><br><span class="line">    return _length;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">private:</span><br><span class="line">  char* _data &#x3D; nullptr;</span><br><span class="line">  size_t _length &#x3D; 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="二、logic-const-和-bitwise-const"><a href="#二、logic-const-和-bitwise-const" class="headerlink" title="二、logic const 和 bitwise const"></a>二、logic const 和 bitwise const</h3><p>编译器是怎么实现 const 成员检查的呢？在编译时它会检查该函数有没有对成员变量进行修改，比如上面代码里的赋值操作 <code>_length = 1</code> 就明显修改了成员变量，发现这样的操作编译器就会报警，这种校验就是 bitwise const。</p>
+<p>然而只有 bitwise const 是不够的，设想 MyStr 中的 <code>_data</code> 使用了高速缓存，还有别的操作会修改字符串的长度，<code>get_length()</code> 函数需要改成下面这样。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">size_t get_length() const &#123;</span><br><span class="line">  _length &#x3D; strlen(_data); &#x2F;&#x2F; 编译器会报错</span><br><span class="line">  return _length;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>更新字符串长度并没有改变 <code>_data</code> 的内容，从逻辑（logic）来讲符合 const 函数的定义，但编译器并不这样认为，我们可以使用 <code>mutable</code> 字段让编译器不再阻拦我们，像下面这样<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">MyStr &#123;</span><br><span class="line">public:</span><br><span class="line">  MyStr() &#123;...&#125;</span><br><span class="line">  ~MyStr() &#123;...&#125;</span><br><span class="line">  size_t get_length() const &#123;</span><br><span class="line">    _length &#x3D; strlen(_data); &#x2F;&#x2F; 编译器不会报错</span><br><span class="line">    return _length;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">private:</span><br><span class="line">  char* _data &#x3D; nullptr;</span><br><span class="line">  mutable size_t _length &#x3D; 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>这种逻辑上不改变数据的 const 函数就叫做 logic const。</p>
+<h3 id="三、编译器检查不出怎么办"><a href="#三、编译器检查不出怎么办" class="headerlink" title="三、编译器检查不出怎么办"></a>三、编译器检查不出怎么办</h3><p>上面讲了一种绕过编译器检查的情况，下面来看一种编译器检查不出来的问题，当类的成员变量为指针时，只改变指针指向的数据而不改变指针，编译器是不会认为违背 const 原则的。比如我们提供 <code>operater[]</code> 操作符来访问 MyStr 的元素<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class MyStr &#123;</span><br><span class="line">public:</span><br><span class="line">  ...</span><br><span class="line">  char&amp; operator[](const size_t index) const &#123;</span><br><span class="line">    return _data[index];</span><br><span class="line">  &#125;</span><br><span class="line">private:</span><br><span class="line">  char* _data &#x3D; nullptr;</span><br><span class="line">  size_t _length &#x3D; 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MyStr my_str;</span><br><span class="line">my_str[0] &#x3D; &#39;a&#39;; &#x2F;&#x2F; 这样就通过const函数改变了成员变量指针指向的内容，并且编译器不会报错</span><br></pre></td></tr></table></figure><br>这种情况怎么办呢？我们一定要记得把 const 函数的返回值设置为 const<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class MyStr &#123;</span><br><span class="line">public:</span><br><span class="line">  ...</span><br><span class="line">  const char&amp; operator[](const size_t index) const &#123;</span><br><span class="line">    return _data[index];</span><br><span class="line">  &#125;</span><br><span class="line">private:</span><br><span class="line">  char* _data &#x3D; nullptr;</span><br><span class="line">  size_t _length &#x3D; 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MyStr my_str;</span><br><span class="line">my_str[0] &#x3D; &#39;a&#39;; &#x2F;&#x2F; 这样编译器就会报错，因为我们修改了常引用</span><br></pre></td></tr></table></figure></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>最后把前面讲的总结为两点：</p>
+<ol>
+<li>想要绕过编译器 const 检查时，对成员变量增加 mutable 修饰</li>
+<li>常量函数的返回值（特别是引用和指针）一定要加 const 修饰</li>
 </ol>
 
       
@@ -410,8 +430,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/15/theory/%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5/" rel="next" title="绕固定坐标轴旋转与绕自身坐标轴旋转的一致性证明">
-                <i class="fa fa-chevron-left"></i> 绕固定坐标轴旋转与绕自身坐标轴旋转的一致性证明
+              <a href="/2022/05/13/Mannual/use-cppman-as-cpp-wiki/" rel="next" title="在命令行查询 C++ 用法">
+                <i class="fa fa-chevron-left"></i> 在命令行查询 C++ 用法
               </a>
             
           </div>
@@ -419,10 +439,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/11/22/Mannual/install-gost-as-system-service/" rel="prev" title="配置gost开机自启">
-                配置gost开机自启 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -598,7 +614,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">1.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#编译器不按套路出牌，该怎么办？const-成员函数深度剖析"><span class="nav-number">1.</span> <span class="nav-text">编译器不按套路出牌，该怎么办？const 成员函数深度剖析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、const-成员函数"><span class="nav-number">1.0.1.</span> <span class="nav-text">一、const 成员函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、logic-const-和-bitwise-const"><span class="nav-number">1.0.2.</span> <span class="nav-text">二、logic const 和 bitwise const</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、编译器检查不出怎么办"><span class="nav-number">1.0.3.</span> <span class="nav-text">三、编译器检查不出怎么办</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">1.0.4.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
