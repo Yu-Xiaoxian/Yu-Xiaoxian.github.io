@@ -18,7 +18,7 @@ updated:: 2019-05-03 22:01:16
 ## 习惯C++
 1. [C++ 是一个语言联邦](https://blog.yu-xiaoxian.me/2020/05/26/wiki/EffectivCpp-tip01/)
 2. 尽量使用 inline enum const 代替#define
-3. 尽可能使用 const
+3. [尽可能使用 const](https://blog.yu-xiaoxian.me/2020/05/26/wiki/EffectivCpp-tip03/)
 4. 确定对象使用前已经被初始化
 
 ## 构造，析构，赋值
