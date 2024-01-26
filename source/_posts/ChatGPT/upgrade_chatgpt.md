@@ -4,7 +4,7 @@ tags:
   - ChatGPT
   - 虚拟信用卡
 categories:
-  - Mannual
+  - ChatGPT
 date: 2024-01-23 23:43:16
 
 updated:: 2024-01-27 03:43:16
