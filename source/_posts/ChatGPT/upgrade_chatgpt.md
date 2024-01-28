@@ -2,20 +2,23 @@
 title: 国内ChatGPT 4 账号注册教程：无需验证码、支付宝即可支付（2024年1月更新）
 tags:
   - ChatGPT
+  - AIGC
+  - 自动驾驶
   - 虚拟信用卡
 categories:
   - ChatGPT
 date: 2024-01-23 23:43:16
 
-updated:: 2024-01-27 03:43:16
+updated:: 2024-01-28 08:41:16
 ---
 
 ChatGPT4 相比 ChatGPT3.5 增加了GPT Store、上传文件等功能，不仅仅是普通的语言大模型，还可以处理图像、文档等等。然而开通 ChatGPT 4 真的好多坑：科学上网、邮箱注册、短信验证、地址查询、避税州选择、付款失败等等。
-我寻觅了好久，终于找到一个傻瓜式的操作方案，分享给大家：[BeWildCard](https://bewildcard.com/i/CHATGPT6)
+
+我摸爬滚打，终于找到一个傻瓜式的操作方案，一个平台就可以完成所有操作，分享给大家，能够给大家避坑，我的时间就没有白费。
 
 ----
 ## 一、常见问题
-ChatGPT 4 需要付费，付费时需要使用 VISA 或者 Master 的卡，还需要填写美国的住址，如果所在州选错的话，还需要多交一笔费用。然而即使我们都准备好，大概率还是会遇到以下错误：
+ChatGPT 4 需要付费，付费时需要使用 VISA 或者 Master 的卡，还需要填写美国的住址，还要选免税州，不然要交一笔税费。然而即使我们都准备好，到了支付这一步，大概率还是会遇到以下错误：
 
 - Your credit card was declined. Try paying with a debit card instead.
 - 您的信用卡被拒绝了，请尝试用借记卡支付。
@@ -42,7 +45,8 @@ ChatGPT 4 需要付费，付费时需要使用 VISA 或者 Master 的卡，还�
 
 ### 2.1 开卡
 
-https://bewildcard.com/i/CHATGPT6 点击这个链接（使用这个推荐码 CHATGPT6 有 2美元 的优惠），国内用户 2分钟就可以完成注册，获得一个美国身份和虚拟卡。
+https://bewildcard.com/i/CHATGPT6 
+点击上面链接（使用推荐码 CHATGPT6 有 2美元 的优惠），按照指示完成实名认证，2分钟就可以完成注册，获得一个美国身份和虚拟卡，如下图所示。
 
 [![pFnsLge.png](https://s11.ax1x.com/2024/01/27/pFnsLge.png)](https://imgse.com/i/pFnsLge)
 用卡之前记得充值，使用支付宝最小支持 $10 美元的充值，不用了的话可以随时提现。
@@ -52,7 +56,7 @@ https://bewildcard.com/i/CHATGPT6 点击这个链接（使用这个推荐码 CHA
 如果你遇到了支付失败的问题，不要慌张，点击平台首页的一键升级 ChatGPT 按钮。
 
 [![pFnsq3D.png](https://s11.ax1x.com/2024/01/27/pFnsq3D.png)](https://imgse.com/i/pFnsq3D)
-然后按照指示把付款页面的链接粘贴到最右边的输入框，等待约 1~2 min 就会充值完成啦！
+然后按照指示把付款页面的链接粘贴到最右边的输入框，等待约 1~2 min 就可以充值完成。
 
 [![pFnsvDA.png](https://s11.ax1x.com/2024/01/27/pFnsvDA.png)](https://imgse.com/i/pFnsvDA)
 
@@ -68,3 +72,7 @@ https://bewildcard.com/i/CHATGPT6 点击这个链接（使用这个推荐码 CHA
 [![pFnsxHI.png](https://s11.ax1x.com/2024/01/27/pFnsxHI.png)](https://imgse.com/i/pFnsxHI)
 
 希望大家使用愉快！
+
+### 参考链接
+
+[ChatGPT Plus 订阅教程](https://help.bewildcard.com/zh-CN/articles/8073056-chatgpt-plus-%E8%AE%A2%E9%98%85%E6%95%99%E7%A8%8B)
