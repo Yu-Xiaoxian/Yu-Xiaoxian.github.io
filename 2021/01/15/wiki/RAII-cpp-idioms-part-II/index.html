@@ -74,7 +74,7 @@
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/',
+    root: '',
     scheme: 'Muse',
     version: '6.1.0',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
@@ -124,7 +124,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200722012125256.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l1X3hpYW94aWFuXzIwMTg=,size_16,color_FFFFFF,t_70#pic_center">
 <meta property="article:published_time" content="2021-01-15T21:43:16.000Z">
-<meta property="article:modified_time" content="2024-01-30T15:38:24.646Z">
+<meta property="article:modified_time" content="2024-01-30T16:37:35.918Z">
 <meta property="article:author" content="Yu Xiaoxian">
 <meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
@@ -202,7 +202,7 @@
   </style>
 </noscript>
 
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 7.1.1"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
@@ -319,7 +319,7 @@
     <link itemprop="mainEntityOfPage" href="https://blog.yu-xiaoxian.me/2021/01/15/wiki/RAII-cpp-idioms-part-II/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Yu Xiaoxian">
+      <meta itemprop="name" content="">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -410,10 +410,10 @@
         <h2 id="点击链接查看更多C-技巧-：Effective-C"><a href="#点击链接查看更多C-技巧-：Effective-C" class="headerlink" title="点击链接查看更多C++ 技巧 ：Effective C++"></a>点击链接查看更多C++ 技巧 ：<a href="https://blog.yu-xiaoxian.me/2019/05/03/wiki/EffectivCpp/">Effective C++</a></h2><p>上篇文章介绍了 <a href="https://blog.yu-xiaoxian.me/2021/01/03/wiki/RAII-cpp-idioms/">RAII</a>，这篇文章介绍下RAII的常见应用：智能指针和范围锁(Scoped Lock)，这两者都利用了RAII的思想来管理资源，将程序员从繁琐又容易出错的资源管理中释放出来，大大降低了程序出错的概率。</p>
 <p>本文以 C++11 为例对这两者的应用进行简单介绍，同理其它扩展库 Boost 和 Abseil-Cpp 的用法也类似。</p>
 <h2 id="智能指针"><a href="#智能指针" class="headerlink" title="智能指针"></a>智能指针</h2><p>智能指针主要来管理动态申请的指针，传统的内存管理需要开发者手动申请和释放内存，而智能指针采用了 RAII 的思想，开发者只需要申请内存而不用操心何时释放，因为在该指针离开作用域的时候自动释放。</p>
-<p>普通指针用法<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 手动申请一块内存</span></span><br><span class="line"><span class="keyword">auto</span> ptr = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">64</span>];</span><br><span class="line"><span class="comment">// 手动释放一块内存</span></span><br><span class="line"><span class="keyword">delete</span>[] ptr;</span><br></pre></td></tr></table></figure><br>智能指针用法<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> smart_ptr = <span class="built_in">std</span>::<span class="built_in">unique_ptr</span>&lt;<span class="keyword">int</span>[]&gt;(<span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">64</span>]);</span><br></pre></td></tr></table></figure><br>当 smart_ptr 离开作用域后，编译器会自动释放该指针</p>
+<p>普通指针用法<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 手动申请一块内存</span></span><br><span class="line"><span class="keyword">auto</span> ptr = <span class="keyword">new</span> <span class="type">int</span>[<span class="number">64</span>];</span><br><span class="line"><span class="comment">// 手动释放一块内存</span></span><br><span class="line"><span class="keyword">delete</span>[] ptr;</span><br></pre></td></tr></table></figure><br>智能指针用法<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> smart_ptr = std::<span class="built_in">unique_ptr</span>&lt;<span class="type">int</span>[]&gt;(<span class="keyword">new</span> <span class="type">int</span>[<span class="number">64</span>]);</span><br></pre></td></tr></table></figure><br>当 smart_ptr 离开作用域后，编译器会自动释放该指针</p>
 <h2 id="范围锁"><a href="#范围锁" class="headerlink" title="范围锁"></a>范围锁</h2><p>范围锁是用来管理互斥量的，传统方法需要手动上锁和解锁互斥量，范围锁采用 RAII 的思想，在需要上锁时获得锁，离开作用域后就会自动释放该互斥量。</p>
-<p>直接操作互斥量<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::mutex mtx;</span><br><span class="line">mtx.lock();</span><br><span class="line"><span class="comment">// do something</span></span><br><span class="line">mtx.unlock();</span><br></pre></td></tr></table></figure></p>
-<p>使用范围锁<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::mutex mtx;</span><br><span class="line">&#123;</span><br><span class="line">	<span class="function"><span class="built_in">std</span>::lock_guard&lt;<span class="built_in">std</span>::mutex&gt; <span class="title">locker</span><span class="params">(mtx)</span></span>;</span><br><span class="line">	<span class="comment">// do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>构造 locker 时会将mtx上锁，当 locker 离开作用域后，编译器会自动释放该mutex，为了保证可以及时释放该互斥量，可以像上面代码一样，拿花括号将需要获得锁的代码段包起来。</p>
+<p>直接操作互斥量<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">std::mutex mtx;</span><br><span class="line">mtx.<span class="built_in">lock</span>();</span><br><span class="line"><span class="comment">// do something</span></span><br><span class="line">mtx.<span class="built_in">unlock</span>();</span><br></pre></td></tr></table></figure></p>
+<p>使用范围锁<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">std::mutex mtx;</span><br><span class="line">&#123;</span><br><span class="line">	<span class="function">std::lock_guard&lt;std::mutex&gt; <span class="title">locker</span><span class="params">(mtx)</span></span>;</span><br><span class="line">	<span class="comment">// do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>构造 locker 时会将mtx上锁，当 locker 离开作用域后，编译器会自动释放该mutex，为了保证可以及时释放该互斥量，可以像上面代码一样，拿花括号将需要获得锁的代码段包起来。</p>
 <p>大家可以关注我的公众号「于振洋」，学习更多C++技巧<br><img src="https://img-blog.csdnimg.cn/20200722012125256.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l1X3hpYW94aWFuXzIwMTg=,size_16,color_FFFFFF,t_70#pic_center" alt="公众号二维码"></p>
 <hr>
 <p>点击链接查看更多C++ 技巧 ：<a href="https://blog.yu-xiaoxian.me/2019/05/03/wiki/EffectivCpp/">Effective C++</a></p>
@@ -525,7 +525,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <p class="site-author-name" itemprop="name">Yu Xiaoxian</p>
+              <p class="site-author-name" itemprop="name"></p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -648,7 +648,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#点击链接查看更多C-技巧-：Effective-C"><span class="nav-number">1.</span> <span class="nav-text">点击链接查看更多C++ 技巧 ：Effective C++</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#智能指针"><span class="nav-number">2.</span> <span class="nav-text">智能指针</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#范围锁"><span class="nav-number">3.</span> <span class="nav-text">范围锁</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%82%B9%E5%87%BB%E9%93%BE%E6%8E%A5%E6%9F%A5%E7%9C%8B%E6%9B%B4%E5%A4%9AC-%E6%8A%80%E5%B7%A7-%EF%BC%9AEffective-C"><span class="nav-number">1.</span> <span class="nav-text">点击链接查看更多C++ 技巧 ：Effective C++</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88"><span class="nav-number">2.</span> <span class="nav-text">智能指针</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8C%83%E5%9B%B4%E9%94%81"><span class="nav-number">3.</span> <span class="nav-text">范围锁</span></a></li></ol></div>
             
 
           </div>
@@ -682,7 +682,7 @@
 
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 驱动 v4.2.1</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 驱动 v7.1.1</div>
 
 
 
@@ -695,13 +695,6 @@
 
 
 
-
-  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
-  <script>
-    if (window.mermaid) {
-      mermaid.initialize({theme: 'forest'});
-    }
-  </script>
 
 
         

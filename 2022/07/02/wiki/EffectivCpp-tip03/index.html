@@ -74,7 +74,7 @@
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/',
+    root: '',
     scheme: 'Muse',
     version: '6.1.0',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
@@ -123,7 +123,7 @@
 <meta property="og:description" content="编译器不按套路出牌，该怎么办？const 成员函数深度剖析一、const 成员函数首先来复习一下 const 成员函数，我们自己实现一个字符串 MyStr，内部使用 char* 指针保存原始数据，使用 get_length() 函数获取数组的长度，由于 get 函数不会修改成员变量，可以使用 const 关键字修饰 get_length() 函数，编译期就会帮我们检查是否修改了成员变量，如果有修改">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-07-02T21:29:47.000Z">
-<meta property="article:modified_time" content="2024-01-30T15:38:24.646Z">
+<meta property="article:modified_time" content="2024-01-30T16:37:35.918Z">
 <meta property="article:author" content="Yu Xiaoxian">
 <meta property="article:tag" content="cpp">
 <meta name="twitter:card" content="summary">
@@ -200,7 +200,7 @@
   </style>
 </noscript>
 
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 7.1.1"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
@@ -317,7 +317,7 @@
     <link itemprop="mainEntityOfPage" href="https://blog.yu-xiaoxian.me/2022/07/02/wiki/EffectivCpp-tip03/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Yu Xiaoxian">
+      <meta itemprop="name" content="">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -405,12 +405,12 @@
       
 
       
-        <h1 id="编译器不按套路出牌，该怎么办？const-成员函数深度剖析"><a href="#编译器不按套路出牌，该怎么办？const-成员函数深度剖析" class="headerlink" title="编译器不按套路出牌，该怎么办？const 成员函数深度剖析"></a>编译器不按套路出牌，该怎么办？const 成员函数深度剖析</h1><h3 id="一、const-成员函数"><a href="#一、const-成员函数" class="headerlink" title="一、const 成员函数"></a>一、const 成员函数</h3><p>首先来复习一下 const 成员函数，我们自己实现一个字符串 MyStr，内部使用 char* 指针保存原始数据，使用 get_length() 函数获取数组的长度，由于 get 函数不会修改成员变量，可以使用 const 关键字修饰 get_length() 函数，编译期就会帮我们检查是否修改了成员变量，如果有修改，就会在编译期报错，这样就可以保护成员变量不被修改。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class MyStr &#123;</span><br><span class="line">public:</span><br><span class="line">  MyStr() &#123;...&#125;</span><br><span class="line">  ~MyStr() &#123;...&#125;</span><br><span class="line">  size_t get_length() const &#123;</span><br><span class="line">    &#x2F;&#x2F; _length &#x3D; 1;  编译出错</span><br><span class="line">    return _length;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">private:</span><br><span class="line">  char* _data &#x3D; nullptr;</span><br><span class="line">  size_t _length &#x3D; 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        <h1 id="编译器不按套路出牌，该怎么办？const-成员函数深度剖析"><a href="#编译器不按套路出牌，该怎么办？const-成员函数深度剖析" class="headerlink" title="编译器不按套路出牌，该怎么办？const 成员函数深度剖析"></a>编译器不按套路出牌，该怎么办？const 成员函数深度剖析</h1><h3 id="一、const-成员函数"><a href="#一、const-成员函数" class="headerlink" title="一、const 成员函数"></a>一、const 成员函数</h3><p>首先来复习一下 const 成员函数，我们自己实现一个字符串 MyStr，内部使用 char* 指针保存原始数据，使用 get_length() 函数获取数组的长度，由于 get 函数不会修改成员变量，可以使用 const 关键字修饰 get_length() 函数，编译期就会帮我们检查是否修改了成员变量，如果有修改，就会在编译期报错，这样就可以保护成员变量不被修改。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class MyStr &#123;</span><br><span class="line">public:</span><br><span class="line">  MyStr() &#123;...&#125;</span><br><span class="line">  ~MyStr() &#123;...&#125;</span><br><span class="line">  size_t get_length() const &#123;</span><br><span class="line">    // _length = 1;  编译出错</span><br><span class="line">    return _length;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">private:</span><br><span class="line">  char* _data = nullptr;</span><br><span class="line">  size_t _length = 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h3 id="二、logic-const-和-bitwise-const"><a href="#二、logic-const-和-bitwise-const" class="headerlink" title="二、logic const 和 bitwise const"></a>二、logic const 和 bitwise const</h3><p>编译器是怎么实现 const 成员检查的呢？在编译时它会检查该函数有没有对成员变量进行修改，比如上面代码里的赋值操作 <code>_length = 1</code> 就明显修改了成员变量，发现这样的操作编译器就会报警，这种校验就是 bitwise const。</p>
 <p>然而只有 bitwise const 是不够的，设想 MyStr 中的 <code>_data</code> 使用了高速缓存，还有别的操作会修改字符串的长度，<code>get_length()</code> 函数需要改成下面这样。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">size_t get_length() const &#123;</span><br><span class="line">  _length &#x3D; strlen(_data); &#x2F;&#x2F; 编译器会报错</span><br><span class="line">  return _length;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>更新字符串长度并没有改变 <code>_data</code> 的内容，从逻辑（logic）来讲符合 const 函数的定义，但编译器并不这样认为，我们可以使用 <code>mutable</code> 字段让编译器不再阻拦我们，像下面这样<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">MyStr &#123;</span><br><span class="line">public:</span><br><span class="line">  MyStr() &#123;...&#125;</span><br><span class="line">  ~MyStr() &#123;...&#125;</span><br><span class="line">  size_t get_length() const &#123;</span><br><span class="line">    _length &#x3D; strlen(_data); &#x2F;&#x2F; 编译器不会报错</span><br><span class="line">    return _length;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">private:</span><br><span class="line">  char* _data &#x3D; nullptr;</span><br><span class="line">  mutable size_t _length &#x3D; 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>这种逻辑上不改变数据的 const 函数就叫做 logic const。</p>
-<h3 id="三、编译器检查不出怎么办"><a href="#三、编译器检查不出怎么办" class="headerlink" title="三、编译器检查不出怎么办"></a>三、编译器检查不出怎么办</h3><p>上面讲了一种绕过编译器检查的情况，下面来看一种编译器检查不出来的问题，当类的成员变量为指针时，只改变指针指向的数据而不改变指针，编译器是不会认为违背 const 原则的。比如我们提供 <code>operater[]</code> 操作符来访问 MyStr 的元素<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class MyStr &#123;</span><br><span class="line">public:</span><br><span class="line">  ...</span><br><span class="line">  char&amp; operator[](const size_t index) const &#123;</span><br><span class="line">    return _data[index];</span><br><span class="line">  &#125;</span><br><span class="line">private:</span><br><span class="line">  char* _data &#x3D; nullptr;</span><br><span class="line">  size_t _length &#x3D; 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MyStr my_str;</span><br><span class="line">my_str[0] &#x3D; &#39;a&#39;; &#x2F;&#x2F; 这样就通过const函数改变了成员变量指针指向的内容，并且编译器不会报错</span><br></pre></td></tr></table></figure><br>这种情况怎么办呢？我们一定要记得把 const 函数的返回值设置为 const<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class MyStr &#123;</span><br><span class="line">public:</span><br><span class="line">  ...</span><br><span class="line">  const char&amp; operator[](const size_t index) const &#123;</span><br><span class="line">    return _data[index];</span><br><span class="line">  &#125;</span><br><span class="line">private:</span><br><span class="line">  char* _data &#x3D; nullptr;</span><br><span class="line">  size_t _length &#x3D; 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MyStr my_str;</span><br><span class="line">my_str[0] &#x3D; &#39;a&#39;; &#x2F;&#x2F; 这样编译器就会报错，因为我们修改了常引用</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">size_t get_length() const &#123;</span><br><span class="line">  _length = strlen(_data); // 编译器会报错</span><br><span class="line">  return _length;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>更新字符串长度并没有改变 <code>_data</code> 的内容，从逻辑（logic）来讲符合 const 函数的定义，但编译器并不这样认为，我们可以使用 <code>mutable</code> 字段让编译器不再阻拦我们，像下面这样<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">MyStr &#123;</span><br><span class="line">public:</span><br><span class="line">  MyStr() &#123;...&#125;</span><br><span class="line">  ~MyStr() &#123;...&#125;</span><br><span class="line">  size_t get_length() const &#123;</span><br><span class="line">    _length = strlen(_data); // 编译器不会报错</span><br><span class="line">    return _length;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">private:</span><br><span class="line">  char* _data = nullptr;</span><br><span class="line">  mutable size_t _length = 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>这种逻辑上不改变数据的 const 函数就叫做 logic const。</p>
+<h3 id="三、编译器检查不出怎么办"><a href="#三、编译器检查不出怎么办" class="headerlink" title="三、编译器检查不出怎么办"></a>三、编译器检查不出怎么办</h3><p>上面讲了一种绕过编译器检查的情况，下面来看一种编译器检查不出来的问题，当类的成员变量为指针时，只改变指针指向的数据而不改变指针，编译器是不会认为违背 const 原则的。比如我们提供 <code>operater[]</code> 操作符来访问 MyStr 的元素<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class MyStr &#123;</span><br><span class="line">public:</span><br><span class="line">  ...</span><br><span class="line">  char&amp; operator[](const size_t index) const &#123;</span><br><span class="line">    return _data[index];</span><br><span class="line">  &#125;</span><br><span class="line">private:</span><br><span class="line">  char* _data = nullptr;</span><br><span class="line">  size_t _length = 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MyStr my_str;</span><br><span class="line">my_str[0] = &#x27;a&#x27;; // 这样就通过const函数改变了成员变量指针指向的内容，并且编译器不会报错</span><br></pre></td></tr></table></figure><br>这种情况怎么办呢？我们一定要记得把 const 函数的返回值设置为 const<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class MyStr &#123;</span><br><span class="line">public:</span><br><span class="line">  ...</span><br><span class="line">  const char&amp; operator[](const size_t index) const &#123;</span><br><span class="line">    return _data[index];</span><br><span class="line">  &#125;</span><br><span class="line">private:</span><br><span class="line">  char* _data = nullptr;</span><br><span class="line">  size_t _length = 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MyStr my_str;</span><br><span class="line">my_str[0] = &#x27;a&#x27;; // 这样编译器就会报错，因为我们修改了常引用</span><br></pre></td></tr></table></figure></p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>最后把前面讲的总结为两点：</p>
 <ol>
 <li>想要绕过编译器 const 检查时，对成员变量增加 mutable 修饰</li>
@@ -524,7 +524,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <p class="site-author-name" itemprop="name">Yu Xiaoxian</p>
+              <p class="site-author-name" itemprop="name"></p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -647,7 +647,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#编译器不按套路出牌，该怎么办？const-成员函数深度剖析"><span class="nav-number">1.</span> <span class="nav-text">编译器不按套路出牌，该怎么办？const 成员函数深度剖析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、const-成员函数"><span class="nav-number">1.0.1.</span> <span class="nav-text">一、const 成员函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、logic-const-和-bitwise-const"><span class="nav-number">1.0.2.</span> <span class="nav-text">二、logic const 和 bitwise const</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、编译器检查不出怎么办"><span class="nav-number">1.0.3.</span> <span class="nav-text">三、编译器检查不出怎么办</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">1.0.4.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E5%99%A8%E4%B8%8D%E6%8C%89%E5%A5%97%E8%B7%AF%E5%87%BA%E7%89%8C%EF%BC%8C%E8%AF%A5%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9Fconst-%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90"><span class="nav-number">1.</span> <span class="nav-text">编译器不按套路出牌，该怎么办？const 成员函数深度剖析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81const-%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="nav-number">1.0.1.</span> <span class="nav-text">一、const 成员函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81logic-const-%E5%92%8C-bitwise-const"><span class="nav-number">1.0.2.</span> <span class="nav-text">二、logic const 和 bitwise const</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E7%BC%96%E8%AF%91%E5%99%A8%E6%A3%80%E6%9F%A5%E4%B8%8D%E5%87%BA%E6%80%8E%E4%B9%88%E5%8A%9E"><span class="nav-number">1.0.3.</span> <span class="nav-text">三、编译器检查不出怎么办</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.0.4.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -681,7 +681,7 @@
 
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 驱动 v4.2.1</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 驱动 v7.1.1</div>
 
 
 
@@ -694,13 +694,6 @@
 
 
 
-
-  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
-  <script>
-    if (window.mermaid) {
-      mermaid.initialize({theme: 'forest'});
-    }
-  </script>
 
 
         

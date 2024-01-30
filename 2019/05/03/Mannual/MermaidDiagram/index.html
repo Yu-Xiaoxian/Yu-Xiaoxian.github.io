@@ -74,7 +74,7 @@
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/',
+    root: '',
     scheme: 'Muse',
     version: '6.1.0',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
@@ -123,11 +123,11 @@
 <meta property="og:description" content="Mermaid 示例Merimaid 是一个简单的流程图生成工具，它语法简单，内嵌于markdown编辑器 Typora 中，下面是Mermaid 绘图的几个示例：流程图、甘特图和序列图。  流程图graph LR; A[Talker] --Hello World!--&gt; B[Listener]  甘特图gantt dateFormat  YYYY-MM-DD title Test GANTT d">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-05-03T23:43:16.000Z">
-<meta property="article:modified_time" content="2024-01-30T15:38:24.646Z">
+<meta property="article:modified_time" content="2024-01-30T16:37:35.918Z">
 <meta property="article:author" content="Yu Xiaoxian">
-<meta property="article:tag" content="前端">
 <meta property="article:tag" content="Hexo">
 <meta property="article:tag" content="Mermaid">
+<meta property="article:tag" content="前端">
 <meta name="twitter:card" content="summary">
 
 
@@ -202,7 +202,7 @@
   </style>
 </noscript>
 
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 7.1.1"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
@@ -319,7 +319,7 @@
     <link itemprop="mainEntityOfPage" href="https://blog.yu-xiaoxian.me/2019/05/03/Mannual/MermaidDiagram/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Yu Xiaoxian">
+      <meta itemprop="name" content="">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -430,19 +430,19 @@ Future work     :         des3, after des2, 5d</pre>
 <h1 id="配置Hexo"><a href="#配置Hexo" class="headerlink" title="配置Hexo"></a>配置Hexo</h1><p>相信大家都很熟悉 Hexo 这款静态博客生成工具，目前 Hexo官方也提供了 Mermaid 的支持，只不过还没有写入默认配置，需要手动对配置文档进行修改，主要修改以下两处地方。</p>
 <ol>
 <li><p>在根目录下的 _config.ymal文件中添加</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># mermaid chart</span></span><br><span class="line"><span class="attr">mermaid:</span> <span class="comment">## mermaid url https://github.com/knsv/mermaid</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span>  <span class="comment"># default true</span></span><br><span class="line">  <span class="attr">version:</span> <span class="string">"7.1.2"</span> <span class="comment"># default v7.1.2</span></span><br><span class="line">  <span class="attr">options:</span>  <span class="comment"># find more api options from https://github.com/knsv/mermaid/blob/master/src/mermaidAPI.js</span></span><br><span class="line">    <span class="comment">#startOnload: true  // default true</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># mermaid chart</span></span><br><span class="line"><span class="attr">mermaid:</span> <span class="comment">## mermaid url https://github.com/knsv/mermaid</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span>  <span class="comment"># default true</span></span><br><span class="line">  <span class="attr">version:</span> <span class="string">&quot;7.1.2&quot;</span> <span class="comment"># default v7.1.2</span></span><br><span class="line">  <span class="attr">options:</span>  <span class="comment"># find more api options from https://github.com/knsv/mermaid/blob/master/src/mermaidAPI.js</span></span><br><span class="line">    <span class="comment">#startOnload: true  // default true</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <ol>
 <li><p>修改对应主题的配置文件，从而激活js模块，以next为例，在themes/next/layout/_partials/footer.swig 中添加</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#123;%</span> <span class="string">if</span> <span class="string">(theme.mermaid.enable)</span>  <span class="string">%&#125;</span></span><br><span class="line">  <span class="string">&lt;script</span> <span class="string">src='https://unpkg.com/mermaid@&#123;&#123;</span> <span class="string">theme.mermaid.version</span> <span class="string">&#125;&#125;/dist/mermaid.min.js'&gt;&lt;/script&gt;</span></span><br><span class="line">  <span class="string">&lt;script&gt;</span></span><br><span class="line">    <span class="string">if</span> <span class="string">(window.mermaid)</span> <span class="string">&#123;</span></span><br><span class="line">      <span class="string">mermaid.initialize(&#123;theme:</span> <span class="string">'forest'</span><span class="string">&#125;);</span></span><br><span class="line">    <span class="string">&#125;</span></span><br><span class="line">  <span class="string">&lt;/script&gt;</span></span><br><span class="line"><span class="string">&#123;%</span> <span class="string">endif</span> <span class="string">%&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">%</span> <span class="string">if</span> <span class="string">(theme.mermaid.enable)</span>  <span class="string">%</span>&#125;</span><br><span class="line">  <span class="string">&lt;script</span> <span class="string">src=&#x27;https://unpkg.com/mermaid@&#123;&#123;</span> <span class="string">theme.mermaid.version</span> <span class="string">&#125;&#125;/dist/mermaid.min.js&#x27;&gt;&lt;/script&gt;</span></span><br><span class="line">  <span class="string">&lt;script&gt;</span></span><br><span class="line">    <span class="string">if</span> <span class="string">(window.mermaid)</span> &#123;</span><br><span class="line">      <span class="string">mermaid.initialize(</span>&#123;<span class="attr">theme:</span> <span class="string">&#x27;forest&#x27;</span>&#125;<span class="string">);</span></span><br><span class="line">    &#125;</span><br><span class="line">  <span class="string">&lt;/script&gt;</span></span><br><span class="line">&#123;<span class="string">%</span> <span class="string">endif</span> <span class="string">%</span>&#125;</span><br></pre></td></tr></table></figure>
 <p>这样就可以将Typora中画好的图直接传到博客上进行解析</p>
 </li>
 </ol>
 <h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ol>
-<li><a href="https://tyloafer.github.io/posts/7790/" target="_blank" rel="noopener">Hexo中引入Mermaid流程图</a></li>
-<li><a href="https://github.com/webappdevelp/hexo-filter-mermaid-diagrams" target="_blank" rel="noopener">GitHub:hexo-filter-mermaid-diagrams</a></li>
-<li><a href="https://mermaidjs.github.io/" target="_blank" rel="noopener">mermaid GitBook</a></li>
+<li><a href="https://tyloafer.github.io/posts/7790/">Hexo中引入Mermaid流程图</a></li>
+<li><a href="https://github.com/webappdevelp/hexo-filter-mermaid-diagrams">GitHub:hexo-filter-mermaid-diagrams</a></li>
+<li><a href="https://mermaidjs.github.io/">mermaid GitBook</a></li>
 </ol>
 
       
@@ -464,11 +464,11 @@ Future work     :         des3, after des2, 5d</pre>
       
         <div class="post-tags">
           
-            <a href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag"># 前端</a>
-          
             <a href="/tags/Hexo/" rel="tag"># Hexo</a>
           
             <a href="/tags/Mermaid/" rel="tag"># Mermaid</a>
+          
+            <a href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag"># 前端</a>
           
         </div>
       
@@ -556,7 +556,7 @@ Future work     :         des3, after des2, 5d</pre>
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <p class="site-author-name" itemprop="name">Yu Xiaoxian</p>
+              <p class="site-author-name" itemprop="name"></p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -679,7 +679,7 @@ Future work     :         des3, after des2, 5d</pre>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Mermaid-示例"><span class="nav-number">1.</span> <span class="nav-text">Mermaid 示例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#流程图"><span class="nav-number">1.1.</span> <span class="nav-text">流程图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#甘特图"><span class="nav-number">1.2.</span> <span class="nav-text">甘特图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#序列图"><span class="nav-number">1.3.</span> <span class="nav-text">序列图</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置Hexo"><span class="nav-number">2.</span> <span class="nav-text">配置Hexo</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">3.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Mermaid-%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.</span> <span class="nav-text">Mermaid 示例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="nav-number">1.1.</span> <span class="nav-text">流程图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%98%E7%89%B9%E5%9B%BE"><span class="nav-number">1.2.</span> <span class="nav-text">甘特图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%8F%E5%88%97%E5%9B%BE"><span class="nav-number">1.3.</span> <span class="nav-text">序列图</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEHexo"><span class="nav-number">2.</span> <span class="nav-text">配置Hexo</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-number">3.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
             
 
           </div>
@@ -713,7 +713,7 @@ Future work     :         des3, after des2, 5d</pre>
 
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 驱动 v4.2.1</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 驱动 v7.1.1</div>
 
 
 
@@ -726,13 +726,6 @@ Future work     :         des3, after des2, 5d</pre>
 
 
 
-
-  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
-  <script>
-    if (window.mermaid) {
-      mermaid.initialize({theme: 'forest'});
-    }
-  </script>
 
 
         

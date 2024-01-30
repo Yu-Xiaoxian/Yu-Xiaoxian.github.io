@@ -74,7 +74,7 @@
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/',
+    root: '',
     scheme: 'Muse',
     version: '6.1.0',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
@@ -123,7 +123,7 @@
 <meta property="og:description" content="引言单片机程序一般用C编写，从程序编写到程序运行，要通过两个步骤：编译和烧写。编译是将C编写的单片机程序，编译成单片机可以识别的二进制代码。烧写是把编译好的二进制文件，通过烧录程序或者硬件，存储到单片机的ROM内存中。通常这两步都有专业软件来完成，对开发者是不可见的。但为了更加高效地开发单片机程序，我们有必要深入地了解编译和烧写过程。 C程序的编译开发单片机一定会接触Keil C51，它是一款强大">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2017-08-05T14:43:16.000Z">
-<meta property="article:modified_time" content="2024-01-30T15:38:24.646Z">
+<meta property="article:modified_time" content="2024-01-30T16:37:35.918Z">
 <meta property="article:author" content="Yu Xiaoxian">
 <meta property="article:tag" content="单片机">
 <meta property="article:tag" content="嵌入式系统">
@@ -201,7 +201,7 @@
   </style>
 </noscript>
 
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 7.1.1"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
@@ -318,7 +318,7 @@
     <link itemprop="mainEntityOfPage" href="https://blog.yu-xiaoxian.me/2017/08/05/theory/%E7%A8%8B%E5%BA%8F%E6%98%AF%E6%80%8E%E6%A0%B7%E4%BB%8EPC%E4%B8%8B%E8%BD%BD%E5%88%B0MCU%E7%9A%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Yu Xiaoxian">
+      <meta itemprop="name" content="">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -399,7 +399,7 @@
 <li><p>引导程序，即单片机中已经存在了一个烧写程序。启动单片机时首先运行这程序，程序判断端口状态，如果符合“要烧写ROM”的状态存在，就从某个端口(串口、SPI等等)读取数据，然后写入到单片机的ROM中。如果没有“要烧写ROM”的状态，就转到用户的程序开始执行。像AVR单片机的bootloader方式、STC的串口下载方式，还有其他单片机的串口编程等等都是这样。</p>
 </li>
 </ol>
-<h3 id="STC单片机的烧写流程"><a href="#STC单片机的烧写流程" class="headerlink" title="STC单片机的烧写流程"></a>STC单片机的烧写流程</h3><p>其中“检测P3.0有没有合法下载命令流”，指的是为ISP_TRIG寄存器赋值的命令。当为ISP_TRIG赋0x46H和0xB9H时，ISP读写功能被触发，可以对程序寄存器进行进一步的读写，从而控制FLASH的读写。具体的实现方案可以参考Github上的<a href="https://github.com/laborer/stcflash" target="_blank" rel="noopener">stcflash</a>项目。</p>
+<h3 id="STC单片机的烧写流程"><a href="#STC单片机的烧写流程" class="headerlink" title="STC单片机的烧写流程"></a>STC单片机的烧写流程</h3><p>其中“检测P3.0有没有合法下载命令流”，指的是为ISP_TRIG寄存器赋值的命令。当为ISP_TRIG赋0x46H和0xB9H时，ISP读写功能被触发，可以对程序寄存器进行进一步的读写，从而控制FLASH的读写。具体的实现方案可以参考Github上的<a href="https://github.com/laborer/stcflash">stcflash</a>项目。</p>
 
       
     </div>
@@ -506,7 +506,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <p class="site-author-name" itemprop="name">Yu Xiaoxian</p>
+              <p class="site-author-name" itemprop="name"></p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -629,7 +629,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C程序的编译"><span class="nav-number">2.</span> <span class="nav-text">C程序的编译</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二进制文件的烧写"><span class="nav-number">3.</span> <span class="nav-text">二进制文件的烧写</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#STC单片机的烧写流程"><span class="nav-number">3.1.</span> <span class="nav-text">STC单片机的烧写流程</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%BC%96%E8%AF%91"><span class="nav-number">2.</span> <span class="nav-text">C程序的编译</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6%E7%9A%84%E7%83%A7%E5%86%99"><span class="nav-number">3.</span> <span class="nav-text">二进制文件的烧写</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#STC%E5%8D%95%E7%89%87%E6%9C%BA%E7%9A%84%E7%83%A7%E5%86%99%E6%B5%81%E7%A8%8B"><span class="nav-number">3.1.</span> <span class="nav-text">STC单片机的烧写流程</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -663,7 +663,7 @@
 
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 驱动 v4.2.1</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 驱动 v7.1.1</div>
 
 
 
@@ -676,13 +676,6 @@
 
 
 
-
-  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
-  <script>
-    if (window.mermaid) {
-      mermaid.initialize({theme: 'forest'});
-    }
-  </script>
 
 
         

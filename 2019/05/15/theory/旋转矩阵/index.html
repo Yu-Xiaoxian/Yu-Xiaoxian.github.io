@@ -74,7 +74,7 @@
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/',
+    root: '',
     scheme: 'Muse',
     version: '6.1.0',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
@@ -123,7 +123,7 @@
 <meta property="og:description" content="作者：Tai Fook来源：CSDN原文：https:&#x2F;&#x2F;blog.csdn.net&#x2F;jiongjiongxia123&#x2F;article&#x2F;details&#x2F;90236737版权声明：本文为博主原创文章，转载请附上博文链接！ 最近强子在学习坐标变换的内容，对于欧拉角变换矩阵很是好奇，怎么理解“绕固定坐标轴旋转与绕自身坐标轴旋转的一致性”呢，跟他讨论了许久，找到了一种比较清晰明了的证明方法，便于直观理解">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-05-15T15:03:16.000Z">
-<meta property="article:modified_time" content="2024-01-30T15:38:24.646Z">
+<meta property="article:modified_time" content="2024-01-30T16:37:35.918Z">
 <meta property="article:author" content="Yu Xiaoxian">
 <meta property="article:tag" content="机器人学">
 <meta property="article:tag" content="旋转矩阵">
@@ -201,7 +201,7 @@
   </style>
 </noscript>
 
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 7.1.1"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
@@ -318,7 +318,7 @@
     <link itemprop="mainEntityOfPage" href="https://blog.yu-xiaoxian.me/2019/05/15/theory/%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Yu Xiaoxian">
+      <meta itemprop="name" content="">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -389,7 +389,7 @@
 
       
         <hr>
-<p>作者：Tai Fook<br>来源：CSDN<br>原文：<a href="https://blog.csdn.net/jiongjiongxia123/article/details/90236737" target="_blank" rel="noopener">https://blog.csdn.net/jiongjiongxia123/article/details/90236737</a><br>版权声明：本文为博主原创文章，转载请附上博文链接！</p>
+<p>作者：Tai Fook<br>来源：CSDN<br>原文：<a href="https://blog.csdn.net/jiongjiongxia123/article/details/90236737">https://blog.csdn.net/jiongjiongxia123/article/details/90236737</a><br>版权声明：本文为博主原创文章，转载请附上博文链接！</p>
 <font size=2 color=gray>最近强子在学习坐标变换的内容，对于欧拉角变换矩阵很是好奇，怎么理解“绕固定坐标轴旋转与绕自身坐标轴旋转的一致性”呢，跟他讨论了许久，找到了一种比较清晰明了的证明方法，便于直观理解，原文发表在了强子的CSDN上，这里贴出来分享给大家。</font>
 
 <hr>
@@ -508,7 +508,7 @@ cos(\gamma)& -sin(\gamma)& 0
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>总结一下就是,如果是坐标系或者向量绕着固定的坐标轴旋转,相当于每转一次产生一个旋转矩阵,然后按旋转顺序将这些旋转矩阵左乘起来.如果是坐标系或者向量绕着自身的坐标轴旋转,相当于每转一次产生一个旋转矩阵,然后按旋转顺序将这些矩阵右乘起来.要注意后者的每一步旋转产生的旋转矩阵,不要以世界坐标系为基准去算,而是以每次旋转前的坐标系去算,也就是每次旋转矩阵只描述当前这次旋转前后的坐标系之间的转换矩阵!!!</p>
 <p>费了半天劲希望把事情说明白了,我其实很担心哪个地方有笔误没写清楚,如果有的话请帮忙指出来.谢谢!</p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>网上也找到了其他类似的证明方法,看起来似乎更简洁也更容易理解,贴出来供参考:</p>
-<p><a href="http://blog.miskcoo.com/2016/12/rotation-in-3d-space" target="_blank" rel="noopener">Rotation in 3d Space</a></p>
+<p><a href="http://blog.miskcoo.com/2016/12/rotation-in-3d-space">Rotation in 3d Space</a></p>
 
       
     </div>
@@ -619,7 +619,7 @@ cos(\gamma)& -sin(\gamma)& 0
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <p class="site-author-name" itemprop="name">Yu Xiaoxian</p>
+              <p class="site-author-name" itemprop="name"></p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -742,7 +742,7 @@ cos(\gamma)& -sin(\gamma)& 0
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#证明-僵硬的"><span class="nav-number">1.</span> <span class="nav-text">证明(僵硬的):</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#证明-优雅的"><span class="nav-number">2.</span> <span class="nav-text">证明(优雅的):</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%81%E6%98%8E-%E5%83%B5%E7%A1%AC%E7%9A%84"><span class="nav-number">1.</span> <span class="nav-text">证明(僵硬的):</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%81%E6%98%8E-%E4%BC%98%E9%9B%85%E7%9A%84"><span class="nav-number">2.</span> <span class="nav-text">证明(优雅的):</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
@@ -776,7 +776,7 @@ cos(\gamma)& -sin(\gamma)& 0
 
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 驱动 v4.2.1</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 驱动 v7.1.1</div>
 
 
 
@@ -789,13 +789,6 @@ cos(\gamma)& -sin(\gamma)& 0
 
 
 
-
-  <script src='https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js'></script>
-  <script>
-    if (window.mermaid) {
-      mermaid.initialize({theme: 'forest'});
-    }
-  </script>
 
 
         
