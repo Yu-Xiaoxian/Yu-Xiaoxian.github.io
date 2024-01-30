@@ -5,15 +5,12 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-CN">
+<html class="theme-next pisces use-motion" lang="zh-CN">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
-
-
-
 
 
 
@@ -41,6 +38,10 @@
 
 
 
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
 
 
 
@@ -49,25 +50,44 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=6.1.0" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-yu.ico?v=6.1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-yu.ico?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-yu.ico?v=6.1.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-yu.ico?v=5.1.4">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=6.1.0" color="#222">
-
-
-
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
 
 
 
+
+
+  <meta name="keywords" content="ChatGPT, C++, SLAM, Programmer" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="于小咸，专注 C++ 和 人工智能的 算法工程师">
+<meta property="og:type" content="website">
+<meta property="og:title" content="于小咸的日志">
+<meta property="og:url" content="https://blog.yu-xiaoxian.me/index.html">
+<meta property="og:site_name" content="于小咸的日志">
+<meta property="og:description" content="于小咸，专注 C++ 和 人工智能的 算法工程师">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Yu Xiaoxian">
+<meta name="twitter:card" content="summary">
 
 
 
@@ -75,14 +95,16 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '',
-    scheme: 'Muse',
-    version: '6.1.0',
+    scheme: 'Pisces',
+    version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: false,
-    fastclick: false,
-    lazyload: false,
+    fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -93,50 +115,13 @@
   };
 </script>
 
-<script data-ad-client="ca-pub-7836889092025277" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
-</script>
-
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-167960531-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-167960531-1');
-</script>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7836889092025277"
-     crossorigin="anonymous"></script>
-
-
-  
-
-
-
-
-  <meta property="og:type" content="website">
-<meta property="og:title" content="于小咸的日志">
-<meta property="og:url" content="https://blog.yu-xiaoxian.me/index.html">
-<meta property="og:site_name" content="于小咸的日志">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="Yu Xiaoxian">
-<meta name="twitter:card" content="summary">
-
-
-
-
 
 
   <link rel="canonical" href="https://blog.yu-xiaoxian.me/"/>
 
 
 
-<script type="text/javascript" id="page.configurations">
-  CONFIG.page = {
-    sidebar: "",
-  };
-</script>
+
 
   <title>于小咸的日志</title>
   
@@ -144,15 +129,14 @@
 
 
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-RMLFJCZC88"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-RMLFJCZC88');
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'G-RMLFJCZC88', 'auto');
+  ga('send', 'pageview');
 </script>
-
 
 
   <script type="text/javascript">
@@ -167,33 +151,6 @@
 
 
 
-
-  <noscript>
-  <style type="text/css">
-    .use-motion .motion-element,
-    .use-motion .brand,
-    .use-motion .menu-item,
-    .sidebar-inner,
-    .use-motion .post-block,
-    .use-motion .pagination,
-    .use-motion .comments,
-    .use-motion .post-header,
-    .use-motion .post-body,
-    .use-motion .collection-title { opacity: initial; }
-
-    .use-motion .logo,
-    .use-motion .site-title,
-    .use-motion .site-subtitle {
-      opacity: initial;
-      top: initial;
-    }
-
-    .use-motion {
-      .logo-line-before i { left: initial; }
-      .logo-line-after i { right: initial; }
-    }
-  </style>
-</noscript>
 
 <meta name="generator" content="Hexo 7.1.1"></head>
 
@@ -214,19 +171,19 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
+      <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">于小咸的日志</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
       
-        <p class="site-subtitle"></p>
+        <h1 class="site-subtitle" itemprop="description"></h1>
       
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="切换导航栏">
+    <button>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -234,42 +191,35 @@
   </div>
 </div>
 
-
-
-
 <nav class="site-nav">
+  
+
   
     <ul id="menu" class="menu">
       
         
-        
-          
-  
-  <li class="menu-item menu-item-home menu-item-active">
-    <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
-</li>
-
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
       
         
-        
-          
-  
-  <li class="menu-item menu-item-archives">
-    <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
-</li>
-
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
       
 
-      
       
     </ul>
-  
-
-  
-    
-
   
 
   
@@ -277,20 +227,12 @@
 
 
 
-  
-
-
-
-</div>
+ </div>
     </header>
-
-    
-
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
-          
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
@@ -301,8 +243,6 @@
 
   
   
-  
-
   
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
@@ -327,22 +267,13 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2024/01/23/ChatGPT/upgrade_chatgpt/" itemprop="url">
-                  国内ChatGPT 4 账号注册教程：无需验证码，使用支付宝即可支付（2024年1月更新）
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2024/01/23/ChatGPT/upgrade_chatgpt/" itemprop="url">国内ChatGPT 4 账号注册教程：无需验证码，使用支付宝即可支付（2024年1月更新）</a></h2>
         
 
         <div class="post-meta">
           <span class="post-time">
-            
-                
-            
-
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -350,10 +281,11 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-01-23T23:43:16+00:00">2024-01-23</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2024-01-23T23:43:16+00:00">
+                2024-01-23
+              </time>
             
 
-            
             
 
             
@@ -371,7 +303,11 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/ChatGPT/" itemprop="url" rel="index"><span itemprop="name">ChatGPT</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ChatGPT/" itemprop="url" rel="index">
+                    <span itemprop="name">ChatGPT</span>
+                  </a>
+                </span>
 
                 
                 
@@ -407,26 +343,51 @@
       
         
           
-          ChatGPT4 相比 ChatGPT3.5 增加了GPT Store、上传文件等功能，不仅仅是普通的语言大模型，还可以处理图像、文档等等。然而开通 ChatGPT 4 真的好多坑：科学上网、邮箱注册、短信验证、地址查询、避税州选择、付款失败等等。
-我摸爬滚打，终于找到一个傻瓜式的操作方案，一个平台就可以完成所有操作，分享给大家，能够给大家避坑，我的时间就没有白费。
+            <p>ChatGPT4 相比 ChatGPT3.5 增加了GPT Store、上传文件等功能，不仅仅是普通的语言大模型，还可以处理图像、文档等等。然而开通 ChatGPT 4 真的好多坑：科学上网、邮箱注册、短信验证、地址查询、避税州选择、付款失败等等。</p>
+<p>我摸爬滚打，终于找到一个傻瓜式的操作方案，一个平台就可以完成所有操作，分享给大家，能够给大家避坑，我的时间就没有白费。</p>
+<hr>
+<h2 id="一、常见问题"><a href="#一、常见问题" class="headerlink" title="一、常见问题"></a>一、常见问题</h2><p>ChatGPT 4 需要付费，付费时需要使用 VISA 或者 Master 的卡，还需要填写美国的住址，还要选免税州，不然要交一笔税费。然而即使我们都准备好，到了支付这一步，大概率还是会遇到以下错误：</p>
+<ul>
+<li>Your credit card was declined. Try paying with a debit card instead.</li>
+<li>您的信用卡被拒绝了，请尝试用借记卡支付。</li>
+<li>您的信用卡已被拒绝。</li>
+<li>我们未能验证您的支付方式。请选择另一支付方式并重试。</li>
+</ul>
+<h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>支付失败通常有以下原因：</p>
+<ul>
+<li>信用卡金额不足</li>
+<li>信用卡信息、账单地址不满足要求，OpenAI 拒绝提供服务</li>
+<li>OpenAI 通过 IP、邮箱等特征判断用户位置存在风险，拒绝提供服务</li>
+<li>ChatGPT 4 因余额不足扣费失败过，再次重新订阅</li>
+<li>由于账户信息中地址与 IP 不匹配，导致无法绑卡</li>
+<li>由于使用了高风险 IP，账户被 OpenAI 标记为高风险</li>
+</ul>
+<h2 id="二、解决方案"><a href="#二、解决方案" class="headerlink" title="二、解决方案"></a>二、解决方案</h2><p>遇到以上情况，说明你的账号或者信用卡已经被标记为高风险了：</p>
+<ul>
+<li>如果是账号问题，建议重新注册一个账号</li>
+<li>如果是信用卡问题，建议开一张虚拟卡，让 OpenAI 无法识别你的来源。</li>
+</ul>
+<p><a href="https://bewildcard.com/i/CHATGPT6">BeWildCard</a>这个平台，提供了开卡、注册、升级一条龙功能，并提供免费邮箱、免费短信，限时免费上网服务，注册 ChatGPT 需要的所有工具都能在这里找到，帮我们节省了很大的时间和精力。</p>
+<h3 id="2-1-开卡"><a href="#2-1-开卡" class="headerlink" title="2.1 开卡"></a>2.1 开卡</h3><p><a href="https://bewildcard.com/i/CHATGPT6">https://bewildcard.com/i/CHATGPT6</a><br>点击上面链接（使用推荐码 CHATGPT6 有 2美元 的优惠），按照指示完成实名认证，2分钟就可以完成注册，获得一个美国身份和虚拟卡，如下图所示。</p>
+<p><a href="https://imgse.com/i/pFnsLge"><img src="https://s11.ax1x.com/2024/01/27/pFnsLge.png" alt="pFnsLge.png"></a><br>用卡之前记得充值，使用支付宝最小支持 $10 美元的充值，不用了的话可以随时提现。</p>
+<h3 id="2-2-升级-ChatGPT4"><a href="#2-2-升级-ChatGPT4" class="headerlink" title="2.2 升级 ChatGPT4"></a>2.2 升级 ChatGPT4</h3><p>如果你遇到了支付失败的问题，不要慌张，点击平台首页的一键升级 ChatGPT 按钮。</p>
+<p><a href="https://imgse.com/i/pFnsq3D"><img src="https://s11.ax1x.com/2024/01/27/pFnsq3D.png" alt="pFnsq3D.png"></a><br>然后按照指示把付款页面的链接粘贴到最右边的输入框，等待约 1~2 min 就可以充值完成。</p>
+<p><a href="https://imgse.com/i/pFnsvDA"><img src="https://s11.ax1x.com/2024/01/27/pFnsvDA.png" alt="pFnsvDA.png"></a></p>
+<h3 id="2-3-续费或者停止订阅"><a href="#2-3-续费或者停止订阅" class="headerlink" title="2.3 续费或者停止订阅"></a>2.3 续费或者停止订阅</h3><p>订阅成功后，OpenAI 每个月都会扣款 $20，切记一定要保持卡里余额充足，如果扣费失败，很可能导致这个账户失效，再也开不了 ChatGPT 了。</p>
+<p>如果不想继续订阅，请及时取消，分三步：</p>
+<ul>
+<li>点击右下角头像</li>
+<li>弹出菜单中的 My Plan</li>
+<li>弹出页面中的 Manage my subscription</li>
+</ul>
+<p><a href="https://imgse.com/i/pFnsxHI"><img src="https://s11.ax1x.com/2024/01/27/pFnsxHI.png" alt="pFnsxHI.png"></a></p>
+<p>希望大家使用愉快！</p>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a href="https://help.bewildcard.com/zh-CN/articles/8073056-chatgpt-plus-%E8%AE%A2%E9%98%85%E6%95%99%E7%A8%8B">ChatGPT Plus 订阅教程</a></p>
 
-一、常见问题ChatGPT 4 需要付费，付费时需要使用 VISA 或者 Master 的卡，还需要填写美国的住址，还要选免税州，不然要交一笔税费。然而即使我们都准备好，到了支付这一步，大概率还是会遇到以下错误：
-
-Your c
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2024/01/23/ChatGPT/upgrade_chatgpt/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
-
-    
-
     
     
     
@@ -463,8 +424,6 @@ Your c
 
   
   
-  
-
   
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
@@ -489,22 +448,13 @@ Your c
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/07/02/wiki/EffectivCpp-tip03/" itemprop="url">
-                  C++ const 详解
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2022/07/02/wiki/EffectivCpp-tip03/" itemprop="url">C++ const 详解</a></h2>
         
 
         <div class="post-meta">
           <span class="post-time">
-            
-                
-            
-
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -512,10 +462,11 @@ Your c
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-07-02T21:29:47+00:00">2022-07-02</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-07-02T21:29:47+00:00">
+                2022-07-02
+              </time>
             
 
-            
             
 
             
@@ -533,7 +484,11 @@ Your c
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Wiki/" itemprop="url" rel="index"><span itemprop="name">Wiki</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Wiki/" itemprop="url" rel="index">
+                    <span itemprop="name">Wiki</span>
+                  </a>
+                </span>
 
                 
                 
@@ -569,21 +524,22 @@ Your c
       
         
           
-          编译器不按套路出牌，该怎么办？const 成员函数深度剖析一、const 成员函数首先来复习一下 const 成员函数，我们自己实现一个字符串 MyStr，内部使用 char* 指针保存原始数据，使用 get_length() 函数获取数组的长度，由于 get 函数不会修改成员变量，可以使用 const 关键字修饰 get_length() 函数，编译期就会帮我们检查是否修改了成员变量，如果有修改，就会在编译期报错，这样就可以保护成员变量不被修改。12345678910111213class MyStr &#123;public:  MyStr() &#123;...&#125;  ~MySt
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2022/07/02/wiki/EffectivCpp-tip03/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <h1 id="编译器不按套路出牌，该怎么办？const-成员函数深度剖析"><a href="#编译器不按套路出牌，该怎么办？const-成员函数深度剖析" class="headerlink" title="编译器不按套路出牌，该怎么办？const 成员函数深度剖析"></a>编译器不按套路出牌，该怎么办？const 成员函数深度剖析</h1><h3 id="一、const-成员函数"><a href="#一、const-成员函数" class="headerlink" title="一、const 成员函数"></a>一、const 成员函数</h3><p>首先来复习一下 const 成员函数，我们自己实现一个字符串 MyStr，内部使用 char* 指针保存原始数据，使用 get_length() 函数获取数组的长度，由于 get 函数不会修改成员变量，可以使用 const 关键字修饰 get_length() 函数，编译期就会帮我们检查是否修改了成员变量，如果有修改，就会在编译期报错，这样就可以保护成员变量不被修改。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class MyStr &#123;</span><br><span class="line">public:</span><br><span class="line">  MyStr() &#123;...&#125;</span><br><span class="line">  ~MyStr() &#123;...&#125;</span><br><span class="line">  size_t get_length() const &#123;</span><br><span class="line">    // _length = 1;  编译出错</span><br><span class="line">    return _length;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">private:</span><br><span class="line">  char* _data = nullptr;</span><br><span class="line">  size_t _length = 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="二、logic-const-和-bitwise-const"><a href="#二、logic-const-和-bitwise-const" class="headerlink" title="二、logic const 和 bitwise const"></a>二、logic const 和 bitwise const</h3><p>编译器是怎么实现 const 成员检查的呢？在编译时它会检查该函数有没有对成员变量进行修改，比如上面代码里的赋值操作 <code>_length = 1</code> 就明显修改了成员变量，发现这样的操作编译器就会报警，这种校验就是 bitwise const。</p>
+<p>然而只有 bitwise const 是不够的，设想 MyStr 中的 <code>_data</code> 使用了高速缓存，还有别的操作会修改字符串的长度，<code>get_length()</code> 函数需要改成下面这样。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">size_t get_length() const &#123;</span><br><span class="line">  _length = strlen(_data); // 编译器会报错</span><br><span class="line">  return _length;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>更新字符串长度并没有改变 <code>_data</code> 的内容，从逻辑（logic）来讲符合 const 函数的定义，但编译器并不这样认为，我们可以使用 <code>mutable</code> 字段让编译器不再阻拦我们，像下面这样<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">MyStr &#123;</span><br><span class="line">public:</span><br><span class="line">  MyStr() &#123;...&#125;</span><br><span class="line">  ~MyStr() &#123;...&#125;</span><br><span class="line">  size_t get_length() const &#123;</span><br><span class="line">    _length = strlen(_data); // 编译器不会报错</span><br><span class="line">    return _length;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">private:</span><br><span class="line">  char* _data = nullptr;</span><br><span class="line">  mutable size_t _length = 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>这种逻辑上不改变数据的 const 函数就叫做 logic const。</p>
+<h3 id="三、编译器检查不出怎么办"><a href="#三、编译器检查不出怎么办" class="headerlink" title="三、编译器检查不出怎么办"></a>三、编译器检查不出怎么办</h3><p>上面讲了一种绕过编译器检查的情况，下面来看一种编译器检查不出来的问题，当类的成员变量为指针时，只改变指针指向的数据而不改变指针，编译器是不会认为违背 const 原则的。比如我们提供 <code>operater[]</code> 操作符来访问 MyStr 的元素<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class MyStr &#123;</span><br><span class="line">public:</span><br><span class="line">  ...</span><br><span class="line">  char&amp; operator[](const size_t index) const &#123;</span><br><span class="line">    return _data[index];</span><br><span class="line">  &#125;</span><br><span class="line">private:</span><br><span class="line">  char* _data = nullptr;</span><br><span class="line">  size_t _length = 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MyStr my_str;</span><br><span class="line">my_str[0] = &#x27;a&#x27;; // 这样就通过const函数改变了成员变量指针指向的内容，并且编译器不会报错</span><br></pre></td></tr></table></figure><br>这种情况怎么办呢？我们一定要记得把 const 函数的返回值设置为 const<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class MyStr &#123;</span><br><span class="line">public:</span><br><span class="line">  ...</span><br><span class="line">  const char&amp; operator[](const size_t index) const &#123;</span><br><span class="line">    return _data[index];</span><br><span class="line">  &#125;</span><br><span class="line">private:</span><br><span class="line">  char* _data = nullptr;</span><br><span class="line">  size_t _length = 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MyStr my_str;</span><br><span class="line">my_str[0] = &#x27;a&#x27;; // 这样编译器就会报错，因为我们修改了常引用</span><br></pre></td></tr></table></figure></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>最后把前面讲的总结为两点：</p>
+<ol>
+<li>想要绕过编译器 const 检查时，对成员变量增加 mutable 修饰</li>
+<li>常量函数的返回值（特别是引用和指针）一定要加 const 修饰</li>
+</ol>
+
+          
         
       
     </div>
-
-    
-
     
     
     
@@ -620,8 +576,6 @@ Your c
 
   
   
-  
-
   
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
@@ -646,22 +600,13 @@ Your c
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/05/13/Mannual/use-cppman-as-cpp-wiki/" itemprop="url">
-                  在命令行查询 C++ 用法
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2022/05/13/Mannual/use-cppman-as-cpp-wiki/" itemprop="url">在命令行查询 C++ 用法</a></h2>
         
 
         <div class="post-meta">
           <span class="post-time">
-            
-                
-            
-
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -669,10 +614,11 @@ Your c
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-05-13T21:29:47+00:00">2022-05-13</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-05-13T21:29:47+00:00">
+                2022-05-13
+              </time>
             
 
-            
             
 
             
@@ -708,22 +654,14 @@ Your c
       
         
           
-          不知道大家有没有同样的经历，在搬砖酣畅淋漓的时候，每一次切屏都是对思路的严重干扰，特别是切了好几屏都找不到浏览器的时候，简直要爆炸。巧的是，GitHub 网友 aitjcize 也有同样的困扰，于是他开发了一个项目 cppman，可以直接在命令行查看 C++ 相关的头文件和用法，如同 man 一样的操作，简直不要太方便。
-Ubuntu 下安装1sudo apt install cppman查询想要的功能，会默认从 cplusplus.com 拉取最新的内容1cppman std::vector当然你也可以设置默认源为 cppreference.com1cppman -s cppreferenc
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2022/05/13/Mannual/use-cppman-as-cpp-wiki/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>不知道大家有没有同样的经历，在搬砖酣畅淋漓的时候，每一次切屏都是对思路的严重干扰，特别是切了好几屏都找不到浏览器的时候，简直要爆炸。<br>巧的是，GitHub 网友 aitjcize 也有同样的困扰，于是他开发了一个项目 cppman，可以直接在命令行查看 C++ 相关的头文件和用法，如同 man 一样的操作，简直不要太方便。</p>
+<p>Ubuntu 下安装<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install cppman</span><br></pre></td></tr></table></figure><br>查询想要的功能，会默认从 cplusplus.com 拉取最新的内容<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cppman std::vector</span><br></pre></td></tr></table></figure><br>当然你也可以设置默认源为 cppreference.com<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cppman -s cppreference.com</span><br></pre></td></tr></table></figure><br>也可以提前缓存到本地，以备不时之需<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cppman -c</span><br></pre></td></tr></table></figure></p>
+<p>学了这个技巧，是不是觉得自己编程效率又提高了一点点呢？快来关注我学习更多技巧吧！</p>
+
+          
         
       
     </div>
-
-    
-
     
     
     
@@ -760,8 +698,6 @@ Ubuntu 下安装1sudo apt install cppman查询想要的功能，会默认从 cpl
 
   
   
-  
-
   
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
@@ -786,22 +722,13 @@ Ubuntu 下安装1sudo apt install cppman查询想要的功能，会默认从 cpl
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2022/05/07/why-we-need-friend/" itemprop="url">
-                  C++为什么会有“友元”这种破坏封装的功能？
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2022/05/07/why-we-need-friend/" itemprop="url">C++为什么会有“友元”这种破坏封装的功能？</a></h2>
         
 
         <div class="post-meta">
           <span class="post-time">
-            
-                
-            
-
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -809,10 +736,11 @@ Ubuntu 下安装1sudo apt install cppman查询想要的功能，会默认从 cpl
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-05-07T21:29:47+00:00">2022-05-07</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-05-07T21:29:47+00:00">
+                2022-05-07
+              </time>
             
 
-            
             
 
             
@@ -848,23 +776,16 @@ Ubuntu 下安装1sudo apt install cppman查询想要的功能，会默认从 cpl
       
         
           
-          最近有朋友问了一个问题：C++里的“友元”破坏了封装，让类外的成员能够访问类的私有成员，不是与面向对象的设计思想相违背吗？
-首先我们来温习一下什么是友元，如下面代码所示，声明 类Bar 为 类FooB 的友元，那么 Bar 可以访问类 FooB 的私有成员，但 FooA 的私有成员是无法被 Bar 访问到的，编译会报错
-123456789101112131415161718192021222324252627class Bar;class FooA &#123;  public:    private:    int data_;&#125;;class FooB &#123;  public
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2022/05/07/why-we-need-friend/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>最近有朋友问了一个问题：C++里的“友元”破坏了封装，让类外的成员能够访问类的私有成员，不是与面向对象的设计思想相违背吗？</p>
+<p>首先我们来温习一下什么是友元，如下面代码所示，声明 类Bar 为 类FooB 的友元，那么 Bar 可以访问类 FooB 的私有成员，但 FooA 的私有成员是无法被 Bar 访问到的，编译会报错</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Bar</span>;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">FooA</span> &#123;</span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">private</span>:</span><br><span class="line">    <span class="type">int</span> data_;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">FooB</span> &#123;</span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">friend</span> <span class="keyword">class</span> <span class="title class_">Bar</span>;</span><br><span class="line">  <span class="keyword">private</span>:</span><br><span class="line">    <span class="type">int</span> data_;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Bar</span> &#123;</span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">set_data</span><span class="params">(<span class="type">const</span> <span class="type">int</span> data)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// accessing foo_a_.data_ is forbidened</span></span><br><span class="line">        <span class="comment">// foo_a_.data_ = data;</span></span><br><span class="line">        foo_b_.data_ = data;</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">private</span>:</span><br><span class="line">    FooA foo_a_;</span><br><span class="line">    FooB foo_b_;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>由上可知，友元提供了一种类外访问类私有变量的方法，可是为什么 C++ 要提供这样一种破坏封装的方法呢？这就不得不提 C++ 的设计哲学—“Trust Programmer”，不人为设限，为程序员提供一切可能的操作，由程序员来保证程序的正确性。换句话来说，C++ 不是为某种编程范式服务的，而是为程序员提供一切可能会用到的工具，由程序员来自由的选择和组合，所以才会有“瑞士军刀”的美誉。</p>
+<p>明白了 C++ 的这一设计理念，再来看“友元”的设计，是不是就合理了许多呢？</p>
+
+          
         
       
     </div>
-
-    
-
     
     
     
@@ -901,8 +822,6 @@ Ubuntu 下安装1sudo apt install cppman查询想要的功能，会默认从 cpl
 
   
   
-  
-
   
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
@@ -927,22 +846,13 @@ Ubuntu 下安装1sudo apt install cppman查询想要的功能，会默认从 cpl
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2021/09/26/what-is-traits-in-cpp/" itemprop="url">
-                  C++ 的 tratis 技术是什么？
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2021/09/26/what-is-traits-in-cpp/" itemprop="url">C++ 的 tratis 技术是什么？</a></h2>
         
 
         <div class="post-meta">
           <span class="post-time">
-            
-                
-            
-
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -950,10 +860,11 @@ Ubuntu 下安装1sudo apt install cppman查询想要的功能，会默认从 cpl
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-09-26T21:29:47+00:00">2021-09-26</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-09-26T21:29:47+00:00">
+                2021-09-26
+              </time>
             
 
-            
             
 
             
@@ -989,23 +900,22 @@ Ubuntu 下安装1sudo apt install cppman查询想要的功能，会默认从 cpl
       
         
           
-          C++ 的 traits 技术，是一种约定俗称的技术方案，用来为同一类数据（包括自定义数据类型和内置数据类型）提供统一的类型名（traits），这样可以统一的操作函数，例如 advance(), swap(), encode()/decode() 等。
-问题描述首先来看 traits 技术可以解决什么问题，我们拥有自定义类型Foo, Bar，以及编译器自带类型 int, double, string，我们想要为这些不同的类型提供统一的编码函数 decode() ，该怎样实现呢？
-解决方案方案一：函数重载首先想到的方法就是函数重载，对于不同的数据类型提供不同的编码函数实现1234567// 内置
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2021/09/26/what-is-traits-in-cpp/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>C++ 的 traits 技术，是一种约定俗称的技术方案，用来为同一类数据（包括自定义数据类型和内置数据类型）提供统一的类型名（traits），这样可以统一的操作函数，例如 advance(), swap(), encode()/decode() 等。</p>
+<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>首先来看 traits 技术可以解决什么问题，我们拥有自定义类型<br>Foo, Bar，以及编译器自带类型 int, double, string，我们想要为这些不同的类型提供统一的编码函数 decode() ，该怎样实现呢？</p>
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><h2 id="方案一：函数重载"><a href="#方案一：函数重载" class="headerlink" title="方案一：函数重载"></a>方案一：函数重载</h2><p>首先想到的方法就是函数重载，对于不同的数据类型提供不同的编码函数实现<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 内置类型 int, double</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">decode</span><span class="params">(<span class="type">const</span> <span class="type">int</span> data, <span class="type">char</span>* buf)</span></span>;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">decode</span><span class="params">(<span class="type">const</span> <span class="type">unsigned</span> <span class="type">int</span> data, <span class="type">char</span>* buf)</span></span>;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">decode</span><span class="params">(<span class="type">const</span> <span class="type">double</span> data, <span class="type">char</span>* buf)</span></span>;</span><br><span class="line"><span class="comment">// 自定义类型 Foo, Bar</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">decode</span><span class="params">(<span class="type">const</span> Foo&amp; data, <span class="type">char</span>* buf)</span></span>;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">decode</span><span class="params">(<span class="type">const</span> Bar&amp; data, <span class="type">char</span>* buf)</span></span>;</span><br></pre></td></tr></table></figure><br>这种方案当然可行，但我们不满足于此，因为每增加一种数据类型就需要重新实现一个函数，而同一类数据（int, unsinged int）可以使用同样的编码方法。我们想要的是针对同一种数据类型，只编写一个函数，这样有可能实现吗？</p>
+<h2 id="方案二：模板函数-内置字段"><a href="#方案二：模板函数-内置字段" class="headerlink" title="方案二：模板函数+内置字段"></a>方案二：模板函数+内置字段</h2><p>下面我们尝试使用模板函数来实现，自定义数据类型中定义类型字段，然后在函数中进行判断。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 自定义类型</span></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">Type</span> &#123;</span><br><span class="line">  TYPE_1,</span><br><span class="line">  TYPE_2</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Foo</span> &#123;</span><br><span class="line">  Type type = Type::TYPE_1;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Bar</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  Type type = Type::TYPE_2;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 模板函数</span></span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">decode</span><span class="params">(<span class="type">const</span> T&amp; data, <span class="type">char</span>* buf)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(T::type == Type::TYPE_1) &#123;</span><br><span class="line">    ...</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span>(T::type == Type::TYPE_2) &#123;</span><br><span class="line">    ..</span><br><span class="line">  &#125;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>这样一来，对于同一种自定义类型，我们只需要写一遍 decode 函数就可以了，但是对于系统自定义变量 int, double 而言，是无法在其内部定义 type 的，这时候我们该怎么办呢？这时候就需要用到 traits 技术了。<br>​</p>
+<h2 id="方案三：traits-模板类"><a href="#方案三：traits-模板类" class="headerlink" title="方案三：traits 模板类"></a>方案三：traits 模板类</h2><p>traits 技术的关键在于，使用另外的模板类 type_traits 来保存不同数据类型的 type，这样就可以兼容自定义数据类型和内置数据类型，代码如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义数据 type 类</span></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">Type</span> &#123;</span><br><span class="line">  TYPE_1,</span><br><span class="line">  TYPE_2,</span><br><span class="line">  TYPE_3</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>对于自定义类型，与方案二中类似，我们在类内部定义了数据类型 type，然后在 traits 类中定义同样的 type<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 自定义数据类型</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Foo</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  Type type = TYPE_1; </span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Bar</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  Type type = TYPE_2; </span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">type_traits</span> &#123;</span><br><span class="line">  Type type = T::type;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>对于内置数据类型，使用模板类的特化为自定义类型生成独有的 type_traits<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 内置数据类型</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> <span class="type">int</span>&gt;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">type_traits</span> &#123;</span><br><span class="line">  Type type = Type::TYPE_1;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> <span class="type">double</span>&gt;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">type_traits</span> &#123;</span><br><span class="line">  Type type = Type::TYPE_3;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>这样就可以为不同数据类型生成统一的模板函数<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 统一的编码函数</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="type">void</span> decode&lt;<span class="type">const</span> T&amp; data, <span class="type">char</span>* buf) &#123;</span><br><span class="line">  <span class="keyword">if</span>(type_traits&lt;T&gt;::type == Type::TYPE_1) &#123;</span><br><span class="line">    ...</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span>(type_traits&lt;T&gt;::type == Type::TYPE_2) &#123;</span><br><span class="line">    ...</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>​</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
+<li>traits 技术的关键在于使用第三方模板类 traits，利用模板特化的功能，实现对自定义数据和编译器内置数据的统一</li>
+<li>本文所举的例子使用了枚举变量来表示数据类型(type)，而实际操作中通常使用不同的类来表示不同的类型，这样可以在编写模板函数时更好的优化，这里就不做展开，感兴趣的可以参考《Effective C++》的第47条</li>
+<li>tratis 技术常见于标准库的实现中，但对日常开发中降低代码冗余也有很好的借鉴意义</li>
+<li>C++20 提供了 Concept 的特性，使用 Concept 可以使得实现类似的功能更加方便</li>
+</ul>
+
+          
         
       
     </div>
-
-    
-
     
     
     
@@ -1042,8 +952,6 @@ Ubuntu 下安装1sudo apt install cppman查询想要的功能，会默认从 cpl
 
   
   
-  
-
   
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
@@ -1068,22 +976,13 @@ Ubuntu 下安装1sudo apt install cppman查询想要的功能，会默认从 cpl
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2021/01/19/wiki/Donnot-call-deconstructor-explicitly/" itemprop="url">
-                  C++小技巧：绝对不要显式调用局部变量的析构函数
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2021/01/19/wiki/Donnot-call-deconstructor-explicitly/" itemprop="url">C++小技巧：绝对不要显式调用局部变量的析构函数</a></h2>
         
 
         <div class="post-meta">
           <span class="post-time">
-            
-                
-            
-
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1091,10 +990,11 @@ Ubuntu 下安装1sudo apt install cppman查询想要的功能，会默认从 cpl
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-19T21:43:16+00:00">2021-01-19</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-19T21:43:16+00:00">
+                2021-01-19
+              </time>
             
 
-            
             
 
             
@@ -1112,7 +1012,11 @@ Ubuntu 下安装1sudo apt install cppman查询想要的功能，会默认从 cpl
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Wiki/" itemprop="url" rel="index"><span itemprop="name">Wiki</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Wiki/" itemprop="url" rel="index">
+                    <span itemprop="name">Wiki</span>
+                  </a>
+                </span>
 
                 
                 
@@ -1148,22 +1052,24 @@ Ubuntu 下安装1sudo apt install cppman查询想要的功能，会默认从 cpl
       
         
           
-          点击链接查看更多C++ 技巧 ：Effective C++今天遇到一个bug，记录一下，简而言之就是：绝对不要显式调用局部变量的析构函数。为什么呢，下面详细介绍一下
-首先来看下面一段代码，可以不看结果，先想一下输出结果是什么？123456789101112131415161718192021#include &lt;stdio.h&gt;class Mocker&#123;public:  Mocker(const int size):size_(size)&#123;    printf(&quot;Construct Mocker\n&quot;);  &#125;  ~Mocker()&
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2021/01/19/wiki/Donnot-call-deconstructor-explicitly/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <h2 id="点击链接查看更多C-技巧-：Effective-C"><a href="#点击链接查看更多C-技巧-：Effective-C" class="headerlink" title="点击链接查看更多C++ 技巧 ：Effective C++"></a>点击链接查看更多C++ 技巧 ：<a href="https://blog.yu-xiaoxian.me/2019/05/03/wiki/EffectivCpp/">Effective C++</a></h2><p>今天遇到一个bug，记录一下，简而言之就是：绝对不要显式调用局部变量的析构函数。为什么呢，下面详细介绍一下</p>
+<p>首先来看下面一段代码，可以不看结果，先想一下输出结果是什么？<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Mocker</span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">Mocker</span>(<span class="type">const</span> <span class="type">int</span> size):<span class="built_in">size_</span>(size)&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Construct Mocker\n&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  ~<span class="built_in">Mocker</span>()&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Deconstruct %d\n&quot;</span>, size_);</span><br><span class="line">  &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="type">int</span> size_ = <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="function">Mocker <span class="title">m1</span><span class="params">(<span class="number">1</span>)</span></span>;</span><br><span class="line">    m1.~<span class="built_in">Mocker</span>();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>不要看结果，先想想输出是什么？</p>
+<hr>
+<p>想好了吗，现在揭晓答案</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Construct Mocker</span><br><span class="line">Deconstruct 1</span><br><span class="line">Deconstruct 1</span><br></pre></td></tr></table></figure>
+<p>很奇怪，竟然输该出了两个“Deconstructor 1”，析构函数被调用了两次。这是由于 C++ 会保证局部变量离开作用域时，该变量的析构函数被第一时间调用。所以就没有必要再手动调用析构函数了。</p>
+<p>上面这个例子中，调用两次析构函数，不会造成不良的后果。但如果是下面这种情况，类Mocker中申请了一块内存，在析构函数中被释放，如果析构函数被调用两次，就会导致程序异常终止。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Mocker</span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">Mocker</span>(<span class="type">const</span> <span class="type">int</span> size):<span class="built_in">size_</span>(size)&#123;</span><br><span class="line">    data_ = <span class="keyword">new</span> <span class="type">int</span>[size_];</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Construct Mocker\n&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  ~<span class="built_in">Mocker</span>()&#123;</span><br><span class="line">    <span class="keyword">delete</span>[] data_;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Deconstruct %d\n&quot;</span>, size_);</span><br><span class="line">  &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="type">int</span> size_ = <span class="number">0</span>;</span><br><span class="line">  <span class="type">int</span>* data_ = <span class="literal">nullptr</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>所以，使用 C++ 的时候切记一点，<strong>绝对不要</strong>手动调变量用<strong>局部变量</strong>的析构函数。</p>
+<p>大家可以关注我的公众号「于振洋」，学习更多C++技巧<br><img src="https://img-blog.csdnimg.cn/20200722012125256.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l1X3hpYW94aWFuXzIwMTg=,size_16,color_FFFFFF,t_70#pic_center" alt="公众号二维码"></p>
+<hr>
+<p>点击链接查看更多C++ 技巧 ：<a href="https://blog.yu-xiaoxian.me/2019/05/03/wiki/EffectivCpp/">Effective C++</a></p>
+
+          
         
       
     </div>
-
-    
-
     
     
     
@@ -1200,8 +1106,6 @@ Ubuntu 下安装1sudo apt install cppman查询想要的功能，会默认从 cpl
 
   
   
-  
-
   
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
@@ -1226,22 +1130,13 @@ Ubuntu 下安装1sudo apt install cppman查询想要的功能，会默认从 cpl
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2021/01/15/wiki/RAII-cpp-idioms-part-II/" itemprop="url">
-                  C++小技巧：RAII 的应用-智能指针和范围锁
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2021/01/15/wiki/RAII-cpp-idioms-part-II/" itemprop="url">C++小技巧：RAII 的应用-智能指针和范围锁</a></h2>
         
 
         <div class="post-meta">
           <span class="post-time">
-            
-                
-            
-
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1249,10 +1144,11 @@ Ubuntu 下安装1sudo apt install cppman查询想要的功能，会默认从 cpl
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-15T21:43:16+00:00">2021-01-15</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-15T21:43:16+00:00">
+                2021-01-15
+              </time>
             
 
-            
             
 
             
@@ -1270,7 +1166,11 @@ Ubuntu 下安装1sudo apt install cppman查询想要的功能，会默认从 cpl
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Wiki/" itemprop="url" rel="index"><span itemprop="name">Wiki</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Wiki/" itemprop="url" rel="index">
+                    <span itemprop="name">Wiki</span>
+                  </a>
+                </span>
 
                 
                 
@@ -1306,24 +1206,21 @@ Ubuntu 下安装1sudo apt install cppman查询想要的功能，会默认从 cpl
       
         
           
-          点击链接查看更多C++ 技巧 ：Effective C++上篇文章介绍了 RAII，这篇文章介绍下RAII的常见应用：智能指针和范围锁(Scoped Lock)，这两者都利用了RAII的思想来管理资源，将程序员从繁琐又容易出错的资源管理中释放出来，大大降低了程序出错的概率。
-本文以 C++11 为例对这两者的应用进行简单介绍，同理其它扩展库 Boost 和 Abseil-Cpp 的用法也类似。
-智能指针智能指针主要来管理动态申请的指针，传统的内存管理需要开发者手动申请和释放内存，而智能指针采用了 RAII 的思想，开发者只需要申请内存而不用操心何时释放，因为在该指针离开作用域的时候自动释放。
+            <h2 id="点击链接查看更多C-技巧-：Effective-C"><a href="#点击链接查看更多C-技巧-：Effective-C" class="headerlink" title="点击链接查看更多C++ 技巧 ：Effective C++"></a>点击链接查看更多C++ 技巧 ：<a href="https://blog.yu-xiaoxian.me/2019/05/03/wiki/EffectivCpp/">Effective C++</a></h2><p>上篇文章介绍了 <a href="https://blog.yu-xiaoxian.me/2021/01/03/wiki/RAII-cpp-idioms/">RAII</a>，这篇文章介绍下RAII的常见应用：智能指针和范围锁(Scoped Lock)，这两者都利用了RAII的思想来管理资源，将程序员从繁琐又容易出错的资源管理中释放出来，大大降低了程序出错的概率。</p>
+<p>本文以 C++11 为例对这两者的应用进行简单介绍，同理其它扩展库 Boost 和 Abseil-Cpp 的用法也类似。</p>
+<h2 id="智能指针"><a href="#智能指针" class="headerlink" title="智能指针"></a>智能指针</h2><p>智能指针主要来管理动态申请的指针，传统的内存管理需要开发者手动申请和释放内存，而智能指针采用了 RAII 的思想，开发者只需要申请内存而不用操心何时释放，因为在该指针离开作用域的时候自动释放。</p>
+<p>普通指针用法<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 手动申请一块内存</span></span><br><span class="line"><span class="keyword">auto</span> ptr = <span class="keyword">new</span> <span class="type">int</span>[<span class="number">64</span>];</span><br><span class="line"><span class="comment">// 手动释放一块内存</span></span><br><span class="line"><span class="keyword">delete</span>[] ptr;</span><br></pre></td></tr></table></figure><br>智能指针用法<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> smart_ptr = std::<span class="built_in">unique_ptr</span>&lt;<span class="type">int</span>[]&gt;(<span class="keyword">new</span> <span class="type">int</span>[<span class="number">64</span>]);</span><br></pre></td></tr></table></figure><br>当 smart_ptr 离开作用域后，编译器会自动释放该指针</p>
+<h2 id="范围锁"><a href="#范围锁" class="headerlink" title="范围锁"></a>范围锁</h2><p>范围锁是用来管理互斥量的，传统方法需要手动上锁和解锁互斥量，范围锁采用 RAII 的思想，在需要上锁时获得锁，离开作用域后就会自动释放该互斥量。</p>
+<p>直接操作互斥量<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">std::mutex mtx;</span><br><span class="line">mtx.<span class="built_in">lock</span>();</span><br><span class="line"><span class="comment">// do something</span></span><br><span class="line">mtx.<span class="built_in">unlock</span>();</span><br></pre></td></tr></table></figure></p>
+<p>使用范围锁<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">std::mutex mtx;</span><br><span class="line">&#123;</span><br><span class="line">	<span class="function">std::lock_guard&lt;std::mutex&gt; <span class="title">locker</span><span class="params">(mtx)</span></span>;</span><br><span class="line">	<span class="comment">// do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>构造 locker 时会将mtx上锁，当 locker 离开作用域后，编译器会自动释放该mutex，为了保证可以及时释放该互斥量，可以像上面代码一样，拿花括号将需要获得锁的代码段包起来。</p>
+<p>大家可以关注我的公众号「于振洋」，学习更多C++技巧<br><img src="https://img-blog.csdnimg.cn/20200722012125256.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l1X3hpYW94aWFuXzIwMTg=,size_16,color_FFFFFF,t_70#pic_center" alt="公众号二维码"></p>
+<hr>
+<p>点击链接查看更多C++ 技巧 ：<a href="https://blog.yu-xiaoxian.me/2019/05/03/wiki/EffectivCpp/">Effective C++</a></p>
 
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2021/01/15/wiki/RAII-cpp-idioms-part-II/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
-
-    
-
     
     
     
@@ -1360,8 +1257,6 @@ Ubuntu 下安装1sudo apt install cppman查询想要的功能，会默认从 cpl
 
   
   
-  
-
   
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
@@ -1386,22 +1281,13 @@ Ubuntu 下安装1sudo apt install cppman查询想要的功能，会默认从 cpl
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2021/01/03/wiki/RAII-cpp-idioms/" itemprop="url">
-                  RAII 目前最好的资源管理策略
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2021/01/03/wiki/RAII-cpp-idioms/" itemprop="url">RAII 目前最好的资源管理策略</a></h2>
         
 
         <div class="post-meta">
           <span class="post-time">
-            
-                
-            
-
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1409,10 +1295,11 @@ Ubuntu 下安装1sudo apt install cppman查询想要的功能，会默认从 cpl
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-03T21:43:16+00:00">2021-01-03</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-03T21:43:16+00:00">
+                2021-01-03
+              </time>
             
 
-            
             
 
             
@@ -1430,7 +1317,11 @@ Ubuntu 下安装1sudo apt install cppman查询想要的功能，会默认从 cpl
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Wiki/" itemprop="url" rel="index"><span itemprop="name">Wiki</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Wiki/" itemprop="url" rel="index">
+                    <span itemprop="name">Wiki</span>
+                  </a>
+                </span>
 
                 
                 
@@ -1466,29 +1357,30 @@ Ubuntu 下安装1sudo apt install cppman查询想要的功能，会默认从 cpl
       
         
           
-          点击链接查看更多C++ 技巧 ：Effective C++RAII(Resource Aquisition Is Initialization，翻译过来就是“资源获取即初始化”)，是C++之父 Bjarne Stroustrup 提出的一种编程用例，也是目前最好的资源管理方案。为什么说是最好，我们需要先了解一下传统的资源管理有哪些？
-传统的资源管理主要有两种：
+            <h2 id="点击链接查看更多C-技巧-：Effective-C"><a href="#点击链接查看更多C-技巧-：Effective-C" class="headerlink" title="点击链接查看更多C++ 技巧 ：Effective C++"></a>点击链接查看更多C++ 技巧 ：<a href="https://blog.yu-xiaoxian.me/2019/05/03/wiki/EffectivCpp/">Effective C++</a></h2><p>RAII(Resource Aquisition Is Initialization，翻译过来就是“资源获取即初始化”)，是C++之父 Bjarne Stroustrup 提出的一种编程用例，也是目前最好的资源管理方案。为什么说是最好，我们需要先了解一下传统的资源管理有哪些？</p>
+<p>传统的资源管理主要有两种：</p>
+<ul>
+<li>以C/C++为首的 malloc/new 方法，由程序员手动管理资源，资源保存在堆上</li>
+<li>以Java为首的垃圾回收机制（Garbage Collection），由运行环境和管理资源，资源保存在栈上</li>
+</ul>
+<p>那么这两种方案各有什么优劣呢？</p>
+<ul>
+<li>C/C++ 的方法，程序员可以精确控制资源获取和释放的时机，充分利用系统的性能。风险就是资源获取与释放必须成对出现，如果忘记释放会占用系统资源，而过早释放有可能导致内存泄漏</li>
+<li>Java 的方法将程序员从繁琐的资源管理中释放出来，但也导致程序员无法准确判断资源获取和释放的时机，有可能导致资源的浪费。</li>
+</ul>
+<p>这里有一种方式，可以在保证资源控制精度的同时，避免大量的繁琐操作，那就是RAII(Resource Aquisition Is Initialization)，他巧妙利用了C++作用域的特性和类的析构函数，将资源的申请和释放交给编译器去完成，从而将程序员从繁琐的资源管理中释放出来。下面就来详细介绍RAII是怎样实现的。</p>
+<p>请看下面一段代码，申请一段内存，在使用完成后将其释放，这里需要我们来手动管理资源<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> * arr = <span class="keyword">new</span> <span class="type">int</span>[<span class="number">100</span>];</span><br><span class="line"><span class="comment">// do something</span></span><br><span class="line"><span class="keyword">delete</span>[] arr;</span><br></pre></td></tr></table></figure></p>
+<p>如果将资源的申请和释放分别放在类的构造和析构函数中，我们可以达到同样的目的<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Arr</span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">Arr</span>(<span class="type">int</span> size) &#123; ptr_ = <span class="keyword">new</span> <span class="type">int</span>[size]; &#125;</span><br><span class="line">	~<span class="built_in">Arr</span>() &#123; <span class="keyword">if</span>(ptr_ != <span class="literal">nullptr</span>; ) <span class="keyword">delete</span>[] ptr_; &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="type">int</span> *ptr_ = <span class="literal">nullptr</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">	<span class="function">Arr <span class="title">arr</span><span class="params">(<span class="number">100</span>)</span></span>;</span><br><span class="line">	<span class="comment">// do somethin</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// When leaving the zoen, the array will be released automatically</span></span><br></pre></td></tr></table></figure></p>
+<p>我们实例化了arr，根据 C++ 语言的特性，当 arr 离开 {} 所限制的作用域后，析构函数 Arr::~Arr() 会被自动调用，从而释放申请的内存。</p>
+<p>这样的设计就省去了自动管理资源的麻烦，这里只是举了一个简单的例子，在更复杂的工程中，使用RAII的方式，帮我们节省的精力是十分巨大的。比如 C++11 中智能指针 shared_ptr 和 unique_ptr，就是 RAII 的经典应用，大家感兴趣的话可以点击链接进行了解<a href="https://blog.csdn.net/flowing_wind/article/details/81301001">智能指针</a>。</p>
+<p>大家可以关注我的公众号「于振洋」，学习更多C++技巧<br><img src="https://img-blog.csdnimg.cn/20200722012125256.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l1X3hpYW94aWFuXzIwMTg=,size_16,color_FFFFFF,t_70#pic_center" alt="公众号二维码"></p>
+<hr>
+<p>点击链接查看更多C++ 技巧 ：<a href="https://blog.yu-xiaoxian.me/2019/05/03/wiki/EffectivCpp/">Effective C++</a></p>
 
-以C/C++为首的 malloc/new 方法，由程序员手动管理资源，资源保存在堆上
-以Java为首的垃圾回收机制（Garbage Collection），由运行环境和管理资源，资源保存在栈上
-
-那么这两种方案各有什么优劣呢？
-
-C/
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2021/01/03/wiki/RAII-cpp-idioms/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
-
-    
-
     
     
     
@@ -1525,8 +1417,6 @@ C/
 
   
   
-  
-
   
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
@@ -1551,22 +1441,13 @@ C/
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/07/28/wiki/cpp-tips-const-constexpr/" itemprop="url">
-                  C++小技巧：const 和 constexpr
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2020/07/28/wiki/cpp-tips-const-constexpr/" itemprop="url">C++小技巧：const 和 constexpr</a></h2>
         
 
         <div class="post-meta">
           <span class="post-time">
-            
-                
-            
-
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1574,10 +1455,11 @@ C/
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-28T22:50:26+00:00">2020-07-28</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-28T22:50:26+00:00">
+                2020-07-28
+              </time>
             
 
-            
             
 
             
@@ -1613,29 +1495,29 @@ C/
       
         
           
-          太长不看版：
+            <p>太长不看版：</p>
+<ul>
+<li>constexpr 表示常量，告诉编译器这个变量可以尽情优化</li>
+<li>const 表示该变量是只读</li>
+</ul>
+<hr>
+<p>下面正文开始，在介绍 const 和 constexpr 的区别之前，请允许我卖个关子，介绍一下编译器对常量的优化，先看下面一段简单的除法例程</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">const</span> <span class="type">int</span> a = <span class="number">123</span>;</span><br><span class="line">    <span class="type">int</span> b = <span class="number">3</span>;</span><br><span class="line">    <span class="type">float</span> c = b/a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>经过编译器优化生成的汇编代码如下<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">main:</span><br><span class="line">        push    rbp</span><br><span class="line">        mov     rbp, rsp</span><br><span class="line">        mov     DWORD PTR [rbp<span class="number">-4</span>], <span class="number">123</span></span><br><span class="line">        mov     DWORD PTR [rbp<span class="number">-8</span>], <span class="number">3</span></span><br><span class="line">        <span class="comment">// 除法运算开始</span></span><br><span class="line">        mov     ecx, DWORD PTR [rbp<span class="number">-8</span>]</span><br><span class="line">        mov     edx, <span class="number">558694933</span></span><br><span class="line">        mov     eax, ecx</span><br><span class="line">        imul    edx</span><br><span class="line">        sar     edx, <span class="number">4</span></span><br><span class="line">        mov     eax, ecx</span><br><span class="line">        sar     eax, <span class="number">31</span></span><br><span class="line">        sub     edx, eax</span><br><span class="line">        mov     eax, edx</span><br><span class="line">        pxor    xmm0, xmm0</span><br><span class="line">        cvtsi2ss        xmm0, eax</span><br><span class="line">        movss   DWORD PTR [rbp<span class="number">-12</span>], xmm0</span><br><span class="line">        <span class="comment">// 除法运算结束</span></span><br><span class="line">        mov     eax, <span class="number">0</span></span><br><span class="line">        pop     rbp</span><br><span class="line">        ret</span><br></pre></td></tr></table></figure><br>如果把 main() 中第2行的 const 关键字去掉，那么生成的汇编代码如下<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">main:</span><br><span class="line">        push    rbp</span><br><span class="line">        mov     rbp, rsp</span><br><span class="line">        mov     DWORD PTR [rbp<span class="number">-4</span>], <span class="number">123</span></span><br><span class="line">        mov     DWORD PTR [rbp<span class="number">-8</span>], <span class="number">3</span></span><br><span class="line">        <span class="comment">// 除法开始</span></span><br><span class="line">        mov     eax, DWORD PTR [rbp<span class="number">-8</span>]</span><br><span class="line">        cdq</span><br><span class="line">        idiv    DWORD PTR [rbp<span class="number">-4</span>]</span><br><span class="line">        pxor    xmm0, xmm0</span><br><span class="line">        cvtsi2ss        xmm0, eax</span><br><span class="line">        movss   DWORD PTR [rbp<span class="number">-12</span>], xmm0</span><br><span class="line">        <span class="comment">// 除法结束</span></span><br><span class="line">        mov     eax, <span class="number">0</span></span><br><span class="line">        pop     rbp</span><br><span class="line">        ret</span><br></pre></td></tr></table></figure><br>看不懂汇编没有关系，粘贴这两段代码的用意就是告诉大家，编译器会对常量运算进行疯狂的优化，尽可能地提高程序运行的效率，因此我们在编写程序的时候，也要尽可能地将常量声明为 const，从而提高程序运行的效率。</p>
+<p>下面来看 constexpr，这是C++11 中引入的新关键字，顾名思义：常量(const)+表达式(expr)，也就是说可以用声明一个表达式为常量。看下面这个例子，这样的代码是非法的，因为函数 get_value() 只有在运行期才会被调用，而数组的长度必须是编译期已知的量<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">get_value</span><span class="params">()</span></span>&#123;<span class="keyword">return</span> <span class="number">5</span>;&#125;</span><br><span class="line"><span class="type">int</span> arr[<span class="built_in">get_value</span>() + <span class="number">7</span>]; <span class="comment">// 声明长度为 12 的数组</span></span><br></pre></td></tr></table></figure><br>而使用 constexpr 声明函数的话，就可以顺利编译，因为可以在编译期调用常量函数了<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">constexpr</span> <span class="type">int</span> <span class="title">get_value</span><span class="params">()</span></span>&#123;<span class="keyword">return</span> <span class="number">5</span>;&#125;</span><br><span class="line"><span class="type">int</span> arr[<span class="built_in">get_value</span>() + <span class="number">7</span>;] <span class="comment">// 声明长度为 12 的数组</span></span><br></pre></td></tr></table></figure><br>讲到这里 constexpr 的含义也就呼之欲出了，constexpr 的含义就是告诉编译器，该表达式的值可以在编译期计算得到，让编译器能够尽情优化。</p>
+<p>除了定义函数表达式，constexpr 也可以用于声明常量<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">constexpr</span> <span class="type">int</span> a = <span class="number">1234</span>;</span><br><span class="line"><span class="keyword">constexpr</span> <span class="type">float</span> b = <span class="number">334.0f</span>;</span><br><span class="line"><span class="keyword">constexpr</span> <span class="type">char</span> c[] = <span class="string">&quot;Hello&quot;</span>;</span><br></pre></td></tr></table></figure><br>终于到 const 出场了，在C++ 中 const 包含了两种含义：常量 和 只读，通过上面的讨论我们明白了 constexpr 也可以表示常量，两者在常量定义上的功能存在交集，在声明常量变量的情况下，两者作用相同。但是为了程序的规范易读，我们不妨做一些限制规范：</p>
+<ul>
+<li><p>constexpr 用于声明所有的常量以及常量表达式</p>
+</li>
+<li><p>const 用于声明变量为只读，不可更改</p>
+</li>
+</ul>
+<p>大家可以关注我的公众号「于振洋」，学习更多C++技巧<br><img src="https://img-blog.csdnimg.cn/20200722012125256.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l1X3hpYW94aWFuXzIwMTg=,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
 
-constexpr 表示常量，告诉编译器这个变量可以尽情优化
-const 表示该变量是只读
-
-
-下面正文开始，在介绍 const 和 constexpr 的区别之前，请允许我卖个关子，介绍一下编译器对常量的优化，先看下面一段简单的除法例程
-12345int main()&#123;    const int a = 123;    int b = 3;    float c = b/a;&#125;
-经过编译器优化生成的汇编代码如下12345678910111213141516171819202122main:        push    rbp        mov    
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/07/28/wiki/cpp-tips-const-constexpr/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
-
-    
-
     
     
     
@@ -1674,8 +1556,6 @@ const 表示该变量是只读
   
   
 
-  
-
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -1698,22 +1578,13 @@ const 表示该变量是只读
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/06/08/Mannual/auto_upgrade_gost/" itemprop="url">
-                  gost 自动更新
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2020/06/08/Mannual/auto_upgrade_gost/" itemprop="url">gost 自动更新</a></h2>
         
 
         <div class="post-meta">
           <span class="post-time">
-            
-                
-            
-
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -1721,10 +1592,11 @@ const 表示该变量是只读
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-08T13:03:46+00:00">2020-06-08</time>
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-08T13:03:46+00:00">
+                2020-06-08
+              </time>
             
 
-            
             
 
             
@@ -1760,22 +1632,16 @@ const 表示该变量是只读
       
         
           
-          gost 自动更新在上一篇文章中，我们介绍了怎样实现gost的自动启动：配置gost开机自启。但是 gost 无法通过apt-get upgrade自动更新，因此我开发一个脚本实现 gost 自动更新，保持安装的是最新的gost，从而避免版本老旧引起的安全问题。
-首先安装Json解析器 jq12sudo apt-get updatesudo apt-get install jq -y然后使用以下脚本自动检测gost更新，下载最新release的gost12345678910111213141516171819202122232425#!/bin/bashcd $(dirname $0)if [
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/06/08/Mannual/auto_upgrade_gost/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <h1 id="gost-自动更新"><a href="#gost-自动更新" class="headerlink" title="gost 自动更新"></a>gost 自动更新</h1><p>在上一篇文章中，我们介绍了怎样实现gost的自动启动：<a href="https://blog.yu-xiaoxian.me/2019/11/22/Mannual/install-gost-as-system-service/">配置gost开机自启</a>。但是 gost 无法通过<code>apt-get upgrade</code>自动更新，因此我开发一个脚本实现 gost 自动更新，保持安装的是最新的gost，从而避免版本老旧引起的安全问题。</p>
+<p>首先安装Json解析器 jq<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install jq -y</span><br></pre></td></tr></table></figure><br>然后使用以下脚本自动检测gost更新，下载最新release的gost<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line">cd $(dirname $0)</span><br><span class="line">if [ ! -f current_version ]</span><br><span class="line">  touch current_version</span><br><span class="line">fi</span><br><span class="line">url=&quot;https://api.github.com/repos/ginuerzh/gost/releases/latest&quot;</span><br><span class="line">platform=&#x27;linux-amd64&#x27;</span><br><span class="line">current_version=$(cat current_version)</span><br><span class="line">latest_version=`curl -s $url | jq -r &quot;.name&quot;`</span><br><span class="line">name=`curl -s $url | jq -r &quot;.assets[] | select(.name | test(\&quot;$&#123;platform&#125;\&quot;)) | .name&quot;`</span><br><span class="line">download_url=`curl -s $url | jq -r &quot;.assets[] | select(.name | test(\&quot;$&#123;platform&#125;\&quot;)) | .browser_download_url&quot;`</span><br><span class="line">echo $download_url</span><br><span class="line">echo $platform</span><br><span class="line">echo $latest_version</span><br><span class="line">echo $current_version</span><br><span class="line">echo $name</span><br><span class="line">if [ ! -d $&#123;HOME&#125;/Downloads&quot; ]; then</span><br><span class="line">  mkdir ~/Downloads</span><br><span class="line">fi</span><br><span class="line">if [ &quot;$current_version&quot; != &quot;$latest_version&quot; ]; then</span><br><span class="line">  wget $download_url -O ~/Downloads/$name</span><br><span class="line">  gunzip -fk ~/Downloads/$name</span><br><span class="line">  cp ~/Downloads/$&#123;name%.*&#125; /usr/local/bin/gost</span><br><span class="line">  echo $latest_version &gt; current_version</span><br><span class="line">fi</span><br></pre></td></tr></table></figure><br>然后使用<code>crontab -e</code>，在其中写入，就可以定期执行gost啦<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">0 4 * * * service gost stop</span><br><span class="line">1 4 * * * sh &lt;path-to-shell&gt;</span><br><span class="line">2 4 * * * service gost start</span><br></pre></td></tr></table></figure></p>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ol>
+<li><a href="https://starkandwayne.com/blog/how-to-download-the-latest-release-from-github/">HOW TO DOWNLOAD THE LATEST RELEASE FROM GITHUB</a></li>
+</ol>
+
+          
         
       
     </div>
-
-    
-
     
     
     
@@ -1810,12 +1676,15 @@ const 表示该变量是只读
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot; aria-label&#x3D;&quot;下一页&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
 
           </div>
+          
+
+
           
 
         </div>
@@ -1846,110 +1715,53 @@ const 表示该变量是只读
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
-          
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/archives/%20%7C%7C%20archive">
-                
-                    <span class="site-state-item-count">20</span>
-                    <span class="site-state-item-name">日志</span>
-                  </a>
-                </div>
-              
+          <nav class="site-state motion-element">
 
-              
-                
-                
-                <div class="site-state-item site-state-categories">
-                  
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">4</span>
-                    <span class="site-state-item-name">分类</span>
-                  
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">21</span>
-                    <span class="site-state-item-name">标签</span>
-                  
-                </div>
-              
-            </nav>
-          
-
-          
-
-          
-
-          
-          
-
-          
-          
-
-          
             
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
           
+
+          
+
+          
+          
+
+          
+          
+
           
 
         </div>
@@ -1970,20 +1782,16 @@ const 表示该变量是只读
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
-  <span class="with-love" id="animate">
+  <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Yu Xiaoxian</span>
 
   
-
-  
 </div>
 
 
-
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 驱动 v7.1.1</div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 驱动</div>
 
 
 
@@ -1991,15 +1799,12 @@ const 表示该变量是只读
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.1.0</div>
-
-
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
 
 
 
 
         
-
 
 
 
@@ -2038,11 +1843,7 @@ const 表示该变量是只读
 
 
 
-
-
-
-
-
+  
 
 
 
@@ -2062,6 +1863,16 @@ const 表示该变量是只读
 
   
   
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
     <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   
 
@@ -2070,29 +1881,45 @@ const 表示该变量是只读
     <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
   
 
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
 
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=6.1.0"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=6.1.0"></script>
-
-
-
-  
-  
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.1.0"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
 
 
 
   
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
 
 
 
@@ -2119,55 +1946,46 @@ const 表示该变量是只读
 
 
 
-  
-
-
-
 
 
   
 
-  
-
-  
-
-  
-  
-
-  
-  
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  
-
-  
 
 
-  
+
+
   
 
   
 
   
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src=""></script>
+  
+
 
   
 
