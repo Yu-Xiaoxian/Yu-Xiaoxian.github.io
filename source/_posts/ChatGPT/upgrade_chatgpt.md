@@ -76,3 +76,4 @@ https://bewildcard.com/i/CHATGPT6
 ### 参考链接
 
 [ChatGPT Plus 订阅教程](https://help.bewildcard.com/zh-CN/articles/8073056-chatgpt-plus-%E8%AE%A2%E9%98%85%E6%95%99%E7%A8%8B)
+[ChatGPT 4.0 支付失败怎么办？](https://www.chatgpt-jx.com/upgrade_chatgpt/)
