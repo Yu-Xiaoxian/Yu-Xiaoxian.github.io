@@ -88,7 +88,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200722012125256.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l1X3hpYW94aWFuXzIwMTg=,size_16,color_FFFFFF,t_70#pic_center">
 <meta property="article:published_time" content="2021-01-19T21:43:16.000Z">
-<meta property="article:modified_time" content="2024-02-11T08:05:48.074Z">
+<meta property="article:modified_time" content="2025-03-24T16:03:54.966Z">
 <meta property="article:author" content="Yu Xiaoxian">
 <meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
@@ -157,7 +157,7 @@
 
 
 
-<meta name="generator" content="Hexo 7.1.1"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
@@ -344,7 +344,7 @@
 
       
         <h2 id="点击链接查看更多C-技巧-：Effective-C"><a href="#点击链接查看更多C-技巧-：Effective-C" class="headerlink" title="点击链接查看更多C++ 技巧 ：Effective C++"></a>点击链接查看更多C++ 技巧 ：<a href="https://blog.yu-xiaoxian.me/2019/05/03/wiki/EffectivCpp/">Effective C++</a></h2><p>今天遇到一个bug，记录一下，简而言之就是：绝对不要显式调用局部变量的析构函数。为什么呢，下面详细介绍一下</p>
-<p>首先来看下面一段代码，可以不看结果，先想一下输出结果是什么？<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Mocker</span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">Mocker</span>(<span class="type">const</span> <span class="type">int</span> size):<span class="built_in">size_</span>(size)&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Construct Mocker\n&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  ~<span class="built_in">Mocker</span>()&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Deconstruct %d\n&quot;</span>, size_);</span><br><span class="line">  &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="type">int</span> size_ = <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="function">Mocker <span class="title">m1</span><span class="params">(<span class="number">1</span>)</span></span>;</span><br><span class="line">    m1.~<span class="built_in">Mocker</span>();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>首先来看下面一段代码，可以不看结果，先想一下输出结果是什么？<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Mocker</span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">Mocker</span>(<span class="type">const</span> <span class="type">int</span> size):<span class="built_in">size_</span>(size)&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Construct Mocker\n&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  ~<span class="built_in">Mocker</span>()&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Deconstruct %d\n&quot;</span>, size_);</span><br><span class="line">  &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="type">int</span> size_ = <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="function">Mocker <span class="title">m1</span><span class="params">(<span class="number">1</span>)</span></span>;</span><br><span class="line">    m<span class="number">1.</span>~<span class="built_in">Mocker</span>();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>不要看结果，先想想输出是什么？</p>
 <hr>
 <p>想好了吗，现在揭晓答案</p>
@@ -475,7 +475,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -497,7 +497,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -550,7 +550,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2025</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

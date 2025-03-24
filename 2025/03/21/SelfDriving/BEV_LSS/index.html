@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-yu.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-yu.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="BEV,LSS," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1. BEV 与 LSSBEV (Bird-Eye-View)，鸟瞰视角是一种比相机视角更直观、信息更丰富的视角，非常适合用来做多传感器信息融合，特别是在跨相机物体跟踪方面，能够提供一致性更强的信息。 LSS（Lift-Splat-Shoot），是一种能够将多视角图像转换为 BEV 表示的技术。作为 BEV 领域的一个经典方法，LSS 兼顾了效率和准确性，在自动驾驶、机器人感知等任务中都有广泛应用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从 2D 到 BEV，LSS 技术如何重塑自动驾驶感知？">
+<meta property="og:url" content="https://blog.yu-xiaoxian.me/2025/03/21/SelfDriving/BEV_LSS/index.html">
+<meta property="og:site_name" content="于小咸的日志">
+<meta property="og:description" content="1. BEV 与 LSSBEV (Bird-Eye-View)，鸟瞰视角是一种比相机视角更直观、信息更丰富的视角，非常适合用来做多传感器信息融合，特别是在跨相机物体跟踪方面，能够提供一致性更强的信息。 LSS（Lift-Splat-Shoot），是一种能够将多视角图像转换为 BEV 表示的技术。作为 BEV 领域的一个经典方法，LSS 兼顾了效率和准确性，在自动驾驶、机器人感知等任务中都有广泛应用">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s21.ax1x.com/2025/03/17/pEdFjnx.md.png">
+<meta property="og:image" content="https://s21.ax1x.com/2025/03/17/pEdkP9H.md.png">
+<meta property="og:image" content="https://s21.ax1x.com/2025/03/17/pEdkpND.md.png">
+<meta property="article:published_time" content="2025-03-21T19:20:16.000Z">
+<meta property="article:modified_time" content="2025-03-24T16:03:54.965Z">
+<meta property="article:author" content="Yu Xiaoxian">
+<meta property="article:tag" content="BEV">
+<meta property="article:tag" content="LSS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s21.ax1x.com/2025/03/17/pEdFjnx.md.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://blog.yu-xiaoxian.me/2025/03/21/SelfDriving/BEV_LSS/"/>
+
+
+
+
+
+  <title>从 2D 到 BEV，LSS 技术如何重塑自动驾驶感知？ | 于小咸的日志</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'G-RMLFJCZC88', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?607044d6c57f45fed7816b9a44592d85";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">于小咸的日志</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.yu-xiaoxian.me/2025/03/21/SelfDriving/BEV_LSS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于小咸的日志">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">从 2D 到 BEV，LSS 技术如何重塑自动驾驶感知？</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2025-03-21T19:20:16+00:00">
+                2025-03-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithms/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithms</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="1-BEV-与-LSS"><a href="#1-BEV-与-LSS" class="headerlink" title="1. BEV 与 LSS"></a>1. BEV 与 LSS</h2><p><strong>BEV</strong> (Bird-Eye-View)，鸟瞰视角是一种比相机视角更直观、信息更丰富的视角，非常适合用来做多传感器信息融合，特别是在跨相机物体跟踪方面，能够提供一致性更强的信息。</p>
+<p><strong>LSS</strong>（Lift-Splat-Shoot），是一种能够将多视角图像转换为 BEV 表示的技术。作为 BEV 领域的一个经典方法，LSS 兼顾了效率和准确性，在自动驾驶、机器人感知等任务中都有广泛应用。</p>
+<p>论文：<a href="https://www.ecva.net/papers/eccv_2020/papers_ECCV/papers/123590188.pdf">Lift, Splat, Shoot: Encoding Images From Arbitrary Camera Rigs by Implicitly Unprojecting to 3D</a></p>
+<p>代码：<a href="https://github.com/nv-tlabs/lift-splat-shoot#">https://github.com/nv-tlabs/lift-splat-shoot</a></p>
+<h2 id="2-Motivation"><a href="#2-Motivation" class="headerlink" title="2. Motivation"></a>2. Motivation</h2><ul>
+<li>先做深度估计和特征融合，然后投影到 BEV 视图中</li>
+<li>在 BEV 视图中做特征融合，在融合后的特征图上做检测、规划等任务</li>
+</ul>
+<h2 id="3-Method"><a href="#3-Method" class="headerlink" title="3. Method"></a>3. Method</h2><h3 id="3-1-Lift（升维）"><a href="#3-1-Lift（升维）" class="headerlink" title="3.1 Lift（升维）"></a>3.1 Lift（升维）</h3><p>将 2D 图像（WxHx3）增加深度信息，升维到 3D（WxHxD），其中 D 表示不同的深度，为不同的深度学习出C维的特征，就得到了 WxHxDxC 维度的视锥点云</p>
+<p><img src="https://s21.ax1x.com/2025/03/17/pEdFjnx.md.png" alt="LSS-Lift"></p>
+<h3 id="3-2-Splat（投影）"><a href="#3-2-Splat（投影）" class="headerlink" title="3.2 Splat（投影）"></a>3.2 Splat（投影）</h3><p>将图像特征投影到BEV空间中，采用 cumsum trick 的方法将特征求和，得到 CxXxY 维度的 BEV 特征，至此 BEV 特征已提取完成</p>
+<p><img src="https://s21.ax1x.com/2025/03/17/pEdkP9H.md.png" alt="LSS-Splat"></p>
+<p>之所以要做求和操作，是因为会出现多个视锥点云落在同一BEV栅格的情况，有两种情况会出现</p>
+<ul>
+<li>不同高度的视锥点云会落在同一个栅格内，比如电线杆上的不同像素点</li>
+<li>不同相机之间存在 overlap，两个相机观测到的同一个物体，会落在同一个BEV栅格</li>
+</ul>
+<h3 id="3-3-Shoot"><a href="#3-3-Shoot" class="headerlink" title="3.3 Shoot"></a>3.3 Shoot</h3><p>将轨迹通过模板投影到 BEV 空间上，并计算轨迹的 cost，实现端到端的轨迹规划，这一步是锦上添花的工作</p>
+<p><img src="https://s21.ax1x.com/2025/03/17/pEdkpND.md.png" alt="LSS-Shoot"></p>
+<h2 id="4-训练"><a href="#4-训练" class="headerlink" title="4. 训练"></a>4. 训练</h2><h3 id="4-1-Cost"><a href="#4-1-Cost" class="headerlink" title="4.1 Cost"></a>4.1 Cost</h3><ul>
+<li>图像 backbone 采用 EfficientNet，通过预训练得到深度估计，需要标记检测出的物体在BEV视角下的投影</li>
+<li>监督真值是实例分割结果、可行驶区域，Loss 定义为预测结果与 groud truth 的交叉熵</li>
+</ul>
+<h2 id="5-代码解析"><a href="#5-代码解析" class="headerlink" title="5. 代码解析"></a>5. 代码解析</h2><p>首先看模型的初始化函数，包含以下三个模块：</p>
+<ul>
+<li>camencode：图像特征提取</li>
+<li>bevencode：BEV检测backbone</li>
+<li>frustum：视锥，用于图像点云坐标和BEV栅格间的坐标转换</li>
+</ul>
+<p>其它变量是模型的参数，看名称就可以知道是什么含义，这里不做展开</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">LiftSplatShoot</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, grid_conf, data_aug_conf, outC</span>):</span><br><span class="line">        <span class="built_in">super</span>(LiftSplatShoot, <span class="variable language_">self</span>).__init__()</span><br><span class="line">        <span class="variable language_">self</span>.grid_conf = grid_conf</span><br><span class="line">        <span class="variable language_">self</span>.data_aug_conf = data_aug_conf</span><br><span class="line"></span><br><span class="line">        dx, bx, nx = gen_dx_bx(<span class="variable language_">self</span>.grid_conf[<span class="string">&#x27;xbound&#x27;</span>],</span><br><span class="line">                                              <span class="variable language_">self</span>.grid_conf[<span class="string">&#x27;ybound&#x27;</span>],</span><br><span class="line">                                              <span class="variable language_">self</span>.grid_conf[<span class="string">&#x27;zbound&#x27;</span>],</span><br><span class="line">                                              )</span><br><span class="line">        <span class="variable language_">self</span>.dx = nn.Parameter(dx, requires_grad=<span class="literal">False</span>)</span><br><span class="line">        <span class="variable language_">self</span>.bx = nn.Parameter(bx, requires_grad=<span class="literal">False</span>)</span><br><span class="line">        <span class="variable language_">self</span>.nx = nn.Parameter(nx, requires_grad=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line">        <span class="variable language_">self</span>.downsample = <span class="number">16</span></span><br><span class="line">        <span class="variable language_">self</span>.camC = <span class="number">64</span></span><br><span class="line">        <span class="variable language_">self</span>.frustum = <span class="variable language_">self</span>.create_frustum()</span><br><span class="line">        <span class="variable language_">self</span>.D, _, _, _ = <span class="variable language_">self</span>.frustum.shape</span><br><span class="line">        <span class="variable language_">self</span>.camencode = CamEncode(<span class="variable language_">self</span>.D, <span class="variable language_">self</span>.camC, <span class="variable language_">self</span>.downsample)</span><br><span class="line">        <span class="variable language_">self</span>.bevencode = BevEncode(inC=<span class="variable language_">self</span>.camC, outC=outC)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># toggle using QuickCumsum vs. autograd</span></span><br><span class="line">        <span class="variable language_">self</span>.use_quickcumsum = <span class="literal">True</span></span><br></pre></td></tr></table></figure>
+<p>模型的推理 pipeline 如下，forward() 调用了 get_voxels() 方法，get_voxels() 中：</p>
+<ul>
+<li>get_geometry() 属于 Lift 操作</li>
+<li>voxel_polling() 属于 Splat 操作</li>
+</ul>
+<p>下面小结我们详细介绍这两步操作，这里先介绍一下 forward 的函数的参数：</p>
+<ul>
+<li>x：BxN 张图像</li>
+<li>rots, trans：相机的外参，以旋转矩阵和平移矩阵形式表示</li>
+<li>intrins：相机内参</li>
+<li>post_rots，post_trans：图像增强时使用的旋转矩阵和平移矩阵，用于在模型训练时撤销图像增强引入的位姿变化</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">get_voxels</span>(<span class="params">self, x, rots, trans, intrins, post_rots, post_trans</span>):</span><br><span class="line">    geom = <span class="variable language_">self</span>.get_geometry(rots, trans, intrins, post_rots, post_trans)</span><br><span class="line">    x = <span class="variable language_">self</span>.get_cam_feats(x)</span><br><span class="line"></span><br><span class="line">    x = <span class="variable language_">self</span>.voxel_pooling(geom, x)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x, rots, trans, intrins, post_rots, post_trans</span>):</span><br><span class="line">    x = <span class="variable language_">self</span>.get_voxels(x, rots, trans, intrins, post_rots, post_trans)</span><br><span class="line">    x = <span class="variable language_">self</span>.bevencode(x)</span><br><span class="line">    <span class="keyword">return</span> x</span><br></pre></td></tr></table></figure>
+<h3 id="5-1-Lift"><a href="#5-1-Lift" class="headerlink" title="5.1 Lift"></a>5.1 Lift</h3><p>Lift 操作分为两步：</p>
+<ul>
+<li>生成图像坐标-&gt;视锥坐标的变换</li>
+<li>计算视锥坐标-&gt;投影坐标的变换</li>
+</ul>
+<p>第一步比较简单，需要了解普通相机模型，得到的 xy 是单位深度下的像素坐标</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">create_frustum</span>(<span class="params">self</span>):</span><br><span class="line">    <span class="comment"># make grid in image plane</span></span><br><span class="line">    ogfH, ogfW = <span class="variable language_">self</span>.data_aug_conf[<span class="string">&#x27;final_dim&#x27;</span>]</span><br><span class="line">    fH, fW = ogfH // <span class="variable language_">self</span>.downsample, ogfW // <span class="variable language_">self</span>.downsample</span><br><span class="line">    <span class="comment"># ds: DxWxH 表示每个点的深度</span></span><br><span class="line">    ds = torch.arange(*<span class="variable language_">self</span>.grid_conf[<span class="string">&#x27;dbound&#x27;</span>], dtype=torch.<span class="built_in">float</span>).view(-<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>).expand(-<span class="number">1</span>, fH, fW)</span><br><span class="line">    D, _, _ = ds.shape</span><br><span class="line">    <span class="comment"># xs：DxWxH 表示每个点的x坐标</span></span><br><span class="line">    xs = torch.linspace(<span class="number">0</span>, ogfW - <span class="number">1</span>, fW, dtype=torch.<span class="built_in">float</span>).view(<span class="number">1</span>, <span class="number">1</span>, fW).expand(D, fH, fW)</span><br><span class="line">    <span class="comment"># ys：DxWxH 表示每个点的y坐标</span></span><br><span class="line">    ys = torch.linspace(<span class="number">0</span>, ogfH - <span class="number">1</span>, fH, dtype=torch.<span class="built_in">float</span>).view(<span class="number">1</span>, fH, <span class="number">1</span>).expand(D, fH, fW)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># D x H x W x 3</span></span><br><span class="line">    frustum = torch.stack((xs, ys, ds), -<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">return</span> nn.Parameter(frustum, requires_grad=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<p>主要分为三步：</p>
+<ul>
+<li>去除相机增强的位姿变换影响</li>
+<li>转换到真实坐标系再乘以内存去畸变，需要注意的是，上一步得到的 xy 是单位深度下的相机坐标，不同深度对应的 xy 是一样的，因此需要乘以深度 d 才能得到真实世界的坐标</li>
+<li>通过外参转换到 BEV 坐标系下</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">get_geometry</span>(<span class="params">self, rots, trans, intrins, post_rots, post_trans</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;Determine the (x,y,z) locations (in the ego frame)</span></span><br><span class="line"><span class="string">    of the points in the point cloud.</span></span><br><span class="line"><span class="string">    Returns B x N x D x H/downsample x W/downsample x 3</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    B, N, _ = trans.shape</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 撤销图像增强的图像变换</span></span><br><span class="line">    <span class="comment"># B x N x D x H x W x 3</span></span><br><span class="line">    points = <span class="variable language_">self</span>.frustum - post_trans.view(B, N, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">3</span>)</span><br><span class="line">    points = torch.inverse(post_rots).view(B, N, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">3</span>).matmul(points.unsqueeze(-<span class="number">1</span>))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># cam_to_ego</span></span><br><span class="line">    points = torch.cat((points[:, :, :, :, :, :<span class="number">2</span>] * points[:, :, :, :, :, <span class="number">2</span>:<span class="number">3</span>],</span><br><span class="line">                        points[:, :, :, :, :, <span class="number">2</span>:<span class="number">3</span>]</span><br><span class="line">                        ), <span class="number">5</span>)</span><br><span class="line">    combine = rots.matmul(torch.inverse(intrins))</span><br><span class="line">    points = combine.view(B, N, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">3</span>).matmul(points).squeeze(-<span class="number">1</span>)</span><br><span class="line">    points += trans.view(B, N, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> points</span><br></pre></td></tr></table></figure>
+<h3 id="5-2-Splat"><a href="#5-2-Splat" class="headerlink" title="5.2 Splat"></a>5.2 Splat</h3><ul>
+<li>首先，将输入的矩阵一维化，得到了一维索引</li>
+<li>由于一维索引是在 BEV 空间下按照顾 X-&gt;Y-&gt;Z-&gt;B 的顺序生成的，因此相邻体素的索引也是相邻的</li>
+<li>用排序后的索引对相机特征进行重排，这样相邻的体素对应的相机特征也是相邻的</li>
+<li>对排序后的特征进行 acumsum，方便后续特征计算与求导</li>
+</ul>
+<p>注：这里采用的是 sum pooling，而不是 max pooling 或者 average pooling，是为了保存特征响应比较强的体素，定性来讲，被观测比较多的特征，在 BEV 空间上会有更强的 feature</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">voxel_pooling</span>(<span class="params">self, geom_feats, x</span>):</span><br><span class="line">    B, N, D, H, W, C = x.shape</span><br><span class="line">    Nprime = B*N*D*H*W</span><br><span class="line"></span><br><span class="line">    <span class="comment"># flatten x</span></span><br><span class="line">    x = x.reshape(Nprime, C)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># flatten indices</span></span><br><span class="line">    geom_feats = ((geom_feats - (<span class="variable language_">self</span>.bx - <span class="variable language_">self</span>.dx/<span class="number">2.</span>)) / <span class="variable language_">self</span>.dx).long()</span><br><span class="line">    geom_feats = geom_feats.view(Nprime, <span class="number">3</span>)</span><br><span class="line">    batch_ix = torch.cat([torch.full([Nprime//B, <span class="number">1</span>], ix,</span><br><span class="line">                         device=x.device, dtype=torch.long) <span class="keyword">for</span> ix <span class="keyword">in</span> <span class="built_in">range</span>(B)])</span><br><span class="line">    geom_feats = torch.cat((geom_feats, batch_ix), <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># filter out points that are outside box</span></span><br><span class="line">    kept = (geom_feats[:, <span class="number">0</span>] &gt;= <span class="number">0</span>) &amp; (geom_feats[:, <span class="number">0</span>] &lt; <span class="variable language_">self</span>.nx[<span class="number">0</span>])\</span><br><span class="line">        &amp; (geom_feats[:, <span class="number">1</span>] &gt;= <span class="number">0</span>) &amp; (geom_feats[:, <span class="number">1</span>] &lt; <span class="variable language_">self</span>.nx[<span class="number">1</span>])\</span><br><span class="line">        &amp; (geom_feats[:, <span class="number">2</span>] &gt;= <span class="number">0</span>) &amp; (geom_feats[:, <span class="number">2</span>] &lt; <span class="variable language_">self</span>.nx[<span class="number">2</span>])</span><br><span class="line">    x = x[kept]</span><br><span class="line">    geom_feats = geom_feats[kept]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># get tensors from the same voxel next to each other</span></span><br><span class="line">    ranks = geom_feats[:, <span class="number">0</span>] * (<span class="variable language_">self</span>.nx[<span class="number">1</span>] * <span class="variable language_">self</span>.nx[<span class="number">2</span>] * B)\</span><br><span class="line">        + geom_feats[:, <span class="number">1</span>] * (<span class="variable language_">self</span>.nx[<span class="number">2</span>] * B)\</span><br><span class="line">        + geom_feats[:, <span class="number">2</span>] * B\</span><br><span class="line">        + geom_feats[:, <span class="number">3</span>]</span><br><span class="line">    sorts = ranks.argsort()</span><br><span class="line">    x, geom_feats, ranks = x[sorts], geom_feats[sorts], ranks[sorts]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># cumsum trick</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> <span class="variable language_">self</span>.use_quickcumsum:</span><br><span class="line">        x, geom_feats = cumsum_trick(x, geom_feats, ranks)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        x, geom_feats = QuickCumsum.apply(x, geom_feats, ranks)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># griddify (B x C x Z x X x Y)</span></span><br><span class="line">    final = torch.zeros((B, C, <span class="variable language_">self</span>.nx[<span class="number">2</span>], <span class="variable language_">self</span>.nx[<span class="number">0</span>], <span class="variable language_">self</span>.nx[<span class="number">1</span>]), device=x.device)</span><br><span class="line">    final[geom_feats[:, <span class="number">3</span>], :, geom_feats[:, <span class="number">2</span>], geom_feats[:, <span class="number">0</span>], geom_feats[:, <span class="number">1</span>]] = x</span><br><span class="line"></span><br><span class="line">    <span class="comment"># collapse Z</span></span><br><span class="line">    final = torch.cat(final.unbind(dim=<span class="number">2</span>), <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> final</span><br></pre></td></tr></table></figure>
+<h2 id="6-总结"><a href="#6-总结" class="headerlink" title="6. 总结"></a>6. 总结</h2><ul>
+<li>LSS 总体思路蛮直观的，图像特征按照深度投影到 BEV 平面上，经过 pooling 操作得到 BEV feature</li>
+<li>先学习得到深度分布D 和 特征C，然后两者点积得到 DxC 维向量，比较巧妙</li>
+<li>cumsum_trick 虽然很巧妙，但是容易增加理解复杂度，这个技巧只是为了加速，本质上还是 sum pooling，不用这个技巧应该也能得到相同的效果</li>
+</ul>
+<p>下一篇，学习 BEVFormer</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/BEV/" rel="tag"># BEV</a>
+          
+            <a href="/tags/LSS/" rel="tag"># LSS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2024/01/23/ChatGPT/upgrade_chatgpt/" rel="next" title="国内ChatGPT 4 账号注册教程：无需验证码，使用支付宝即可支付（2024年1月更新）">
+                <i class="fa fa-chevron-left"></i> 国内ChatGPT 4 账号注册教程：无需验证码，使用支付宝即可支付（2024年1月更新）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-BEV-%E4%B8%8E-LSS"><span class="nav-number">1.</span> <span class="nav-text">1. BEV 与 LSS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Motivation"><span class="nav-number">2.</span> <span class="nav-text">2. Motivation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Method"><span class="nav-number">3.</span> <span class="nav-text">3. Method</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-Lift%EF%BC%88%E5%8D%87%E7%BB%B4%EF%BC%89"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 Lift（升维）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-Splat%EF%BC%88%E6%8A%95%E5%BD%B1%EF%BC%89"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 Splat（投影）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-Shoot"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 Shoot</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E8%AE%AD%E7%BB%83"><span class="nav-number">4.</span> <span class="nav-text">4. 训练</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-Cost"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 Cost</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90"><span class="nav-number">5.</span> <span class="nav-text">5. 代码解析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-Lift"><span class="nav-number">5.1.</span> <span class="nav-text">5.1 Lift</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-Splat"><span class="nav-number">5.2.</span> <span class="nav-text">5.2 Splat</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E6%80%BB%E7%BB%93"><span class="nav-number">6.</span> <span class="nav-text">6. 总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yu Xiaoxian</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

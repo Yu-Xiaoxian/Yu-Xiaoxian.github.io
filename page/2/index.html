@@ -152,7 +152,7 @@
 
 
 
-<meta name="generator" content="Hexo 7.1.1"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
@@ -236,6 +236,133 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.yu-xiaoxian.me/2020/06/08/Mannual/auto_upgrade_gost/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="于小咸的日志">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/06/08/Mannual/auto_upgrade_gost/" itemprop="url">gost 自动更新</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-08T13:03:46+00:00">
+                2020-06-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          gost 自动更新在上一篇文章中，我们介绍了怎样实现gost的自动启动：配置gost开机自启。但是 gost 无法通过apt-get upgrade自动更新，因此我开发一个脚本实现 gost 自动更新，保持安装的是最新的gost，从而避免版本老旧引起的安全问题。
+首先安装Json解析器 jq12sudo apt-get updatesudo apt-get install jq -y然后使用以下脚本自动检测gost更新，下载最新release的gost1234567891011121314151
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/06/08/Mannual/auto_upgrade_gost/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -1523,138 +1650,11 @@ Completed work  :done,
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.yu-xiaoxian.me/2017/08/05/theory/%E7%A8%8B%E5%BA%8F%E6%98%AF%E6%80%8E%E6%A0%B7%E4%BB%8EPC%E4%B8%8B%E8%BD%BD%E5%88%B0MCU%E7%9A%84/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="于小咸的日志">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/05/theory/%E7%A8%8B%E5%BA%8F%E6%98%AF%E6%80%8E%E6%A0%B7%E4%BB%8EPC%E4%B8%8B%E8%BD%BD%E5%88%B0MCU%E7%9A%84/" itemprop="url">程序是怎样从PC下载到MCU的</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-05T14:43:16+00:00">
-                2017-08-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          引言单片机程序一般用C编写，从程序编写到程序运行，要通过两个步骤：编译和烧写。编译是将C编写的单片机程序，编译成单片机可以识别的二进制代码。烧写是把编译好的二进制文件，通过烧录程序或者硬件，存储到单片机的ROM内存中。通常这两步都有专业软件来完成，对开发者是不可见的。但为了更加高效地开发单片机程序，我们有必要深入地了解编译和烧写过程。
-C程序的编译开发单片机一定会接触Keil C51，它是一款强大的51单片机集成开发环境(IDE)。51单片机虽然支持同一套指令集，但是由于各公司生产的单片机在内存
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/08/05/theory/%E7%A8%8B%E5%BA%8F%E6%98%AF%E6%80%8E%E6%A0%B7%E4%BB%8EPC%E4%B8%8B%E8%BD%BD%E5%88%B0MCU%E7%9A%84/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -1700,7 +1700,7 @@ C程序的编译开发单片机一定会接触Keil C51，它是一款强大的51
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1722,7 +1722,7 @@ C程序的编译开发单片机一定会接触Keil C51，它是一款强大的51
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -1759,7 +1759,7 @@ C程序的编译开发单片机一定会接触Keil C51，它是一款强大的51
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2025</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
